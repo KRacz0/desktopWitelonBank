@@ -2,7 +2,7 @@
 
 ## Lista części systemu
 - REST API napisane w technologiach PHP + Laravel, MySQL ) @Jaktaktonie
-- aplikacja webowa napisana w technologiach TypeScript + Vue.js
+- aplikacja webowa napisana w technologiach TypeScript + Vue.js @14Jano
 - aplikacja mobilna napisana w technologiach Dart + Flutter @Lothander
 - aplikacja desktopowa napisana w technologii Java FX @KRacz0 
 
