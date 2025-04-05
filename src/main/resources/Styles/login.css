@@ -1,18 +1,70 @@
 .login_container {
-    -fx-background-color: #EEEEEE;
+    -fx-background-color: linear-gradient(to bottom right, #121047, #1e1b5a);
 }
 
 .login_logo_container {
-    -fx-background-color: #121047;
+    -fx-background-color: transparent;
     -fx-alignment: center;
-
 }
 
 .login_logo_container Text {
-    -fx-font-size: 2em;
+    -fx-font-size: 2.5em;
     -fx-fill: #FFFFFF;
+    -fx-font-weight: bold;
 }
 
 .login_logo_container FontAwesomeIconView {
     -fx-fill: #ECF39E;
+    -fx-font-size: 4em;
+}
+
+/* Login form */
+.login_form_container {
+    -fx-background-color: #ffffff;
+    -fx-padding: 40;
+    -fx-spacing: 15;
+    -fx-alignment: center;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 4);
+}
+
+.login_form_container Label {
+    -fx-font-size: 1.1em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #121047;
+}
+
+.input_field {
+    -fx-background-color: #F5F5F5;
+    -fx-pref-height: 40;
+    -fx-font-size: 1.1em;
+    -fx-padding: 0 10 0 10;
+    -fx-background-radius: 8;
+    -fx-border-color: #DDD;
+    -fx-border-radius: 8;
+}
+
+.input_field:focused {
+    -fx-border-color: #121047;
+}
+
+.login_form_container Button {
+    -fx-background-color: linear-gradient(to right, #121047, #1e1b5a);
+    -fx-text-fill: #FFFFFF;
+    -fx-pref-width: 350;
+    -fx-pref-height: 40;
+    -fx-font-size: 1.2em;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+}
+
+.login_form_container Button:hover {
+    -fx-cursor: hand;
+    -fx-background-color: linear-gradient(to right, #1e1b5a, #121047);
+}
+
+.error_lbl {
+    -fx-text-fill: #FF4C4C;
+    -fx-font-weight: bold;
+    -fx-font-size: 1em;
 }

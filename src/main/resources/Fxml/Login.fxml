@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="login_container" stylesheets="@../Styles/login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.LoginController">
-   <children>
-      <VBox layoutY="-3.0" prefHeight="406.0" prefWidth="233.0" styleClass="login_logo_container" stylesheets="@../Styles/login.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-3.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-         </children></VBox>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="login_container" stylesheets="@../Styles/login.css"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.kracz0.desktopwitelonbank.Controllers.LoginController">
+   <VBox layoutY="-3.0" prefHeight="406.0" prefWidth="233.0" styleClass="login_logo_container"
+         stylesheets="@../Styles/login.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+         AnchorPane.topAnchor="0.0">
+      <FontAwesomeIconView glyphName="BANK" size="30"/>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="WitelonBank"/>
+   </VBox>
+   <VBox layoutX="236.0" layoutY="25.0" prefHeight="350.0" prefWidth="343.0" styleClass="login_form_container"
+         AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="25.0">
+      <Label text="Login"/>
+      <TextField fx:id="login_fld" styleClass="input_field"/>
+      <Label text="Hasło"/>
+      <TextField fx:id="password_fld" styleClass="input_field"/>
+      <Button fx:id="login_btn" mnemonicParsing="false" text="Button"/>
+      <Label fx:id="error_lbl" prefWidth="166.0" styleClass="error_lbl" text="Wystąpił błąd: "/>
+   </VBox>
 </AnchorPane>
