@@ -1,0 +1,363 @@
+.top_background_box {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 8, 0, 0, 2);
+}
+
+/* Nagłówki i powitanie */
+.user_name {
+    -fx-font-size: 2em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.date_lbl {
+    -fx-text-fill: #999999;
+    -fx-font-size: 0.9em;
+    -fx-font-family: "Segoe UI";
+}
+
+.section_title {
+    -fx-font-size: 1.1em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Segoe UI";
+}
+
+.card_active {
+    -fx-background-color: linear-gradient(to bottom right, #30cfd0, #330867);
+    -fx-background-radius: 16;
+}
+
+.card_inactive {
+    -fx-background-color: #eeeeee;
+}
+
+.card_type {
+    -fx-text-fill: white;
+    -fx-font-size: 0.9em;
+    -fx-font-weight: bold;
+}
+
+.card_amount {
+    -fx-text-fill: white;
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+}
+
+/* Dodaj kartę */
+.add_card_btn {
+    -fx-background-color: #f8f8fa;
+    -fx-border-color: #dcdce0;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-font-size: 1.4em;
+    -fx-text-fill: #ff9900;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 4, 0, 0, 2);
+}
+.add_card_btn:hover {
+    -fx-background-color: #eeeeee;
+    -fx-cursor: hand;
+}
+
+
+/* Sekcja balansu */
+
+.balance_period {
+    -fx-text-fill: #888888;
+    -fx-font-size: 0.9em;
+}
+
+.balance_amount {
+    -fx-font-size: 2.0em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #121047;
+}
+
+.income_icon, .expense_icon {
+    -fx-font-size: 0.9em;
+    -fx-font-family: "Segoe UI";
+}
+
+.income_icon {
+    -fx-text-fill: #2DCE89;
+}
+
+.expense_icon {
+    -fx-text-fill: #E63946;
+}
+
+/* Lista transakcji */
+.transaction_listview {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
+}
+
+.transaction_listview .scroll-bar:vertical {
+    -fx-scale-x: 0;
+}
+
+.card_inactive {
+    -fx-background-color: #e8e8ed;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 6, 0, 0, 2);
+    -fx-opacity: 0.8;
+}
+.card_inactive .card_label, .card_inactive .card_amount {
+    -fx-text-fill: #666666;
+}
+
+.card_inactive .card_label,
+.card_inactive .card_amount,
+.card_inactive .card_type {
+    -fx-text-fill: #777777;
+}
+
+.icon_circle_income, .icon_circle_expense {
+    -fx-background-color: #f6f6f6;
+    -fx-min-width: 36px;
+    -fx-min-height: 36px;
+    -fx-max-width: 36px;
+    -fx-max-height: 36px;
+    -fx-background-radius: 12;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.02), 2, 0, 0, 1);
+
+}
+
+.income_icon {
+    -fx-fill: #2DCE89;
+    -fx-font-size: 1.2em;
+}
+
+.expense_icon {
+    -fx-fill: #f6b93b;
+    -fx-font-size: 1.2em;
+}
+
+.stat_title {
+    -fx-font-size: 0.9em;
+    -fx-text-fill: #888;
+    -fx-font-weight: normal;
+}
+
+.stat_amount_income {
+    -fx-text-fill: #2DCE89;
+    -fx-font-size: 1.3em;
+    -fx-font-weight: bold;
+}
+
+.stat_amount_expense {
+    -fx-text-fill: #f6b93b;
+    -fx-font-size: 1.3em;
+    -fx-font-weight: bold;
+}
+
+.income_icon {
+    -fx-fill: #2DCE89;
+    -fx-font-size: 1.2em;
+}
+
+.expense_icon {
+    -fx-fill: #FFB200;
+    -fx-font-size: 1.2em;
+}
+
+.stat_amount_income {
+    -fx-text-fill: #2DCE89;
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+}
+
+.stat_amount_expense {
+    -fx-text-fill: #FFB200;
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+}
+
+.stat_title {
+    -fx-font-size: 0.9em;
+    -fx-text-fill: #444444;
+}
+
+/* Historia Transakcji */
+
+.transaction_container {
+    -fx-padding: 15;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);
+}
+
+.transaction_tile {
+    -fx-background-color: #f9f9fb;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+}
+
+.transaction_category {
+    -fx-text-fill: #444;
+    -fx-font-size: 1em;
+    -fx-font-weight: bold;
+}
+
+.transaction_amount {
+    -fx-font-size: 1em;
+    -fx-font-weight: bold;
+}
+
+.transaction_amount.income {
+    -fx-text-fill: #2DCE89;
+}
+
+.transaction_amount.expense {
+    -fx-text-fill: #E63946;
+}
+
+.transaction_date {
+    -fx-text-fill: #888;
+    -fx-font-size: 0.8em;
+}
+
+.new_transaction_btn {
+    -fx-background-color: linear-gradient(to right, #121047, #1e1b5a);
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-font-size: 1em;
+    -fx-font-weight: bold;
+}
+.new_transaction_btn:hover {
+    -fx-background-color: linear-gradient(to right, #1e1b5a, #121047);
+    -fx-cursor: hand;
+}
+
+/* Ogólny kontener kafelków (crypto i transakcje) */
+.transaction_container, .crypto_container {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
+    -fx-pref-height: 280; /* Wystarczająco na 3 kafelki + padding */
+}
+
+/* styl kafelka */
+.transaction_tile, .crypto_tile {
+    -fx-background-color: #f8f8fa;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+    -fx-alignment: center_left;
+    -fx-pref-height: 60; /* Stała wysokość dla wyrównania */
+}
+
+/* Ikonka z lewej strony kafelka */
+.transaction_icon_circle, .crypto_icon_circle {
+    -fx-background-color: #eaeaea;
+    -fx-background-radius: 50%;
+    -fx-min-width: 36px;
+    -fx-min-height: 36px;
+    -fx-max-width: 36px;
+    -fx-max-height: 36px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.02), 2, 0, 0, 1);
+}
+
+/* Ikona crypto lub bankowa */
+.crypto_icon, .income_icon, .expense_icon {
+    -fx-fill: #444;
+    -fx-font-size: 1.2em;
+}
+
+/* Nazwa + info o crypto */
+.crypto_name {
+    -fx-font-size: 1.0em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+.crypto_price {
+    -fx-font-size: 0.9em;
+    -fx-text-fill: #888;
+}
+.crypto_change_positive {
+    -fx-text-fill: #2DCE89;
+    -fx-font-size: 0.9em;
+}
+.crypto_change_negative {
+    -fx-text-fill: #E63946;
+    -fx-font-size: 0.9em;
+}
+.crypto_amount {
+    -fx-font-size: 1.0em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+.crypto_value {
+    -fx-font-size: 0.9em;
+    -fx-text-fill: #777;
+}
+
+/* Transakcje */
+.transaction_category {
+    -fx-font-size: 1em;
+    -fx-text-fill: #222;
+    -fx-font-weight: bold;
+}
+.transaction_amount {
+    -fx-font-size: 1em;
+    -fx-font-weight: bold;
+}
+.transaction_amount.income {
+    -fx-text-fill: #2DCE89;
+}
+.transaction_amount.expense {
+    -fx-text-fill: #FFB200;
+}
+.transaction_date {
+    -fx-font-size: 0.8em;
+    -fx-text-fill: #999;
+}
+
+/* Przyciski Nowa transakcja, Kup kryptowaluty */
+.new_transaction_btn {
+    -fx-background-color: #121047;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+.new_transaction_btn:hover {
+    -fx-background-color: #1a1a6a;
+}
+
+/* Pokaż więcej */
+.show_more_btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #666;
+    -fx-font-size: 0.9em;
+    -fx-cursor: hand;
+    -fx-underline: true;
+}
+
+/* pokaż wiecej */
+.show_more_bottom_btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #888;
+    -fx-font-size: 0.9em;
+    -fx-underline: true;
+    -fx-alignment: center;
+    -fx-padding: 6 0 4 0;
+    -fx-cursor: hand;
+}
+
+.show_more_bottom_btn:hover {
+    -fx-text-fill: #444;
+}
+
+
+

@@ -1,0 +1,254 @@
+.main_menu_container {
+    -fx-background-color: linear-gradient(to bottom, #121047, #1e1b5a);
+    -fx-alignment: center;
+    -fx-padding: 10;
+}
+
+.left_container {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 4);
+}
+
+/* Logo i nazwa banku */
+.title_container {
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+    -fx-padding: 20 10 20 10;
+}
+
+.title_container FontAwesomeIconView {
+    -fx-fill: #ECF39E;
+    -fx-font-size: 3em;
+}
+
+.title_container Text {
+    -fx-fill: #121047;
+    -fx-font-size: 1.8em;
+    -fx-font-weight: bold;
+}
+
+/* Przycisk główny */
+.menu_container {
+    -fx-padding: 20;
+    -fx-spacing: 15;
+}
+
+.menu_container Button {
+    -fx-pref-width: 140;
+    -fx-pref-height: 40;
+    -fx-background-color: #F8F8FF;
+    -fx-text-fill: #121047;
+    -fx-font-size: 1.05em;
+    -fx-alignment: center_left;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
+}
+
+.menu_container Button:hover {
+    -fx-background-color: #e0e0ff;
+    -fx-cursor: hand;
+}
+
+.menu_container Button FontAwesomeIconView {
+    -fx-fill: #121047;
+}
+
+/* Ciemniejsze przyciski np. Profile, Logout */
+.alt_menu_btn {
+    -fx-pref-width: 140;
+    -fx-pref-height: 40;
+    -fx-background-color: linear-gradient(to right, #121047, #1e1b5a);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 1.05em;
+    -fx-alignment: center_left;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
+}
+
+.alt_menu_btn FontAwesomeIconView {
+    -fx-fill: #ffffff;
+}
+
+/* Kontakt box */
+.contact_container {
+    -fx-background-color: #F4F9FF;
+    -fx-background-radius: 12;
+    -fx-alignment: center;
+    -fx-spacing: 10;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
+}
+
+.contact_container Text {
+    -fx-font-weight: bold;
+    -fx-fill: #121047;
+    -fx-font-size: 1em;
+}
+
+.contact_container Label {
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+    -fx-text-fill: #333333;
+}
+
+.contact_container Button {
+    -fx-pref-height: 40;
+    -fx-pref-width: 100;
+    -fx-background-color: #121047;
+    -fx-background-radius: 8;
+    -fx-text-fill: #ffffff;
+}
+
+.contact_container Button:hover {
+    -fx-background-color: #1e1b5a;
+    -fx-cursor: hand;
+}
+
+.contact_container Button FontAwesomeIconView {
+    -fx-fill: #ffffff;
+}
+
+/* ---------------------------------------------------------- */
+
+/* Ogólny wygląd dashboardu */
+.dashboard {
+    -fx-background-color: linear-gradient(to bottom, #f8f9ff, #f0f0f5);
+}
+
+/* Kontenery sekcji */
+.dashboard_card_container {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 18;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 10, 0, 0, 3);
+    -fx-padding: 30 20 30 20;
+    -fx-spacing: 15;
+    -fx-alignment: center_left;
+}
+
+/* Nagłówek powitalny */
+.user_name {
+    -fx-font-size: 1.6em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.date_lbl {
+    -fx-text-fill: #999999;
+    -fx-font-size: 0.9em;
+    -fx-font-family: "Segoe UI";
+}
+
+/* Tytuły sekcji */
+.section_title {
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+/* Labelki na karcie */
+.card_label {
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 0.9em;
+}
+
+.card_amount {
+    -fx-text-fill: white;
+    -fx-font-size: 1.5em;
+    -fx-font-weight: bold;
+}
+
+.card_type {
+    -fx-text-fill: white;
+    -fx-font-size: 0.95em;
+    -fx-font-weight: bold;
+}
+
+/* Karty aktywne i nieaktywne */
+.colored_card_alt {
+    -fx-background-color: linear-gradient(to right, #1A3384, #2B49B3);
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0, 0, 5);
+}
+
+.card_inactive {
+    -fx-background-color: #f2f2f2;
+    -fx-background-radius: 20;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
+}
+
+/* Dodaj kartę */
+.add_card_btn {
+    -fx-background-color: transparent;
+    -fx-border-color: #d9d9d9;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-text-fill: #000000;
+    -fx-font-size: 1.6em;
+    -fx-font-weight: bold;
+    -fx-pref-width: 60;
+    -fx-pref-height: 100;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.02), 2, 0, 0, 1);
+}
+
+.add_card_btn:hover {
+    -fx-background-color: #f8f8f8;
+    -fx-cursor: hand;
+}
+
+/* Balans */
+.balance_label {
+    -fx-text-fill: #1A3384;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.6em;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.balance_period {
+    -fx-text-fill: #888888;
+    -fx-font-size: 0.9em;
+    -fx-font-weight: normal;
+}
+
+/* Wpłaty / Wydatki */
+.income_label {
+    -fx-text-fill: #1ca446;
+    -fx-font-weight: bold;
+    -fx-font-size: 1em;
+}
+
+.expense_label {
+    -fx-text-fill: #c1121f;
+    -fx-font-weight: bold;
+    -fx-font-size: 1em;
+}
+
+.income_icon, .expense_icon {
+    -fx-font-size: 1.2em;
+    -fx-font-weight: bold;
+    -fx-text-fill: inherit;
+}
+
+/* Lista transakcji */
+.transaction_listview {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
+}
+
+.transaction_listview .scroll-bar:vertical {
+    -fx-scale-x: 0;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
