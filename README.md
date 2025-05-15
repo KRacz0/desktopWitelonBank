@@ -12,3 +12,9 @@
 
 ![image](https://github.com/user-attachments/assets/53e09cf2-7f38-4fad-9630-bae47a8a2b71)
 
+
+# UPDATE 15.05.2025
+- Update dashboard + sidebar
+![image](https://github.com/user-attachments/assets/301a34d0-d02f-4802-a095-936dc9be167b)
+
+
