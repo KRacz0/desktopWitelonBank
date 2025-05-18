@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.CryptoController"
+            prefHeight="700.0" prefWidth="1100.0"
+            stylesheets="@../../Styles/Crypto.css">
+
+    <Text text="Rynek Kryptowalut" layoutX="420.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0"
+          AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="420.0">
+        <font>
+            <Font size="28.0" />
+        </font>
+    </Text>
+
+    <HBox spacing="30" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="30.0">
+        <children>
+
+            <VBox spacing="10" prefWidth="250.0" styleClass="crypto_tile">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <FontAwesomeIconView glyphName="BITCOIN" styleClass="crypto_icon" />
+                    <Label text="Bitcoin (BTC)" styleClass="crypto_title" />
+                </HBox>
+                <Label fx:id="btcPriceLabel" text="Ładowanie..." styleClass="crypto_price"/>
+                <HBox spacing="10">
+                    <Button fx:id="buyBtcBtn" text="Kup" styleClass="action_btn"/>
+                    <Button fx:id="sellBtcBtn" text="Sprzedaj" styleClass="secondary_btn"/>
+                </HBox>
+            </VBox>
+
+            <VBox spacing="10" prefWidth="250.0" styleClass="crypto_tile">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <FontAwesomeIconView glyphName="LINE_CHART" styleClass="crypto_icon" />
+                    <Label text="Ethereum (ETH)" styleClass="crypto_title" />
+                </HBox>
+                <Label fx:id="ethPriceLabel" text="Ładowanie..." styleClass="crypto_price"/>
+                <HBox spacing="10">
+                    <Button fx:id="buyEthBtn" text="Kup" styleClass="action_btn"/>
+                    <Button fx:id="sellEthBtn" text="Sprzedaj" styleClass="secondary_btn"/>
+                </HBox>
+            </VBox>
+
+        </children>
+    </HBox>
+
+    <VBox spacing="15" AnchorPane.topAnchor="80.0" AnchorPane.rightAnchor="30.0" prefWidth="350.0" styleClass="wallet_box">
+        <Label text="Mój portfel" styleClass="section_title"/>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="BTC:" styleClass="wallet_label"/>
+            <Label fx:id="btcAmountLabel" text="0.0000 BTC" styleClass="wallet_value"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label fx:id="btcPlnValueLabel" text="0.00 PLN" styleClass="wallet_value"/>
+        </HBox>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="ETH:" styleClass="wallet_label"/>
+            <Label fx:id="ethAmountLabel" text="0.0000 ETH" styleClass="wallet_value"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label fx:id="ethPlnValueLabel" text="0.00 PLN" styleClass="wallet_value"/>
+        </HBox>
+    </VBox>
+
+</AnchorPane>

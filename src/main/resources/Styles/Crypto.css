@@ -1,0 +1,76 @@
+
+.crypto_section {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 10, 0.3, 0, 4);
+}
+
+.crypto_tile {
+    -fx-background-color: #f6f7fb;
+    -fx-background-radius: 8;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+    -fx-alignment: CENTER_LEFT;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 5, 0.1, 0, 2);
+}
+
+.crypto_icon_circle {
+    -fx-background-color: #121047;
+    -fx-background-radius: 50%;
+    -fx-padding: 10;
+    -fx-alignment: center;
+}
+
+.crypto_name {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #121047;
+}
+
+.crypto_price {
+    -fx-font-size: 14px;
+    -fx-text-fill: #444444;
+}
+
+.crypto_change_positive {
+    -fx-text-fill: #2e9d59;
+}
+
+.crypto_change_negative {
+    -fx-text-fill: #d43f3a;
+}
+
+.portfolio_section {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-spacing: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.06), 10, 0.2, 0, 2);
+}
+
+.portfolio_label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.portfolio_value {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #121047;
+}
+
+.action_btn {
+    -fx-background-color: #121047;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 6, 0.1, 0, 2);
+    -fx-transition: all 0.3s ease;
+}
+
+.action_btn:hover {
+    -fx-background-color: #2d2c70;
+}
