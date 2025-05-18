@@ -1,0 +1,16 @@
+.modal_title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.confirm_btn {
+    -fx-background-color: #121047;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-background-radius: 6;
+}
+
+.confirm_btn:hover {
+    -fx-background-color: #1f1bb5;
+}

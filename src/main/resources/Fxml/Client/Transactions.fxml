@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" stylesheets="@../../Styles/Transactions.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.TransactionsController">
+
+    <ListView fx:id="transactions_listview" layoutX="14.0" layoutY="78.0" prefHeight="581.0" prefWidth="1060.0" styleClass="transactions_container" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="78.0" />
+
+    <HBox layoutX="20.0" layoutY="20.0" spacing="10" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0">
+        <children>
+            <Label text="Od:" />
+            <DatePicker fx:id="startDatePicker" />
+            <Label text="Do:" />
+            <DatePicker fx:id="endDatePicker" />
+            <Button fx:id="generateReportBtn" styleClass="action_btn" text="Generuj raport" />
+        </children>
+    </HBox>
+
+    <Button fx:id="newTransferBtn" layoutX="910.0" layoutY="20.0" styleClass="action_btn" text="Nowy przelew" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0" />
+
+</AnchorPane>
