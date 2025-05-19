@@ -29,7 +29,7 @@ public class DashboardService {
                         json.getInt("id"),
                         json.getString("nr_konta"),
                         json.getDouble("saldo"),
-                        json.getString("waluta")
+                        json.has("waluta") ? json.getString("waluta") : "PLN"
                 ));
             }
             return konta;
@@ -40,24 +40,41 @@ public class DashboardService {
 
     public List<Transfer> getPrzelewy(int kontoId, String typ) throws Exception {
         String url = ApiConfig.BASE_URL + "/konta/" + kontoId + "/przelewy?typ=" + typ;
+
         HttpRequest request = ApiClient.authorizedRequest(url).GET().build();
         HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
 
+        String body = response.body();
+        System.out.println("Odpowiedź z API (przelewy): " + body);
+
         if (response.statusCode() == 200) {
-            JSONArray arr = new JSONArray(response.body());
-            List<Transfer> przelewy = new ArrayList<>();
-            for (int i = 0; i < arr.length(); i++) {
-                JSONObject json = arr.getJSONObject(i);
-                przelewy.add(new Transfer(
-                        json.getString("tytul"),
-                        json.getDouble("kwota"),
-                        json.getString("typ_transakcji"),
-                        json.getString("data_realizacji")
-                ));
+            JSONObject json = new JSONObject(body);
+
+            if (!json.has("data") || !json.get("data").toString().startsWith("[")) {
+                throw new Exception("Brak listy 'data' lub niewłaściwy format: " + body);
             }
+
+            JSONArray arr = json.getJSONArray("data");
+            List<Transfer> przelewy = new ArrayList<>();
+
+            for (int i = 0; i < arr.length(); i++) {
+                JSONObject item = arr.getJSONObject(i);
+
+                String typtransakcji = item.has("typ_transakcji") ? item.getString("typ_transakcji") : "brak typu";
+
+                przelewy.add(new Transfer(
+                        item.getString("tytul"),
+                        item.getDouble("kwota"),
+                        typtransakcji,
+                        item.isNull("data_realizacji") ? "N/A" : item.getString("data_realizacji")
+                ));
+
+            }
+
             return przelewy;
+
         } else {
-            throw new Exception("Błąd pobierania przelewów: " + response.body());
+            throw new Exception("Błąd pobierania przelewów: " + body);
         }
     }
 }

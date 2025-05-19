@@ -73,7 +73,7 @@ public class DashboardController implements Initializable {
             try {
                 List<Account> accounts = dashboardService.getKonta();
                 if (!accounts.isEmpty()) {
-                    Account account = accounts.get(0);  // Główne konto
+                    Account account = accounts.get(0);
                     int accountId = account.getId();
 
                     Platform.runLater(() -> {
@@ -103,7 +103,7 @@ public class DashboardController implements Initializable {
                     expense_lbl.setText(String.format("- %.2f PLN", expenseSum));
 
                     if (!income.isEmpty()) {
-                        Transfer t = income.get(0); // ostatnia przychodząca
+                        Transfer t = income.get(0);
                         transaction_category_lbl.setText("Wpływ: " + t.getTytul());
                         transaction_amount_lbl.setText(String.format("+ %.2f PLN", t.getKwota()));
                         transaction_date_lbl.setText(t.getData());

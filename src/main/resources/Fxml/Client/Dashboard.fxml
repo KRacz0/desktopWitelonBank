@@ -17,7 +17,7 @@
 <AnchorPane prefHeight="700.0" prefWidth="1100.0" styleClass="gui" stylesheets="@../../Styles/Dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.DashboardController">
 
    <VBox layoutX="70.0" layoutY="1.0" prefHeight="260.0" prefWidth="1040.0" styleClass="top_background_box" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="1.0">
-      <Label fx:id="user_name_lbl" styleClass="user_name" text="Witaj, Krystian" wrapText="true" />
+      <Label fx:id="user_name_lbl" styleClass="user_name" text="Ładowanie..." wrapText="true" />
    </VBox>
 
    <Label fx:id="login_date_lbl" styleClass="date_lbl" text="10:00, 05 Maj 2025" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
@@ -29,13 +29,13 @@
          <HBox alignment="CENTER_LEFT" spacing="10">
             <AnchorPane prefHeight="150.0" prefWidth="239.0" styleClass="card_active">
                <Label fx:id="card_type_1_lbl" styleClass="card_type" text="VISA" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0" />
-               <Label fx:id="card_amount_1_lbl" styleClass="card_amount" text="2000,00 PLN" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="40.0" />
-               <Label fx:id="card_number_1_lbl" styleClass="card_label" text="**** **** **** 1234" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
+               <Label fx:id="card_amount_1_lbl" styleClass="card_amount" text="Ładowanie..." AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="40.0" />
+               <Label fx:id="card_number_1_lbl" styleClass="card_label" text="Ładowanie..." AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
             </AnchorPane>
             <AnchorPane prefHeight="145.0" prefWidth="239.0" styleClass="card_inactive">
                <Label fx:id="card_type_2_lbl" styleClass="card_type" text="VISA" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0" />
-               <Label fx:id="card_amount_2_lbl" layoutX="7.0" layoutY="43.0" styleClass="card_amount" text="00.00" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="43.0" />
-               <Label fx:id="card_number_2_lbl" styleClass="card_label" text="**** **** **** 0000" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
+               <Label fx:id="card_amount_2_lbl" layoutX="7.0" layoutY="43.0" styleClass="card_amount" text="Ładowanie..." AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="43.0" />
+               <Label fx:id="card_number_2_lbl" styleClass="card_label" text="Ładowanie..." AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" />
             </AnchorPane>
             <Button fx:id="new_card_btn" styleClass="add_card_btn" text="+" />
          </HBox>
@@ -55,8 +55,8 @@
             <Label styleClass="section_title" text="Balans" />
             <Label fx:id="balance_period_lbl" styleClass="balance_period" text="Ostatni miesiąc" />
          </HBox>
-         <Label fx:id="balance_lbl" styleClass="balance_amount" text="5 400.55 PLN" />
-         <Label fx:id="account_number_lbl" styleClass="card_label" text="1234 1234 1234 1234" />
+         <Label fx:id="balance_lbl" styleClass="balance_amount" text="Ładowanie..." />
+         <Label fx:id="account_number_lbl" styleClass="card_label" text="Ładowanie..." />
          <HBox alignment="CENTER_LEFT" spacing="20">
             <HBox alignment="CENTER_LEFT" spacing="5">
                <StackPane styleClass="icon_circle_income">
@@ -64,7 +64,7 @@
                </StackPane>
                <VBox spacing="3">
                   <Label styleClass="stat_title" text="Wpływy" />
-                  <Label fx:id="income_lbl" styleClass="stat_amount_income" text="2,123.00" />
+                  <Label fx:id="income_lbl" styleClass="stat_amount_income" text="Ładowanie..." />
                </VBox>
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="5">
@@ -73,7 +73,7 @@
                </StackPane>
                <VBox spacing="3">
                   <Label styleClass="stat_title" text="Wydatki" />
-                  <Label fx:id="expense_lbl" styleClass="stat_amount_expense" text="2,123.00" />
+                  <Label fx:id="expense_lbl" styleClass="stat_amount_expense" text="Ładowanie..." />
                </VBox>
             </HBox>
          </HBox>
@@ -90,12 +90,12 @@
             <FontAwesomeIconView fx:id="icon_transaction_lbl" glyphName="BANK" styleClass="income_icon" />
          </StackPane>
          <VBox spacing="3">
-            <Label fx:id="transaction_category_lbl" styleClass="transaction_category" text="Wpływ" />
+            <Label fx:id="transaction_category_lbl" styleClass="transaction_category" text="Ładowanie..." />
          </VBox>
          <Pane HBox.hgrow="ALWAYS" />
          <VBox alignment="CENTER_RIGHT" spacing="3">
-            <Label fx:id="transaction_amount_lbl" styleClass="transaction_amount income" text="+ 300,00 PLN" />
-            <Label fx:id="transaction_date_lbl" styleClass="transaction_date" text="05.05.2025" />
+            <Label fx:id="transaction_amount_lbl" styleClass="transaction_amount income" text="Ładowanie..." />
+            <Label fx:id="transaction_date_lbl" styleClass="transaction_date" text="Ładowanie..." />
          </VBox>
       </HBox>
       <Button fx:id="showMore_transaction_btn" maxWidth="Infinity" prefHeight="29.0" prefWidth="303.0" styleClass="show_more_bottom_btn" text="Pokaż więcej" />
@@ -113,14 +113,14 @@
          <VBox spacing="3">
             <Label fx:id="crypto_name_lbl" styleClass="crypto_name" text="Bitcoin" />
             <HBox spacing="5">
-               <Label fx:id="crypto_price_lbl" styleClass="crypto_price" text="104,112.33" />
-               <Label fx:id="crypto_change_btc" styleClass="crypto_change_positive" text="+0.8%" />
+               <Label fx:id="crypto_price_lbl" styleClass="crypto_price" text="Ładowanie..." />
+               <Label fx:id="crypto_change_btc" styleClass="crypto_change_positive" text="Ładowanie..." />
             </HBox>
          </VBox>
          <Pane HBox.hgrow="ALWAYS" />
          <VBox alignment="CENTER_RIGHT" spacing="3">
-            <Label fx:id="crypto_amount_lbl" styleClass="crypto_amount" text="0.000127 BTC" />
-            <Label fx:id="crypto_value_lbl" styleClass="crypto_value" text="13.23 PLN" />
+            <Label fx:id="crypto_amount_lbl" styleClass="crypto_amount" text="Ładowanie..." />
+            <Label fx:id="crypto_value_lbl" styleClass="crypto_value" text="Ładowanie..." />
          </VBox>
       </HBox>
       <Button fx:id="showMore_crypto_btn" maxWidth="Infinity" prefHeight="29.0" prefWidth="303.0" styleClass="show_more_bottom_btn" text="Pokaż więcej" />
