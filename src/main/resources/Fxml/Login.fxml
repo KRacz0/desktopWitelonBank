@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="login_container" stylesheets="@../Styles/Login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.LoginController">
    <VBox layoutY="-3.0" prefHeight="406.0" prefWidth="233.0" styleClass="login_logo_container" stylesheets="@../Styles/Login.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
       <FontAwesomeIconView glyphName="BANK" size="30" />
@@ -17,7 +18,7 @@
       <Label text="Login" />
       <TextField fx:id="login_fld" styleClass="input_field" />
       <Label text="Hasło" />
-      <TextField fx:id="password_fld" styleClass="input_field" />
+      <PasswordField fx:id="password_fld" styleClass="input_field" />
       <Button fx:id="login_btn" mnemonicParsing="false" text="Zaloguj sie" />
       <Label fx:id="error_lbl" prefWidth="166.0" styleClass="error_lbl" text="Wystąpił błąd: " />
    </VBox>

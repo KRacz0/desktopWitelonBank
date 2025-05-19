@@ -11,16 +11,20 @@ module com.kracz0.desktopwitelonbank {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires de.jensd.fx.glyphs.fontawesome;
+    requires java.net.http;
+    requires com.fasterxml.jackson.databind;
+    requires org.json;
 
-    // Otwierasz pakiety kontrolerów dla FXML, aby FXML mógł tworzyć ich instancje
     opens com.kracz0.desktopwitelonbank.Controllers to javafx.fxml;
     opens com.kracz0.desktopwitelonbank.Controllers.Client to javafx.fxml;
+    opens com.kracz0.desktopwitelonbank.Controllers.Client.Modals to javafx.fxml;
 
-
-    // Eksporty (jeśli używasz klas poza modułem)
     exports com.kracz0.desktopwitelonbank;
     exports com.kracz0.desktopwitelonbank.Controllers;
     exports com.kracz0.desktopwitelonbank.Controllers.Client;
+    exports com.kracz0.desktopwitelonbank.Controllers.Client.Modals;
     exports com.kracz0.desktopwitelonbank.Models;
     exports com.kracz0.desktopwitelonbank.Views;
+
+
 }

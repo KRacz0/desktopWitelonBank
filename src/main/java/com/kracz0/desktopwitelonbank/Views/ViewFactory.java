@@ -1,11 +1,14 @@
 package com.kracz0.desktopwitelonbank.Views;
 
 import com.kracz0.desktopwitelonbank.Controllers.Client.ClientMenuController;
+import com.kracz0.desktopwitelonbank.Controllers.Client.Modals.TwoFactorController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -74,6 +77,26 @@ public class ViewFactory {
             stage.setScene(scene);
             stage.setTitle("Witelon Bank");
             stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showTwoFactorModal(String email, Stage loginStage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Client/Modals/TwoFactorModal.fxml"));
+            Parent root = loader.load();
+
+            TwoFactorController controller = loader.getController();
+            controller.setEmail(email);
+            controller.setLoginStage(loginStage); // ⬅️ przekazujemy Stage do zamknięcia
+
+            Stage modalStage = new Stage();
+            modalStage.setScene(new Scene(root));
+            modalStage.setTitle("Weryfikacja dwuetapowa");
+            modalStage.initModality(Modality.APPLICATION_MODAL);
+            modalStage.showAndWait();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
