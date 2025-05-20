@@ -27,3 +27,11 @@
 
 - Added Address book with the option to add a new bank account number along with sending a direct transfer.
 ![image](https://github.com/user-attachments/assets/6e965c5c-8ab9-4be3-9444-10ed5b27de70)
+
+
+# UPDATE 21.05.2025
+![image](https://github.com/user-attachments/assets/48bbefe5-dc92-4675-bf44-2545d0797aab)
+![image](https://github.com/user-attachments/assets/fe6a6385-49fa-4d43-b56e-a140beb51491)
+![image](https://github.com/user-attachments/assets/0bd80a01-f4fd-4186-b7c7-7e18544034b3)
+![image](https://github.com/user-attachments/assets/e83495b8-47be-471a-bed1-1ff29b6c349b)
+![image](https://github.com/user-attachments/assets/66f14833-f9fd-4d9b-9950-fee559e9c1e8)
