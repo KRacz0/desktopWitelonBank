@@ -35,3 +35,11 @@
 ![image](https://github.com/user-attachments/assets/0bd80a01-f4fd-4186-b7c7-7e18544034b3)
 ![image](https://github.com/user-attachments/assets/e83495b8-47be-471a-bed1-1ff29b6c349b)
 ![image](https://github.com/user-attachments/assets/66f14833-f9fd-4d9b-9950-fee559e9c1e8)
+
+# UPDATE 21.05.2025
+Adding the ability to make transfers, check the history of transfers (all), the ability to check transfer information 
+![image](https://github.com/user-attachments/assets/d158425f-bba5-4605-9988-67f82725aeae)
+![image](https://github.com/user-attachments/assets/f47f9c22-76ba-460b-8391-e0fd3344009a)
+![image](https://github.com/user-attachments/assets/e4c4f64a-7bc7-43ac-96fd-7384caecc407)
+
+
