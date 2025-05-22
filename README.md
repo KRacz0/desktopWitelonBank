@@ -9,7 +9,7 @@
 | WBK-03 | Administrator może monitorować transakcje w systemie.                                                                   | ✓   |     |        | ✓       |
 | WBK-04 | Administrator może generować raporty finansowe.                                                                         | ✓   |     |        | ✓       |
 | WBK-05 | Administrator widzi statystyki systemowe.                                                                               | ✓   |     |        | ✓       |
-| WBK-06 | Użytkownik może inwestować środki (cryptowaluty).                                                                       | ✓   |     |        | ✓      |
+| WBK-06 | Użytkownik może inwestować środki (cryptowaluty).                                                                       | ✓   |     |        | <code style="color : green">✓</code>      |
 | WBK-07 | Użytkownik może logować się do swojego konta.                                                                           | ✓   | ✓   | ✓      |  <code style="color : green">✓</code>      |
 | WBK-8 | Użytkownik może zresetować swoje hasło.                                                                                  | ✓   | ✓   | ✓      |         |
 | WBK-9 | Użytkownik może sprawdzać saldo konta.                                                                                   | ✓   | ✓   | ✓      | <code style="color : green">✓</code>      |
@@ -21,7 +21,7 @@
 | WBK-15 | Użytkownik może dodać odbiorców do listy zapisanych przelewów.                                                          | ✓   | ✓   | ✓      | ✓       |
 | WBK-16 | Użytkownik może eksportować historię transakcji.                                                                        | ✓   | ✓   | ✓      | ✓       |
 | WBK-17 | Użytkownik może zamknąć konto.                                                                                          | ✓   | ✓   |        |         |
-| WBK-18 | Użytkownik może się wylogować.                                                                                          | ✓   | ✓   | ✓      | ✓       |
+| WBK-18 | Użytkownik może się wylogować.                                                                                          | ✓   | ✓   | ✓      | <code style="color : green">✓</code>       |
 | WBK-19 | System obsługuje język polski, angielski i niemiecki.                                                                   | ✓   | ✓   | ✓      | ✓       |
 
 # UPDATE 05.04.2025
