@@ -5,9 +5,8 @@ import com.kracz0.desktopwitelonbank.Views.ViewFactory;
 public class Model {
     private static Model model;
     private final ViewFactory viewFactory;
-
+    private boolean openTransferModalFlag = false;
     private User loggedUser;
-
     private Model() {
         this.viewFactory = new ViewFactory();
     }
@@ -41,5 +40,13 @@ public class Model {
 
     public void logout() {
         this.loggedUser = null;
+    }
+
+    public boolean shouldOpenTransferModal() {
+        return openTransferModalFlag;
+    }
+
+    public void setOpenTransferModalFlag(boolean value) {
+        this.openTransferModalFlag = value;
     }
 }

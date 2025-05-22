@@ -15,7 +15,7 @@ public class AuthService {
 
     public static String login(String email, String haslo) throws Exception {
         String body = String.format("{\"email\":\"%s\", \"haslo\":\"%s\"}", email, haslo);
-        HttpRequest request = HttpUtil.request(ApiConfig.BASE_URL + "/login")
+        HttpRequest request = HttpUtil.request(ApiConfig.LOGIN)
                 .POST(HttpRequest.BodyPublishers.ofString(body, StandardCharsets.UTF_8))
                 .build();
 
@@ -34,7 +34,7 @@ public class AuthService {
 
     public static User verify2FA(String email, String code) throws Exception {
         String body = String.format("{\"email\":\"%s\", \"dwuetapowy_kod\":\"%s\"}", email, code);
-        HttpRequest request = HttpUtil.request(ApiConfig.BASE_URL + "/2fa")
+        HttpRequest request = HttpUtil.request(ApiConfig.TWO_FACTOR)
                 .POST(HttpRequest.BodyPublishers.ofString(body, StandardCharsets.UTF_8))
                 .build();
 

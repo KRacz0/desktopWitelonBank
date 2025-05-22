@@ -60,6 +60,7 @@ public class TwoFactorController {
                         loginStage.close();
                     }
 
+
                     errorLabel.getScene().getWindow().hide();
                 } else {
                     errorLabel.setText(response.getMessage());

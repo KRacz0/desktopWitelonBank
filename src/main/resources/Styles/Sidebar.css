@@ -1,6 +1,6 @@
 .sidebar {
     -fx-background-color: #ffffff;
-    -fx-padding: 20 0 20 0;
+    -fx-padding: 10 0 10 0;
     -fx-background-radius: 0 10 10 0;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.06), 8, 0, 2, 0);
 }

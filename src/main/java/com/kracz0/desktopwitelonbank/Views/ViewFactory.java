@@ -19,6 +19,7 @@ public class ViewFactory {
     private AnchorPane dashboardView;
     private AnchorPane transactionsView;
     private AnchorPane addressBookView;
+    private AnchorPane cryptoWalletView;
 
     public ViewFactory() {
         this.clientSelectedMenuItem = new SimpleStringProperty("");
@@ -61,6 +62,17 @@ public class ViewFactory {
             }
         }
         return addressBookView;
+    }
+
+    public AnchorPane getCryptoWalletView() {
+        if (cryptoWalletView== null) {
+            try {
+                cryptoWalletView = new FXMLLoader(getClass().getResource("/Fxml/Client/Crypto.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return cryptoWalletView;
     }
 
     public void showLoginWindow() {

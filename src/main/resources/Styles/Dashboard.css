@@ -95,19 +95,6 @@
     -fx-text-fill: #E63946;
 }
 
-/* Lista transakcji */
-.transaction_listview {
-    -fx-background-color: #ffffff;
-    -fx-background-radius: 10;
-    -fx-padding: 10;
-    -fx-border-width: 0;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
-}
-
-.transaction_listview .scroll-bar:vertical {
-    -fx-scale-x: 0;
-}
-
 .card_inactive {
     -fx-background-color: #e8e8ed;
     -fx-background-radius: 15;
@@ -341,14 +328,6 @@
     -fx-background-color: #1a1a6a;
 }
 
-/* Pokaż więcej */
-.show_more_btn {
-    -fx-background-color: transparent;
-    -fx-text-fill: #666;
-    -fx-font-size: 0.9em;
-    -fx-cursor: hand;
-    -fx-underline: true;
-}
 
 /* pokaż wiecej */
 .show_more_bottom_btn {
@@ -373,31 +352,19 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 6, 0, 0, 2);
 }
 
-.chart-title {
-    -fx-font-size: 1.1em;
-    -fx-text-fill: #121047;
+.stat_amount_income, .stat_amount_expense {
+    -fx-pref-width: 100px;
+    -fx-min-width: 100px;
+    -fx-font-size: 1.2em;
     -fx-font-weight: bold;
+    -fx-wrap-text: false;
+    -fx-alignment: CENTER_LEFT;
 }
 
-.chart-legend {
-    -fx-text-fill: #444;
-    -fx-font-size: 0.9em;
+.stat_amount_income {
+    -fx-text-fill: #2e7d32; /* zielony */
+}
+.stat_amount_expense {
+    -fx-text-fill: #c62828; /* czerwony */
 }
 
-.default-color0.chart-series-area-line {
-    -fx-stroke: #2DCE89;
-    -fx-stroke-width: 2px;
-}
-
-.default-color0.chart-series-area-fill {
-    -fx-fill: rgba(45, 206, 137, 0.15);
-}
-
-.default-color1.chart-series-area-line {
-    -fx-stroke: #FFB200;
-    -fx-stroke-width: 2px;
-}
-
-.default-color1.chart-series-area-fill {
-    -fx-fill: rgba(255, 178, 0, 0.15);
-}

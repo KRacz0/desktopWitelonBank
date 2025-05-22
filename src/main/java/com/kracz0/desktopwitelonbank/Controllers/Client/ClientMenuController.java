@@ -24,6 +24,7 @@ public class ClientMenuController implements Initializable {
         sidebar_dashboard_btn.setOnAction(event -> onDashboard());
         sidebar_transactions_btn.setOnAction(event -> onTransactions());
         sidebar_addressBook_btn.setOnAction(event -> onAddressBook());
+        sidebar_crypto_btn.setOnAction(event -> onCryptoWallet());
     }
 
     private void onDashboard() {
@@ -37,4 +38,9 @@ public class ClientMenuController implements Initializable {
     private void onAddressBook() {
         Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("AddressBook");
     }
+
+    private void onCryptoWallet() {
+        Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("CryptoWallet");
+    }
+
 }

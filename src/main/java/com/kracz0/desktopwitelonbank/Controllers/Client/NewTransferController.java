@@ -1,4 +1,0 @@
-package com.kracz0.desktopwitelonbank.Controllers.Client;
-
-public class NewTransferController {
-}

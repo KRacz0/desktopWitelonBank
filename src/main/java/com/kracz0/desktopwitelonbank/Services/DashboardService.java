@@ -38,8 +38,8 @@ public class DashboardService {
         }
     }
 
-    public List<Transfer> getPrzelewy(int kontoId, String typ) throws Exception {
-        String url = ApiConfig.BASE_URL + "/konta/" + kontoId + "/przelewy?typ=" + typ;
+    public List<Transfer> getPrzelewy(int kontoId) throws Exception {
+        String url = ApiConfig.BASE_URL + "/konta/" + kontoId + "/przelewy";
 
         HttpRequest request = ApiClient.authorizedRequest(url).GET().build();
         HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
@@ -60,19 +60,29 @@ public class DashboardService {
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject item = arr.getJSONObject(i);
 
-                String typtransakcji = item.has("typ_transakcji") ? item.getString("typ_transakcji") : "brak typu";
+                String typ = item.getString("typ");
+                String data = item.isNull("data_realizacji") ? item.getString("data_zlecenia") : item.getString("data_realizacji");
+                String waluta = item.optString("waluta_przelewu", "PLN");
 
-                przelewy.add(new Transfer(
-                        item.getString("tytul"),
-                        item.getDouble("kwota"),
-                        typtransakcji,
-                        item.isNull("data_realizacji") ? "N/A" : item.getString("data_realizacji")
-                ));
+                String tytul = item.getString("tytul");
+                double kwota = item.getDouble("kwota");
 
+                String nrKontaOdbiorcy = item.optString("nr_konta_odbiorcy", "brak");
+                String nazwaOdbiorcy = item.optString("nazwa_odbiorcy", "brak");
+                String nrKontaNadawcy = item.optString("nr_konta_nadawcy", "brak");
+
+                String nazwaNadawcy = item.optString("nazwa_nadawcy", "brak");
+
+                Transfer transfer = new Transfer(
+                        tytul, kwota, typ, data, waluta,
+                        nazwaOdbiorcy, nrKontaOdbiorcy,
+                        nazwaNadawcy, nrKontaNadawcy
+                );
+
+                przelewy.add(transfer);
             }
 
             return przelewy;
-
         } else {
             throw new Exception("Błąd pobierania przelewów: " + body);
         }

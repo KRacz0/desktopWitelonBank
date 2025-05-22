@@ -20,6 +20,6 @@
       <Label text="Hasło" />
       <PasswordField fx:id="password_fld" styleClass="input_field" />
       <Button fx:id="login_btn" mnemonicParsing="false" text="Zaloguj sie" />
-      <Label fx:id="error_lbl" prefWidth="166.0" styleClass="error_lbl" text="Wystąpił błąd: " />
+      <Label fx:id="error_lbl" prefWidth="166.0" styleClass="error_lbl" text=" " />
    </VBox>
 </AnchorPane>
