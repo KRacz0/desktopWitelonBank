@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.kracz0.desktopwitelonbank.Controllers.Admin.AdminController">
+    <Text layoutX="475.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PANEL ADMINA"/>
+</AnchorPane>

@@ -1,7 +1,10 @@
 package com.kracz0.desktopwitelonbank.Views;
 
 import com.kracz0.desktopwitelonbank.Controllers.Client.ClientMenuController;
+import com.kracz0.desktopwitelonbank.Controllers.Client.CryptoController;
+import com.kracz0.desktopwitelonbank.Controllers.Client.DashboardController;
 import com.kracz0.desktopwitelonbank.Controllers.Client.Modals.TwoFactorController;
+import com.kracz0.desktopwitelonbank.Models.Model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +27,7 @@ public class ViewFactory {
     public ViewFactory() {
         this.clientSelectedMenuItem = new SimpleStringProperty("");
     }
+    private DashboardController dashboardController;
 
 
     // Client Views //
@@ -34,13 +38,16 @@ public class ViewFactory {
     public AnchorPane getDashboardView() {
         if (dashboardView == null) {
             try {
-                dashboardView = new FXMLLoader(getClass().getResource("/Fxml/Client/Dashboard.fxml")).load();
-            } catch (Exception e) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Client/Dashboard.fxml"));
+                dashboardView = loader.load();
+                dashboardController = loader.getController();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         return dashboardView;
     }
+
 
     public AnchorPane getTransactionsView() {
         if (transactionsView == null) {
@@ -65,15 +72,30 @@ public class ViewFactory {
     }
 
     public AnchorPane getCryptoWalletView() {
-        if (cryptoWalletView== null) {
+        if (cryptoWalletView == null) {
             try {
-                cryptoWalletView = new FXMLLoader(getClass().getResource("/Fxml/Client/Crypto.fxml")).load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Client/Crypto.fxml"));
+                cryptoWalletView = loader.load();
+
+                CryptoController controller = loader.getController();
+                controller.refreshData();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Client/Crypto.fxml"));
+                loader.load();
+                CryptoController controller = loader.getController();
+                controller.refreshData();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
         return cryptoWalletView;
     }
+
 
     public void showLoginWindow() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
@@ -82,17 +104,24 @@ public class ViewFactory {
 
     public void showClientWindow() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Client/Client.fxml"));
-            Scene scene = new Scene(loader.load());
+            FXMLLoader loader;
+            if (Model.getInstance().getLoggedUser().isAdministrator()) {
+                loader = new FXMLLoader(getClass().getResource("/Fxml/Admin/Admin.fxml"));
+            } else {
+                loader = new FXMLLoader(getClass().getResource("/Fxml/Client/Client.fxml"));
+            }
 
+            Scene scene = new Scene(loader.load());
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Witelon Bank");
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     public void showTwoFactorModal(String email, Stage loginStage) {
         try {
@@ -101,7 +130,7 @@ public class ViewFactory {
 
             TwoFactorController controller = loader.getController();
             controller.setEmail(email);
-            controller.setLoginStage(loginStage); // ⬅️ przekazujemy Stage do zamknięcia
+            controller.setLoginStage(loginStage);
 
             Stage modalStage = new Stage();
             modalStage.setScene(new Scene(root));
@@ -126,4 +155,9 @@ public class ViewFactory {
         stage.setTitle("Witelon Bank");
         stage.show();
     }
+
+    public DashboardController getDashboardController() {
+        return dashboardController;
+    }
+
 }
