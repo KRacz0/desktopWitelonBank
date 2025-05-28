@@ -11,5 +11,8 @@ public class ApiConfig {
     public static final String PORTFEL = BASE_URL + "/portfel";
     public static final String INWESTYCJE_KUP = BASE_URL + "/inwestycje/kup";
 
+    public static final String ADMIN_KONTA = BASE_URL + "/admin/konta";
+    public static final String ADMIN_KONTO_DETAILS = BASE_URL + "/admin/konta/";
+
 }
 

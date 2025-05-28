@@ -5,10 +5,13 @@ import com.kracz0.desktopwitelonbank.Models.Model;
 import com.kracz0.desktopwitelonbank.Utils.ApiClient;
 import com.kracz0.desktopwitelonbank.Views.ViewFactory;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -38,7 +41,13 @@ public class ClientMenuController implements Initializable {
 
     private void onDashboard() {
         Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("Dashboard");
+
+        DashboardController controller = Model.getInstance().getViewFactory().getDashboardController();
+        if (controller != null) {
+            controller.refreshDashboardData();
+        }
     }
+
 
     private void onTransactions() {
         Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("Transactions");

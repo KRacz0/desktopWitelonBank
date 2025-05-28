@@ -33,12 +33,10 @@ public class LoginController implements Initializable {
 
             error_lbl.setText("Logowanie...");
 
-            // Logika logowania w osobnym wątku
             new Thread(() -> {
                 try {
                     String verifiedEmail = login(email, haslo);
 
-                    // Po zalogowaniu (kod 200), otwórz modal do 2FA
                     Platform.runLater(() -> showTwoFactorModal(verifiedEmail));
 
                 } catch (Exception e) {

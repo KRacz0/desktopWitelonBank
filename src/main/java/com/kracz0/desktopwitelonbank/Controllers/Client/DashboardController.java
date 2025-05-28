@@ -2,30 +2,24 @@ package com.kracz0.desktopwitelonbank.Controllers.Client;
 
 import com.kracz0.desktopwitelonbank.Models.Card;
 import com.kracz0.desktopwitelonbank.Models.DTO.Account;
+import com.kracz0.desktopwitelonbank.Models.DTO.CryptoWallet;
 import com.kracz0.desktopwitelonbank.Models.DTO.Transfer;
 import com.kracz0.desktopwitelonbank.Models.Model;
 import com.kracz0.desktopwitelonbank.Models.User;
+import com.kracz0.desktopwitelonbank.Services.CryptoService;
 import com.kracz0.desktopwitelonbank.Services.DashboardService;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DashboardController implements Initializable {
     public Label balance_lbl;
@@ -43,24 +37,15 @@ public class DashboardController implements Initializable {
     public Label balance_period_lbl;
     public Label account_number_lbl;
     public Button showMore_transaction_btn;
-    public FontAwesomeIconView icon_crypto_lbl;
-    public Label crypto_name_lbl;
-    public Label crypto_price_lbl;
-    public Label crypto_change_btc;
-    public Label crypto_amount_lbl;
-    public Label crypto_value_lbl;
     public Button showMore_crypto_btn;
+    @FXML public VBox crypto_box;
     @FXML private VBox transactions_box;
     @FXML private Label income_lbl;
     @FXML private Label expense_lbl;
 
-    @FXML private AreaChart<String, Number> financeChart;
-    @FXML private CategoryAxis xAxis;
-    @FXML private NumberAxis yAxis;
-
     private final DashboardService dashboardService = new DashboardService();
     private final CardsService cardsService = new CardsService();
-
+    private final CryptoService cryptoService = new CryptoService();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -70,6 +55,8 @@ public class DashboardController implements Initializable {
 
         int kontoId = Model.getInstance().getLoggedUser().getId();
         loadCards(kontoId);
+        loadCryptoTiles();
+        refreshDashboardData();
 
 
         new Thread(() -> {
@@ -202,6 +189,71 @@ public class DashboardController implements Initializable {
             }
         }).start();
     }
+
+    private void loadCryptoTiles() {
+        new Thread(() -> {
+            Map<String, Double> prices = cryptoService.getCryptoPrices();
+            CryptoWallet wallet = cryptoService.getWallet();
+
+            if (prices == null || prices.isEmpty() || wallet == null) {
+                System.out.println("Nie udało się załadować danych kryptowalut.");
+                return;
+            }
+
+            Platform.runLater(() -> {
+                crypto_box.getChildren().clear();
+
+                try {
+                    // BTC
+                    FXMLLoader btcLoader = new FXMLLoader(getClass().getResource("/Fxml/Client/Partials/CryptoTile.fxml"));
+                    HBox btcTile = btcLoader.load();
+                    CryptoTileController btcController = btcLoader.getController();
+                    btcController.setData("Bitcoin (BTC)",  wallet.getSaldoBitcoin(), prices.getOrDefault("BTC", 0.0));
+                    crypto_box.getChildren().add(btcTile);
+
+                    // ETH
+                    FXMLLoader ethLoader = new FXMLLoader(getClass().getResource("/Fxml/Client/Partials/CryptoTile.fxml"));
+                    HBox ethTile = ethLoader.load();
+                    CryptoTileController ethController = ethLoader.getController();
+                    ethController.setData("Ethereum (ETH)", wallet.getSaldoEthereum(), prices.getOrDefault("ETH", 0.0));
+                    crypto_box.getChildren().add(ethTile);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }).start();
+    }
+
+    public void refreshDashboardData() {
+        User user = Model.getInstance().getLoggedUser();
+        user_name_lbl.setText("Witaj, " + user.getImie());
+        login_date_lbl.setText(java.time.LocalTime.now().withNano(0) + ", " + java.time.LocalDate.now());
+
+        int kontoId = user.getId();
+        loadCards(kontoId);
+        loadCryptoTiles();
+
+        new Thread(() -> {
+            try {
+                List<Account> accounts = dashboardService.getKonta();
+                if (!accounts.isEmpty()) {
+                    Account account = accounts.get(0);
+                    int accountId = account.getId();
+
+                    Platform.runLater(() -> {
+                        account_number_lbl.setText(formatAccountNumber(account.getNrKonta()));
+                        balance_lbl.setText(String.format("%.2f PLN", account.getSaldo()));
+                    });
+
+                    loadTransactions(accountId);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
 
 }
 

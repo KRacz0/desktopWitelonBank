@@ -95,29 +95,17 @@
       </AreaChart>
 
       <!-- Kryptowaluty -->
-      <VBox prefHeight="300.0" prefWidth="333.0" spacing="10" styleClass="transaction_container">
+      <VBox fx:id="crypto_box" prefHeight="300.0" prefWidth="333.0" spacing="10" styleClass="transaction_container">
          <HBox alignment="CENTER_LEFT" spacing="10">
-            <Label styleClass="section_title" text="Twoje kryptowaluty" />
+            <Label text="Twoje kryptowaluty" styleClass="section_title"/>
          </HBox>
-         <HBox alignment="CENTER_LEFT" spacing="10" styleClass="crypto_tile">
-            <StackPane styleClass="crypto_icon_circle">
-               <FontAwesomeIconView fx:id="icon_crypto_lbl" glyphName="BITCOIN" styleClass="crypto_icon" />
-            </StackPane>
-            <VBox spacing="3">
-               <Label fx:id="crypto_name_lbl" styleClass="crypto_name" text="Bitcoin" />
-               <HBox spacing="5">
-                  <Label fx:id="crypto_price_lbl" styleClass="crypto_price" text="Ładowanie..." />
-                  <Label fx:id="crypto_change_btc" styleClass="crypto_change_positive" text="Ładowanie..." />
-               </HBox>
-            </VBox>
-            <Pane HBox.hgrow="ALWAYS" />
-            <VBox alignment="CENTER_RIGHT" spacing="3">
-               <Label fx:id="crypto_amount_lbl" styleClass="crypto_amount" text="Ładowanie..." />
-               <Label fx:id="crypto_value_lbl" styleClass="crypto_value" text="Ładowanie..." />
-            </VBox>
-         </HBox>
-         <Button fx:id="showMore_crypto_btn" maxWidth="Infinity" prefHeight="29.0" prefWidth="303.0" styleClass="show_more_bottom_btn" text="Pokaż więcej" />
+
+         <!-- Tu dynamicznie będą dodawane kafelki BTC i ETH przez backend -->
+
+         <Button fx:id="showMore_crypto_btn" maxWidth="Infinity" prefHeight="29.0" prefWidth="303.0"
+                 styleClass="show_more_bottom_btn" text="Pokaż więcej"/>
       </VBox>
+
 
       <!-- Ostatnie transakcje -->
       <VBox fx:id="transactions_box" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
