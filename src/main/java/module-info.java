@@ -18,10 +18,12 @@ module com.kracz0.desktopwitelonbank {
     opens com.kracz0.desktopwitelonbank.Controllers to javafx.fxml;
     opens com.kracz0.desktopwitelonbank.Controllers.Client to javafx.fxml;
     opens com.kracz0.desktopwitelonbank.Controllers.Client.Modals to javafx.fxml;
+    opens com.kracz0.desktopwitelonbank.Controllers.Admin to javafx.fxml;
 
     exports com.kracz0.desktopwitelonbank;
     exports com.kracz0.desktopwitelonbank.Controllers;
     exports com.kracz0.desktopwitelonbank.Controllers.Client;
+    exports com.kracz0.desktopwitelonbank.Controllers.Admin;
     exports com.kracz0.desktopwitelonbank.Controllers.Client.Modals;
     exports com.kracz0.desktopwitelonbank.Models;
     exports com.kracz0.desktopwitelonbank.Views;
