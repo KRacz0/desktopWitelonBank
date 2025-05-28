@@ -73,4 +73,8 @@ Adding the ability to make transfers, check the history of transfers (all), the 
 Users can invest funds (cryptocurrencies).
 ![image](https://github.com/user-attachments/assets/5ca1e12f-5d18-4f71-b74a-5f0c55e75342)
 
+# UPDATE 21.05.2025
+Admin panel
+![image](https://github.com/user-attachments/assets/a39a8262-5084-4325-bdbb-2b88713843fe)
+
 
