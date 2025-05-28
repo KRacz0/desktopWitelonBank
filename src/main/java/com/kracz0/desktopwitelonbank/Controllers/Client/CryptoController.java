@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -22,24 +23,31 @@ public class CryptoController implements Initializable {
     @FXML private Button buyBtcBtn, buyEthBtn;
 
     private final CryptoService cryptoService = new CryptoService();
-    private Map<String, Double> prices;
+    private Map<String, Double> prices = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadCryptoPrices();
-        loadWallet();
+        refreshData();
 
         buyBtcBtn.setOnAction(event -> buyCrypto("BTC"));
         buyEthBtn.setOnAction(event -> buyCrypto("ETH"));
-
     }
 
-    private void loadCryptoPrices() {
+    public void refreshData() {
         new Thread(() -> {
-            prices = cryptoService.getCryptoPrices();
+            Map<String, Double> fetchedPrices = cryptoService.getCryptoPrices();
+            if (fetchedPrices == null || fetchedPrices.isEmpty()) {
+                System.out.println("Nie udało się pobrać cen kryptowalut.");
+                return;
+            }
+
+            prices = fetchedPrices;
+
             Platform.runLater(() -> {
                 btcPriceLabel.setText(prices.containsKey("BTC") ? String.format("%.2f PLN", prices.get("BTC")) : "Brak danych");
                 ethPriceLabel.setText(prices.containsKey("ETH") ? String.format("%.2f PLN", prices.get("ETH")) : "Brak danych");
+
+                loadWallet();
             });
         }).start();
     }
@@ -47,47 +55,41 @@ public class CryptoController implements Initializable {
     private void loadWallet() {
         new Thread(() -> {
             CryptoWallet wallet = cryptoService.getWallet();
+            if (wallet == null) {
+                System.out.println("Portfel kryptowalut jest pusty lub nie został załadowany.");
+                wallet = new CryptoWallet();
+            }
+
+            double btc = wallet.getSaldoBitcoin();
+            double eth = wallet.getSaldoEthereum();
+            double btcValue = btc * prices.getOrDefault("BTC", 0.0);
+            double ethValue = eth * prices.getOrDefault("ETH", 0.0);
+
             Platform.runLater(() -> {
-                double btc = wallet.getSaldoBitcoin();
-                double eth = wallet.getSaldoEthereum();
-
-
-                double btcValue = btc * prices.getOrDefault("BTC", 0.0);
-                double ethValue = eth * prices.getOrDefault("ETH", 0.0);
-
                 btcAmountLabel.setText(String.format("%.8f BTC", btc));
                 ethAmountLabel.setText(String.format("%.8f ETH", eth));
                 btcPlnValueLabel.setText(String.format("%.2f PLN", btcValue));
                 ethPlnValueLabel.setText(String.format("%.2f PLN", ethValue));
-
-                if (wallet == null) {
-                    btcAmountLabel.setText("Brak danych");
-                    ethAmountLabel.setText("Brak danych");
-                    return;
-                }
-
             });
         }).start();
-
-
     }
 
     private void buyCrypto(String symbol) {
         int accountId = Model.getInstance().getLoggedUser().getId();
-        double kwota = 100; // Na razie sztywno, później można dodać modal z wyborem kwoty
+        double kwota = 100;
 
         new Thread(() -> {
             String result = cryptoService.buyCrypto(accountId, symbol, kwota);
+
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Zakup kryptowaluty");
                 alert.setContentText(result);
                 alert.showAndWait();
-                loadWallet(); // odświeżenie portfela po zakupie
+                refreshData();
             });
         }).start();
     }
-
-
 }
+
 

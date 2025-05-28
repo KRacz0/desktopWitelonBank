@@ -3,6 +3,7 @@ package com.kracz0.desktopwitelonbank.Services;
 import com.kracz0.desktopwitelonbank.Config.ApiConfig;
 import com.kracz0.desktopwitelonbank.Models.DTO.CryptoWallet;
 import com.kracz0.desktopwitelonbank.Utils.ApiClient;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Field;
@@ -13,24 +14,40 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CryptoService {
+    private Map<String, Double> cachedPrices = new HashMap<>();
 
     public Map<String, Double> getCryptoPrices() {
         try {
             HttpRequest request = ApiClient.authorizedRequest(ApiConfig.KRYPTOWALUTY_CENY).GET().build();
             HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
 
-            JSONObject json = new JSONObject(response.body());
-            Map<String, Double> prices = new HashMap<>();
-            for (String key : json.keySet()) {
-                prices.put(key, json.getDouble(key));
+            if (response.statusCode() != 200) {
+                return cachedPrices;
             }
 
+            JSONObject json = new JSONObject(response.body());
+
+            if (json.has("message")) {
+                return cachedPrices;
+            }
+
+            Map<String, Double> prices = new HashMap<>();
+            for (String key : json.keySet()) {
+                try {
+                    prices.put(key, json.getDouble(key));
+                } catch (JSONException e) {
+                }
+            }
+
+            cachedPrices = prices;
             return prices;
+
         } catch (Exception e) {
             e.printStackTrace();
-            return Collections.emptyMap();
+            return cachedPrices;
         }
     }
+
 
     public CryptoWallet getWallet() {
         try {
@@ -44,14 +61,12 @@ public class CryptoService {
             JSONObject json = new JSONObject(response.body());
 
             if (!json.has("data")) {
-                System.out.println("⚠Brak pola 'data' w odpowiedzi API: " + json);
                 return new CryptoWallet();
             }
 
             JSONObject data = json.getJSONObject("data");
 
             if (!data.has("saldo_bitcoin") || !data.has("saldo_ethereum")) {
-                System.out.println("Brak salda BTC/ETH w odpowiedzi API: " + data);
                 return new CryptoWallet();
             }
 

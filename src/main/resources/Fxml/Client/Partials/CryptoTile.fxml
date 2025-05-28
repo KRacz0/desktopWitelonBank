@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<HBox xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.CryptoTileController"
+      alignment="CENTER_LEFT"
+      spacing="10"
+      styleClass="crypto_tile">
+
+    <StackPane styleClass="crypto_icon_circle">
+        <FontAwesomeIconView fx:id="icon_crypto_lbl" glyphName="BITCOIN" styleClass="crypto_icon"/>
+    </StackPane>
+
+    <VBox spacing="3">
+        <Label fx:id="crypto_name_lbl" styleClass="crypto_name" text="Bitcoin"/>
+        <HBox spacing="5">
+            <Label fx:id="crypto_price_lbl" styleClass="crypto_price" text="Ładowanie..."/>
+            <Label fx:id="crypto_change_lbl" styleClass="crypto_change_positive" text=""/>
+        </HBox>
+    </VBox>
+
+    <Pane HBox.hgrow="ALWAYS"/>
+
+    <VBox alignment="CENTER_RIGHT" spacing="3">
+        <Label fx:id="crypto_amount_lbl" styleClass="crypto_amount" text="Ładowanie..."/>
+        <Label fx:id="crypto_value_lbl" styleClass="crypto_value" text="Ładowanie..."/>
+    </VBox>
+</HBox>

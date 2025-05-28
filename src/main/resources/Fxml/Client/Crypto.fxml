@@ -22,6 +22,7 @@
         </font>
     </Text>
 
+    <FlowPane hgap="20" vgap="20" AnchorPane.topAnchor="70.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
     <HBox spacing="30" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="30.0">
         <VBox spacing="10" prefWidth="250.0" styleClass="crypto_tile">
             <HBox alignment="CENTER_LEFT" spacing="10">
@@ -46,8 +47,8 @@
                 <Button fx:id="sellEthBtn" text="Sprzedaj" styleClass="secondary_btn"/>
             </HBox>
         </VBox>
-
     </HBox>
+    </FlowPane>
 
     <VBox spacing="15" AnchorPane.topAnchor="80.0" AnchorPane.rightAnchor="30.0" prefWidth="350.0" styleClass="wallet_box">
         <Label text="Mój portfel" styleClass="section_title"/>
