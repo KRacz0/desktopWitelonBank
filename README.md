@@ -77,4 +77,10 @@ Users can invest funds (cryptocurrencies).
 Admin panel
 ![image](https://github.com/user-attachments/assets/a39a8262-5084-4325-bdbb-2b88713843fe)
 
+# UPDATE 31.05.2025
+Update 2FA UI
+https://github.com/user-attachments/assets/95ba819e-3851-4a15-8fb1-84f6accbce94
+
+
+
 
