@@ -79,8 +79,7 @@ Admin panel
 
 # UPDATE 31.05.2025
 Update 2FA UI
-[![Watch the video](https://i.sstatic.net/Vp2cE.png)]([https://github.com/user-attachments/assets/95ba819e-3851-4a15-8fb1-84f6accbce94])
 
-
+https://github.com/user-attachments/assets/95ba819e-3851-4a15-8fb1-84f6accbce94
 
 
