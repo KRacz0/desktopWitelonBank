@@ -8,7 +8,7 @@
 | WBK-02 | Administrator może zarządzać kontami użytkowników (blokowanie, odblokowywanie, limity).                                 | ✓   |     |        | <code style="color : green">✓</code>         |
 | WBK-03 | Administrator może monitorować transakcje w systemie.                                                                   | ✓   |     |        | <code style="color : green">✓</code>        |
 | WBK-04 | Administrator może generować raporty finansowe.                                                                         | ✓   |     |        | ✓       |
-| WBK-05 | Administrator widzi statystyki systemowe.                                                                               | ✓   |     |        | ✓       |
+| WBK-05 | Administrator widzi statystyki systemowe.                                                                               | ✓   |     |        | <code style="color : green">✓</code>      |
 | WBK-06 | Użytkownik może inwestować środki (cryptowaluty).                                                                       | ✓   |     |        | <code style="color : green">✓</code>      |
 | WBK-07 | Użytkownik może logować się do swojego konta.                                                                           | ✓   | ✓   | ✓      |  <code style="color : green">✓</code>      |
 | WBK-8 | Użytkownik może zresetować swoje hasło.                                                                                  | ✓   | ✓   | ✓      |         |
