@@ -5,10 +5,10 @@
 | OPZ    | Funkcjonalność                                                                                                          | API | web | mobile | desktop |
 |--------|-------------------------------------------------------------------------------------------------------------------------|-----|-----|--------|---------|
 | WBK-01 | Administrator może logować się do systemu.                                                                              | ✓    |     |        |<code style="color : green">✓</code>       |
-| WBK-02 | Administrator może zarządzać kontami użytkowników (blokowanie, odblokowywanie, limity).                                 | ✓   |     |        | ✓       |
-| WBK-03 | Administrator może monitorować transakcje w systemie.                                                                   | ✓   |     |        | ✓       |
+| WBK-02 | Administrator może zarządzać kontami użytkowników (blokowanie, odblokowywanie, limity).                                 | ✓   |     |        | <code style="color : green">✓</code>         |
+| WBK-03 | Administrator może monitorować transakcje w systemie.                                                                   | ✓   |     |        | <code style="color : green">✓</code>        |
 | WBK-04 | Administrator może generować raporty finansowe.                                                                         | ✓   |     |        | ✓       |
-| WBK-05 | Administrator widzi statystyki systemowe.                                                                               | ✓   |     |        | ✓       |
+| WBK-05 | Administrator widzi statystyki systemowe.                                                                               | ✓   |     |        | <code style="color : green">✓</code>      |
 | WBK-06 | Użytkownik może inwestować środki (cryptowaluty).                                                                       | ✓   |     |        | <code style="color : green">✓</code>      |
 | WBK-07 | Użytkownik może logować się do swojego konta.                                                                           | ✓   | ✓   | ✓      |  <code style="color : green">✓</code>      |
 | WBK-8 | Użytkownik może zresetować swoje hasło.                                                                                  | ✓   | ✓   | ✓      |         |
@@ -19,7 +19,7 @@
 | WBK-13 | Użytkownik może skonfigurować płatności cykliczne.                                                                      | ✓   | ✓   | ✓      |         |
 | WBK-14 | Użytkownik otrzymuje powiadomienia o transakcjach na e-mail/push.                                                       | ✓   | ✓   | ✓      |         |
 | WBK-15 | Użytkownik może dodać odbiorców do listy zapisanych przelewów.                                                          | ✓   | ✓   | ✓      | ✓       |
-| WBK-16 | Użytkownik może eksportować historię transakcji.                                                                        | ✓   | ✓   | ✓      | ✓       |
+| WBK-16 | Użytkownik może eksportować historię transakcji.                                                                        | ✓   | ✓   | ✓      | <code style="color : green">✓</code>     |
 | WBK-17 | Użytkownik może zamknąć konto.                                                                                          | ✓   | ✓   |        |         |
 | WBK-18 | Użytkownik może się wylogować.                                                                                          | ✓   | ✓   | ✓      | <code style="color : green">✓</code>       |
 | WBK-19 | System obsługuje język polski, angielski i niemiecki.                                                                   | ✓   | ✓   | ✓      | ✓       |
@@ -72,5 +72,14 @@ Adding the ability to make transfers, check the history of transfers (all), the 
 # UPDATE 22.05.2025
 Users can invest funds (cryptocurrencies).
 ![image](https://github.com/user-attachments/assets/5ca1e12f-5d18-4f71-b74a-5f0c55e75342)
+
+# UPDATE 21.05.2025
+Admin panel
+![image](https://github.com/user-attachments/assets/a39a8262-5084-4325-bdbb-2b88713843fe)
+
+# UPDATE 31.05.2025
+Update 2FA UI
+
+https://github.com/user-attachments/assets/95ba819e-3851-4a15-8fb1-84f6accbce94
 
 
