@@ -3,7 +3,7 @@ package com.kracz0.desktopwitelonbank.Models.DTO;
 public class Transfer {
     private String tytul;
     private double kwota;
-    private String typTransakcji; // "przychodzacy" lub "wychodzacy"
+    private String typTransakcji;
     private String data;
     private String waluta;
     private String nazwaOdbiorcy;

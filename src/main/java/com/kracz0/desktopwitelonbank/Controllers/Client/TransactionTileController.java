@@ -35,5 +35,4 @@ public class TransactionTileController {
             icon_transaction.getStyleClass().add("transaction_expense");
         }
     }
-
 }

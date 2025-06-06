@@ -12,12 +12,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ProgressIndicator?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <AnchorPane prefHeight="700.0" prefWidth="1100.0" stylesheets="@../../Styles/Transactions.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.TransactionsController">
 
     <ListView fx:id="transactions_listview" layoutX="14.0" layoutY="78.0" prefHeight="581.0" prefWidth="1060.0" styleClass="transactions_container" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="78.0" />
 
     <HBox layoutX="20.0" layoutY="20.0" spacing="10" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0">
-        <Button fx:id="generateReportBtn" styleClass="action_btn" text="Generuj raport"/>
+        <Button text="Eksportuj do CSV" onAction="#openExportModal" styleClass="action_btn" />
     </HBox>
 
     <Button fx:id="newTransferBtn" layoutX="910.0" layoutY="20.0" styleClass="action_btn" text="Nowy przelew" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0" />
@@ -51,7 +55,7 @@
         </VBox>
     </StackPane>
 
-    <!-- MODAL: Nowy przelew -->
+    <!-- Nowy przelew -->
     <StackPane fx:id="new_transfer_overlay" visible="false" pickOnBounds="true"
                styleClass="modal_overlay" AnchorPane.topAnchor="0.0"
                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -62,7 +66,21 @@
                 <!-- FORMULARZ PRZELEWU -->
                     <VBox fx:id="transfer_form" spacing="12" alignment="CENTER" maxWidth="360">
                         <Label text="Nowy przelew" styleClass="modal_title"/>
-                        <TextField fx:id="recipient_account_field" promptText="Numer konta odbiorcy"/>
+                        <StackPane alignment="CENTER_RIGHT" maxWidth="320" prefWidth="320">
+                            <TextField fx:id="recipient_account_field"
+                                       promptText="Numer konta odbiorcy"
+                                       styleClass="text-field-with-icon"
+                                       prefWidth="320"
+                                       maxWidth="320"/>
+                            <FontAwesomeIconView glyphName="BOOK"
+                                                 onMouseClicked="#openAddressBookPicker"
+                                                 styleClass="accountbook_icon">
+                                <StackPane.margin>
+                                    <Insets top="0" right="8" bottom="0" left="0"/>
+                                </StackPane.margin>
+                            </FontAwesomeIconView>
+                        </StackPane>
+
                         <TextField fx:id="recipient_name_field" promptText="Imię i nazwisko odbiorcy"/>
                         <TextField fx:id="address_line1_field" promptText="Adres linia 1 (np. ulica)"/>
                         <TextField fx:id="address_line2_field" promptText="Adres linia 2 (np. kod pocztowy i miasto)"/>
@@ -74,6 +92,13 @@
                             <Button text="Anuluj" onAction="#closeNewTransferModal" styleClass="action_btn"/>
                         </HBox>
                     </VBox>
+
+                    <VBox fx:id="address_book_picker" spacing="12" alignment="CENTER" visible="false" maxWidth="360">
+                        <Label text="Wybierz odbiorcę" styleClass="modal_title"/>
+                        <ListView fx:id="address_recipient_list" prefHeight="350.0"/>
+                        <Button text="Anuluj" onAction="#closeAddressBookPicker" styleClass="action_btn"/>
+                    </VBox>
+
 
                     <!-- STATUS WYSYŁANIA -->
                     <VBox fx:id="transfer_status_box" spacing="14" alignment="CENTER" visible="false" maxWidth="280" maxHeight="260" styleClass="status_box">
@@ -87,4 +112,59 @@
             </AnchorPane>
         </VBox>
     </StackPane>
+
+    <StackPane fx:id="exportModalOverlay" visible="false" pickOnBounds="true"
+               styleClass="modal_overlay"
+               AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+        <VBox alignment="CENTER" prefWidth="1100" prefHeight="700">
+            <AnchorPane maxWidth="440" maxHeight="400" styleClass="modal_box">
+                <StackPane alignment="CENTER" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <VBox spacing="14" alignment="CENTER" maxWidth="360">
+
+                        <Label text="Eksport przelewów do CSV" styleClass="modal_title"/>
+
+                        <HBox spacing="10" alignment="CENTER">
+                            <VBox spacing="2" alignment="CENTER">
+                                <Label text="Od" styleClass="modal_label"/>
+                                <DatePicker fx:id="exportStartDate" styleClass="date-picker" prefWidth="150"/>
+                            </VBox>
+                            <VBox spacing="2" alignment="CENTER">
+                                <Label text="Do" styleClass="modal_label"/>
+                                <DatePicker fx:id="exportEndDate" styleClass="date-picker" prefWidth="150"/>
+                            </VBox>
+                        </HBox>
+
+                        <VBox spacing="4" alignment="CENTER">
+                            <Label text="Typ transakcji" styleClass="modal_label"/>
+                            <ComboBox fx:id="exportTypeComboBox" styleClass="export-combo-box"
+                                      prefWidth="180" minWidth="180" maxWidth="180">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="wszystkie"/>
+                                        <String fx:value="przychodzacy"/>
+                                        <String fx:value="wychodzacy"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+                        </VBox>
+
+                        <HBox spacing="12" alignment="CENTER">
+                            <Button text="Anuluj" onAction="#closeExportModal" styleClass="action_btn"/>
+                            <Button text="Pobierz CSV" onAction="#exportPDF" styleClass="action_btn"/>
+                        </HBox>
+                        <VBox fx:id="exportStatusBox" spacing="10" alignment="CENTER" visible="false">
+                            <Label fx:id="exportStatusLabel" styleClass="modal_status_message" wrapText="true"/>
+                        </VBox>
+                    </VBox>
+                </StackPane>
+            </AnchorPane>
+        </VBox>
+    </StackPane>
+
+
+
+
 </AnchorPane>

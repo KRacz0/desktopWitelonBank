@@ -1,9 +1,13 @@
 package com.kracz0.desktopwitelonbank.Controllers.Client;
 
+import com.kracz0.desktopwitelonbank.Config.ApiConfig;
 import com.kracz0.desktopwitelonbank.Models.DTO.Transfer;
 import com.kracz0.desktopwitelonbank.Models.Model;
+import com.kracz0.desktopwitelonbank.Models.Recipient;
+import com.kracz0.desktopwitelonbank.Services.AddressBookService;
 import com.kracz0.desktopwitelonbank.Services.DashboardService;
 import com.kracz0.desktopwitelonbank.Services.TransactionsService;
+import com.kracz0.desktopwitelonbank.Utils.ApiClient;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -15,25 +19,27 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class TransactionsController implements Initializable {
     public ListView<HBox> transactions_listview;
-    public DatePicker startDatePicker;
-    public DatePicker endDatePicker;
-    public Button generateReportBtn;
     @FXML public Label nazwa_title_lbl;
     @FXML public Label konto_title_lbl;
     @FXML public AnchorPane new_transfer_modal;
+    @FXML public Label exportStatusLabel;
+    @FXML public VBox exportStatusBox;
     @FXML private StackPane modal_overlay;
     @FXML private Label typ_lbl;
     @FXML private Label konto_lbl;
@@ -60,6 +66,13 @@ public class TransactionsController implements Initializable {
     @FXML private FontAwesomeIconView status_icon;
     @FXML private Label transfer_status_details;
 
+    @FXML private StackPane exportModalOverlay;
+    @FXML private DatePicker exportStartDate;
+    @FXML private DatePicker exportEndDate;
+    @FXML private ComboBox<String> exportTypeComboBox;
+
+    @FXML private VBox address_book_picker;
+    @FXML private ListView<Recipient> address_recipient_list;
 
     private final TransactionsService transactionsService = new TransactionsService();
     private final DashboardService dashboardService = new DashboardService();
@@ -68,9 +81,7 @@ public class TransactionsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadAllTransfers();
-        generateReportBtn.setOnAction(event -> filterAndDisplayTransfers());
         newTransferBtn.setOnAction(event -> openNewTransferModal());
-        generateReportBtn.setOnAction(event -> filterAndDisplayTransfers());
 
         AnimationTimer modalOpener = new AnimationTimer() {
             @Override
@@ -118,27 +129,6 @@ public class TransactionsController implements Initializable {
                 e.printStackTrace();
             }
         }).start();
-    }
-
-    private void filterAndDisplayTransfers() {
-        LocalDate start = startDatePicker.getValue();
-        LocalDate end = endDatePicker.getValue();
-
-        List<Transfer> filtered = allTransfers.stream()
-                .filter(t -> {
-                    try {
-                        LocalDate date = LocalDate.parse(t.getData().substring(0, 10));
-                        boolean afterStart = (start == null || !date.isBefore(start));
-                        boolean beforeEnd = (end == null || !date.isAfter(end));
-                        return afterStart && beforeEnd;
-                    } catch (Exception e) {
-                        return false;
-                    }
-                })
-                .sorted(Comparator.comparing(Transfer::getData).reversed())
-                .toList();
-
-        showTransfers(filtered);
     }
 
     private void showTransfers(List<Transfer> transfers) {
@@ -285,6 +275,147 @@ public class TransactionsController implements Initializable {
                 ? "-fx-text-fill: #2ecc71; -fx-font-weight: bold;"
                 : "-fx-text-fill: #e74c3c; -fx-font-weight: bold;");
     }
+
+    @FXML
+    private void openExportModal() {
+        exportModalOverlay.setVisible(true);
+    }
+
+    @FXML
+    private void closeExportModal() {
+        exportModalOverlay.setVisible(false);
+    }
+
+    @FXML
+    private void exportPDF() {
+        LocalDate start = exportStartDate.getValue();
+        LocalDate end = exportEndDate.getValue();
+        String typ = exportTypeComboBox.getValue();
+
+        exportStatusBox.setVisible(true);
+
+        if (start == null || end == null || end.isBefore(start)) {
+            exportStatusLabel.setText("Niepoprawny zakres dat.");
+            return;
+        }
+
+        exportStatusLabel.setText("Eksportuję dane...");
+
+        int kontoId = Model.getInstance().getLoggedUser().getId();
+        String fullQuery = "?data_od=" + start + "&data_do=" + end +
+                ("wszystkie".equalsIgnoreCase(typ) ? "" : "&typ=" + typ);
+        String url = ApiConfig.BASE_URL + "/konta/" + kontoId + "/przelewy/export" + fullQuery;
+
+        new Thread(() -> {
+            try {
+                HttpRequest request = ApiClient.authorizedRequest(url).GET().build();
+                HttpResponse<byte[]> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofByteArray());
+
+                int statusCode = response.statusCode();
+                String contentType = response.headers().firstValue("Content-Type").orElse("brak nagłówka");
+
+                Platform.runLater(() -> {
+                    if (statusCode == 200 &&
+                            (contentType.contains("application/pdf") || contentType.contains("octet-stream"))) {
+
+                        byte[] csvData = response.body();
+
+                        FileChooser fileChooser = new FileChooser();
+                        fileChooser.setTitle("Zapisz historię przelewów");
+                        fileChooser.setInitialFileName("historia_przelewow.pdf");
+                        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF", "*.pdf"));
+
+                        File file = fileChooser.showSaveDialog(exportModalOverlay.getScene().getWindow());
+
+                        if (file != null) {
+                            try (FileOutputStream fos = new FileOutputStream(file)) {
+                                fos.write(csvData);
+                                exportStatusLabel.setText("Plik został zapisany pomyślnie.");
+                            } catch (IOException e) {
+                                exportStatusLabel.setText("Błąd zapisu pliku.");
+                            }
+                        } else {
+                            exportStatusLabel.setText("Zapis pliku został anulowany.");
+                        }
+                    } else {
+                        byte[] body = response.body();
+                        String preview = new String(body, 0, Math.min(body.length, 300));
+                        System.out.println("Treść odpowiedzi (preview):\n" + preview);
+
+                        exportStatusLabel.setText("Nie udało się pobrać pliku.\nKod: " + statusCode);
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Platform.runLater(() -> exportStatusLabel.setText("Błąd podczas eksportu CSV."));
+            }
+        }).start();
+    }
+
+
+
+    private void showAlert(Alert.AlertType type, String msg) {
+        Platform.runLater(() -> new Alert(type, msg).showAndWait());
+    }
+
+    @FXML
+    private void openAddressBookPicker() {
+        address_book_picker.setVisible(true);
+        transfer_form.setVisible(false);
+        transfer_status_box.setVisible(false);
+
+        // Wczytanie odbiorców z API
+        new Thread(() -> {
+            try {
+                List<Recipient> recipients = new AddressBookService().getAllRecipients();
+                Platform.runLater(() -> {
+                    address_recipient_list.getItems().clear();
+                    address_recipient_list.getItems().addAll(recipients);
+
+                    address_recipient_list.setCellFactory(list -> new ListCell<>() {
+                        @Override
+                        protected void updateItem(Recipient item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (empty || item == null) {
+                                setText(null);
+                            } else {
+                                setText(item.getNazwa_zdefiniowana() + " - " + item.getNr_konta());
+                            }
+                        }
+                    });
+
+                    address_recipient_list.setOnMouseClicked(event -> {
+                        if (event.getClickCount() == 2) {
+                            fillTransferFormFromRecipient(address_recipient_list.getSelectionModel().getSelectedItem());
+                        }
+                    });
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    private void fillTransferFormFromRecipient(Recipient r) {
+        if (r == null) return;
+
+        recipient_account_field.setText(r.getNr_konta());
+        recipient_name_field.setText(r.getRzeczywista_nazwa());
+        address_line1_field.setText(r.getAdres_linia1());
+        address_line2_field.setText(r.getAdres_linia2());
+
+        address_book_picker.setVisible(false);
+        transfer_form.setVisible(true);
+    }
+
+    @FXML
+    private void closeAddressBookPicker() {
+        address_book_picker.setVisible(false);
+        transfer_form.setVisible(true);
+    }
+
+
 
 }
 

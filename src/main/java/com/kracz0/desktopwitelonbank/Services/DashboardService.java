@@ -1,8 +1,10 @@
 package com.kracz0.desktopwitelonbank.Services;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kracz0.desktopwitelonbank.Config.ApiConfig;
 import com.kracz0.desktopwitelonbank.Models.DTO.Account;
+import com.kracz0.desktopwitelonbank.Models.DTO.StandingOrder;
 import com.kracz0.desktopwitelonbank.Models.DTO.Transfer;
 import com.kracz0.desktopwitelonbank.Utils.ApiClient;
 import org.json.JSONArray;
@@ -11,6 +13,7 @@ import org.json.JSONObject;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DashboardService {
@@ -45,13 +48,12 @@ public class DashboardService {
         HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
 
         String body = response.body();
-        System.out.println("Odpowiedź z API (przelewy): " + body);
 
         if (response.statusCode() == 200) {
             JSONObject json = new JSONObject(body);
 
             if (!json.has("data") || !json.get("data").toString().startsWith("[")) {
-                throw new Exception("Brak listy 'data' lub niewłaściwy format: " + body);
+                throw new Exception("Brak listy lub niewłaściwy format: " + body);
             }
 
             JSONArray arr = json.getJSONArray("data");
@@ -87,5 +89,22 @@ public class DashboardService {
             throw new Exception("Błąd pobierania przelewów: " + body);
         }
     }
+
+    public List<StandingOrder> getZleceniaStale() {
+        try {
+            HttpRequest request = ApiClient.authorizedRequest(ApiConfig.ZLECENIA_STALE).GET().build();
+            HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() == 200) {
+                JSONArray arr = new JSONArray(response.body());
+                ObjectMapper mapper = new ObjectMapper();
+                return mapper.readValue(arr.toString(), new TypeReference<List<StandingOrder>>() {});
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Collections.emptyList();
+    }
+
 }
 

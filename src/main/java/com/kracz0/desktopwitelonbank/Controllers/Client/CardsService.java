@@ -5,7 +5,6 @@ import com.kracz0.desktopwitelonbank.Models.Card;
 import com.kracz0.desktopwitelonbank.Utils.ApiClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
@@ -26,13 +25,11 @@ public class CardsService {
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject json = arr.getJSONObject(i);
 
-                String typ = json.optString("typ_karty", "Nieznany");
-                String nr = json.optString("nr_karty", "************2115");
-                String masked = "**** **** **** " + nr.substring(nr.length() - 4);
+                String typ = json.optString("typ_karty", "VISA");
+                String masked = json.optString("nr_karty_masked", "**** **** **** ????");
                 String data = json.optString("data_waznosci", "0000-00-00");
                 boolean zablokowana = json.optBoolean("zablokowana", false);
                 double limit = json.optDouble("limit_dzienny", 0.0);
-
 
                 karty.add(new Card(typ, masked, data, zablokowana, limit));
             }
@@ -43,4 +40,5 @@ public class CardsService {
         }
     }
 }
+
 

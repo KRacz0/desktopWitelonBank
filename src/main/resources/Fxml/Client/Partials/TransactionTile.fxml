@@ -4,23 +4,13 @@
 <?import javafx.scene.control.*?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
-<HBox fx:id="root" xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.TransactionTileController"
-      spacing="10" alignment="CENTER_LEFT" styleClass="transaction_tile">
-
-    <StackPane styleClass="transaction_icon_circle">
-        <FontAwesomeIconView fx:id="icon_transaction" glyphName="BANK" styleClass="income_icon"/>
-    </StackPane>
-
-    <VBox spacing="3">
-        <Label fx:id="transaction_category" styleClass="transaction_category" text="Tytuł"/>
-        <Label fx:id="transaction_amount" styleClass="transaction_amount" text="Brak danych"/>
+<HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.TransactionTileController" styleClass="transaction_tile" spacing="12" alignment="CENTER_LEFT" prefHeight="60.0">
+    <FontAwesomeIconView fx:id="icon_transaction" glyphName="QUESTION" glyphSize="18"/>
+    <VBox spacing="2">
+        <Label fx:id="transaction_category" styleClass="transaction_title"/>
+        <Label fx:id="transaction_date" styleClass="transaction_date"/>
     </VBox>
-
     <Pane HBox.hgrow="ALWAYS"/>
-
-    <VBox alignment="CENTER_RIGHT" spacing="3">
-        <Label fx:id="transaction_date" styleClass="transaction_date" text="2025-05-18"/>
-    </VBox>
+    <Label fx:id="transaction_amount" styleClass="transaction_amount"/>
 </HBox>
+

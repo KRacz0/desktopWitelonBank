@@ -24,17 +24,20 @@
 }
 
 .crypto_price {
-    -fx-font-size: 16px;
-    -fx-text-fill: #333;
+    -fx-font-size: 18px;
+    -fx-text-fill: #2e7d32;
+    -fx-font-weight: bold;
 }
+
 
 .wallet_box {
     -fx-background-color: #ffffff;
     -fx-background-radius: 12;
     -fx-padding: 20;
-    -fx-spacing: 10;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.06), 10, 0.2, 0, 2);
+    -fx-spacing: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 10, 0.1, 0, 2);
 }
+
 
 .wallet_label {
     -fx-font-size: 14px;
@@ -46,3 +49,92 @@
     -fx-text-fill: #121047;
     -fx-font-weight: bold;
 }
+
+.crypto_tile {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f9f9fb);
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.06), 10, 0.1, 0, 3);
+    -fx-spacing: 15;
+}
+
+.crypto_tile:hover {
+    -fx-background-color: linear-gradient(to bottom, #f5f6ff, #ffffff);
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(18, 16, 71, 0.15), 12, 0.2, 0, 5);
+}
+
+.text-field {
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 6 10;
+    -fx-font-size: 14px;
+}
+
+.modal_overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal_box {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-padding: 25;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 12, 0.1, 0, 4);
+}
+
+.action_btn {
+    -fx-background-color: #121047;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 18;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.action_btn:hover {
+    -fx-background-color: #1e1a72;
+}
+
+.secondary_btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #121047;
+    -fx-border-color: #121047;
+    -fx-border-width: 1;
+    -fx-font-weight: bold;
+    -fx-padding: 8 18;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.secondary_btn:hover {
+    -fx-background-color: #f0f0ff;
+}
+
+.toggle_mode {
+    -fx-background-color: transparent;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 0;
+    -fx-text-fill: #555;
+    -fx-font-weight: 600;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-pref-width: 120px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.02), 1, 0, 0, 1);
+    -fx-transition: all 0.3s ease;
+}
+
+.toggle_mode:selected {
+    -fx-background-color: #121047;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+}
+
+
+

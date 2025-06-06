@@ -3,6 +3,7 @@ package com.kracz0.desktopwitelonbank.Controllers.Client;
 import com.kracz0.desktopwitelonbank.Models.Card;
 import com.kracz0.desktopwitelonbank.Models.DTO.Account;
 import com.kracz0.desktopwitelonbank.Models.DTO.CryptoWallet;
+import com.kracz0.desktopwitelonbank.Models.DTO.StandingOrder;
 import com.kracz0.desktopwitelonbank.Models.DTO.Transfer;
 import com.kracz0.desktopwitelonbank.Models.Model;
 import com.kracz0.desktopwitelonbank.Models.User;
@@ -22,22 +23,25 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class DashboardController implements Initializable {
-    public Label balance_lbl;
-    public Label user_name_lbl;
-    public Label login_date_lbl;
-    public Label card_type_1_lbl;
-    public Label card_amount_1_lbl;
-    public Label card_number_1_lbl;
-    public Label card_type_2_lbl;
-    public Label card_amount_2_lbl;
-    public Label card_number_2_lbl;
-    public Button new_card_btn;
-    public Button new_transaction_btn;
-    public Button buy_crypto_btn;
-    public Label balance_period_lbl;
-    public Label account_number_lbl;
-    public Button showMore_transaction_btn;
-    public Button showMore_crypto_btn;
+    @FXML public Label balance_lbl;
+    @FXML public Label user_name_lbl;
+    @FXML public Label login_date_lbl;
+    @FXML public Label card_type_1_lbl;
+    @FXML public Label card_amount_1_lbl;
+    @FXML public Label card_number_1_lbl;
+    @FXML public Label card_type_2_lbl;
+    @FXML public Label card_amount_2_lbl;
+    @FXML public Label card_number_2_lbl;
+    @FXML public Label card_expiry_2_lbl;
+    @FXML public VBox standing_orders_box;
+    @FXML private Label card_expiry_1_lbl;
+    @FXML public Button new_card_btn;
+    @FXML public Button new_transaction_btn;
+    @FXML public Button buy_crypto_btn;
+    @FXML public Label balance_period_lbl;
+    @FXML public Label account_number_lbl;
+    @FXML public Button showMore_transaction_btn;
+    @FXML public Button showMore_crypto_btn;
     @FXML public VBox crypto_box;
     @FXML private VBox transactions_box;
     @FXML private Label income_lbl;
@@ -50,14 +54,14 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         User user = Model.getInstance().getLoggedUser();
-        user_name_lbl.setText("Witaj, " + user.getImie());
+        user_name_lbl.setText(" Witaj, " + user.getImie());
         login_date_lbl.setText(java.time.LocalTime.now().withNano(0) + ", " + java.time.LocalDate.now());
 
         int kontoId = Model.getInstance().getLoggedUser().getId();
         loadCards(kontoId);
         loadCryptoTiles();
+        loadStandingOrders();
         refreshDashboardData();
-
 
         new Thread(() -> {
             try {
@@ -92,7 +96,6 @@ public class DashboardController implements Initializable {
                 LocalDate today = LocalDate.now();
                 LocalDate thresholdDate = today.minusDays(30);
 
-                // Filtrowanie wpływów i wydatków z ostatnich 30 dni
                 List<Transfer> last30Days = allTransfers.stream()
                         .filter(t -> {
                             String dateStr = t.getData();
@@ -137,6 +140,37 @@ public class DashboardController implements Initializable {
 
     }
 
+    private void loadStandingOrders() {
+        new Thread(() -> {
+            List<StandingOrder> orders = dashboardService.getZleceniaStale();
+
+            Platform.runLater(() -> {
+                standing_orders_box.getChildren().clear();
+
+                if (orders.isEmpty()) {
+                    Label noOrdersLabel = new Label("Brak zleceń stałych");
+                    noOrdersLabel.getStyleClass().add("no_data_label");
+                    standing_orders_box.getChildren().add(noOrdersLabel);
+                    return;
+                }
+
+                for (StandingOrder order : orders) {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/client/StandingOrderTile.fxml"));
+                        HBox tile = loader.load();
+                        StandingOrderTileController controller = loader.getController();
+                        controller.setData(order);
+                        standing_orders_box.getChildren().add(tile);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }).start();
+    }
+
+
+
     private String formatAccountNumber(String number) {
         return number.replaceAll("....(?!$)", "$0 ");
     }
@@ -168,19 +202,33 @@ public class DashboardController implements Initializable {
                 List<Card> cards = cardsService.getKarty(kontoId);
 
                 Platform.runLater(() -> {
-                    if (!cards.isEmpty()) {
-                        Card first = cards.get(0);
-                        card_type_1_lbl.setText(first.getTypKarty());
-                        card_number_1_lbl.setText(first.getNrKarty());
-                        card_amount_1_lbl.setText(first.isZablokowana() ? "Zablokowana" :
-                                String.format("Limit: %.2f PLN", first.getLimitDzienny()));
+                    if (cards.size() >= 1) {
+                        Card c1 = cards.get(0);
+                        card_type_1_lbl.setText(c1.getTypKarty());
+                        card_number_1_lbl.setText(c1.getNrKarty());
+                        card_expiry_1_lbl.setText("Ważna do: " + c1.getDataWaznosci());
+                        card_amount_1_lbl.setText(c1.isZablokowana() ? "Zablokowana" :
+                                String.format("Limit: %.2f PLN", c1.getLimitDzienny()));
+                    } else {
+                        card_type_1_lbl.setText("Brak karty");
+                        card_number_1_lbl.setText("Nie posiadasz karty");
+                        card_expiry_1_lbl.setText("");
+                        card_amount_1_lbl.setText("Zamów w naszym banku");
                     }
-                    if (cards.size() > 1) {
-                        Card second = cards.get(1);
-                        card_type_2_lbl.setText(second.getTypKarty());
-                        card_number_2_lbl.setText(second.getNrKarty());
-                        card_amount_2_lbl.setText(second.isZablokowana() ? "Zablokowana" :
-                                String.format("Limit: %.2f PLN", second.getLimitDzienny()));
+
+                    if (cards.size() >= 2) {
+                        Card c2 = cards.get(1);
+                        card_type_2_lbl.setText(c2.getTypKarty());
+                        card_number_2_lbl.setText(c2.getNrKarty());
+                        if (card_expiry_2_lbl != null)
+                            card_expiry_2_lbl.setText("Ważna do: " + c2.getDataWaznosci());
+
+                        card_amount_2_lbl.setText(c2.isZablokowana() ? "Zablokowana" :
+                                String.format("Limit: %.2f PLN", c2.getLimitDzienny()));
+                    } else {
+                        card_type_2_lbl.setText("Brak karty");
+                        card_number_2_lbl.setText("Nie posiadasz karty");
+                        card_amount_2_lbl.setText("Zamów w naszym banku");
                     }
                 });
 
@@ -254,6 +302,14 @@ public class DashboardController implements Initializable {
         }).start();
     }
 
+    @FXML
+    private void goToCrypto() {
+        Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("CryptoWallet");
+    }
 
+    @FXML
+    private void goToTransactions() {
+        Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("Transactions");
+    }
 }
 

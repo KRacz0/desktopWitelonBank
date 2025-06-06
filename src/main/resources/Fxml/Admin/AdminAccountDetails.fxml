@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" stylesheets="@../../Styles/Admin/AdminAccountDetails.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Admin.AdminAccountDetailsController">
+
+   <Button fx:id="backButton" layoutX="980.0" layoutY="20.0" onAction="#handleBackToAdmin" styleClass="back_btn" text="Powrót" />
+
+   <AnchorPane layoutX="30.0" layoutY="30.0" maxWidth="460">
+      <VBox layoutX="7.0" layoutY="33.0" spacing="14" styleClass="account_details_card" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="33.0">
+         <Label fx:id="kontoLabel" styleClass="account_detail_title" />
+         <Label fx:id="saldoLabel" styleClass="account_detail_item" />
+         <Label fx:id="limitLabel" styleClass="account_detail_item" />
+         <Label fx:id="walutaLabel" styleClass="account_detail_item" />
+         <Label fx:id="statusLabel" styleClass="account_detail_item" />
+         <Label fx:id="utworzonoLabel" styleClass="account_detail_item" />
+         <Label fx:id="imieNazwiskoLabel" styleClass="account_detail_item" />
+         <Label fx:id="emailLabel" styleClass="account_detail_item" />
+         <Label fx:id="telefonLabel" styleClass="account_detail_item" />
+      </VBox>
+   </AnchorPane>
+
+   <VBox layoutX="30.0" layoutY="429.0" spacing="14">
+      <Button fx:id="toggleBlockButton" onAction="#handleToggleBlock" prefWidth="240" styleClass="action_btn" text="Zablokuj / Odblokuj" />
+      <Button onAction="#openLimitModal" prefWidth="120" styleClass="secondary_btn" text="Limity" />
+   </VBox>
+
+   <ListView fx:id="transactionsListView" layoutX="516.0" layoutY="67.0" prefHeight="620.0" prefWidth="565.0" />
+
+   <StackPane fx:id="modal_overlay" pickOnBounds="true" styleClass="modal_overlay" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" prefHeight="700" prefWidth="1100">
+         <AnchorPane fx:id="transaction_details_modal" maxHeight="420" maxWidth="420" styleClass="modal_box" stylesheets="@../../Styles/Transactions.css">
+            <VBox layoutX="20" layoutY="20" spacing="12">
+               <HBox spacing="8"><Label styleClass="modal_label_title" text="Typ transakcji:" /><Label fx:id="typ_lbl" styleClass="modal_label" /></HBox>
+               <HBox spacing="8"><Label fx:id="konto_title_lbl" styleClass="modal_label_title" /><Label fx:id="konto_lbl" styleClass="modal_label" /></HBox>
+               <HBox spacing="8"><Label fx:id="nazwa_title_lbl" styleClass="modal_label_title" /><Label fx:id="nazwa_lbl" styleClass="modal_label" /></HBox>
+               <HBox spacing="8"><Label styleClass="modal_label_title" text="Tytuł przelewu:" /><Label fx:id="tytul_lbl" styleClass="modal_label" /></HBox>
+               <HBox spacing="8"><Label styleClass="modal_label_title" text="Kwota:" /><Label fx:id="kwota_lbl" styleClass="modal_label" /></HBox>
+               <HBox spacing="8"><Label styleClass="modal_label_title" text="Data realizacji:" /><Label fx:id="data_lbl" styleClass="modal_label" /></HBox>
+               <HBox alignment="CENTER"><Button onAction="#closeModal" styleClass="action_btn" text="Zamknij" /></HBox>
+            </VBox>
+         </AnchorPane>
+      </VBox>
+   </StackPane>
+
+   <StackPane fx:id="limit_modal_overlay" pickOnBounds="true" styleClass="modal_overlay" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" prefHeight="700" prefWidth="1100">
+         <AnchorPane maxHeight="300" maxWidth="360" styleClass="modal_box">
+            <VBox alignment="CENTER" layoutX="20" layoutY="20" spacing="14">
+               <Label styleClass="modal_label_title" text="Zmień dzienny limit przelewu" />
+               <TextField fx:id="limitField" promptText="Nowy limit (PLN)" />
+               <HBox alignment="CENTER" spacing="12">
+                  <Button onAction="#closeLimitModal" styleClass="secondary_btn" text="Anuluj" />
+                  <Button onAction="#submitLimitChange" styleClass="action_btn" text="Zapisz" />
+               </HBox>
+            </VBox>
+         </AnchorPane>
+      </VBox>
+   </StackPane>
+</AnchorPane>

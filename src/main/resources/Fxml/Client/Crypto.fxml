@@ -68,4 +68,37 @@
         </HBox>
     </VBox>
 
+    <StackPane fx:id="crypto_modal_overlay" visible="false" pickOnBounds="true"
+               styleClass="modal_overlay" AnchorPane.topAnchor="0.0"
+               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <VBox alignment="CENTER" prefWidth="1100" prefHeight="700">
+            <AnchorPane fx:id="crypto_modal_box" maxWidth="420" maxHeight="400" styleClass="modal_box">
+                <VBox spacing="16" alignment="CENTER" AnchorPane.topAnchor="0.0"
+                      AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+                    <Label fx:id="crypto_modal_title" styleClass="modal_title"/>
+                    <Label fx:id="crypto_symbol_label"/>
+                    <TextField fx:id="crypto_input_field" promptText="Kwota (PLN lub ilość)"
+                               maxWidth="260" styleClass="text-field"/>
+                    <Label fx:id="crypto_conversion_label" styleClass="status_details_label"/>
+
+                    <HBox spacing="8" alignment="CENTER" maxWidth="260">
+                        <ToggleButton fx:id="modePlnToggle" text="PLN" styleClass="toggle_mode"
+                                      HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <ToggleButton fx:id="modeCryptoToggle" text="Krypto" styleClass="toggle_mode"
+                                      HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    </HBox>
+
+                    <HBox spacing="10" alignment="CENTER" maxWidth="260">
+                        <Button text="Zatwierdź" onAction="#confirmCryptoOperation"
+                                styleClass="action_btn" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Button text="Anuluj" onAction="#closeCryptoModal"
+                                styleClass="secondary_btn" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    </HBox>
+
+                    <Label fx:id="crypto_status_label" styleClass="status_details_label"/>
+                </VBox>
+            </AnchorPane>
+        </VBox>
+    </StackPane>
 </AnchorPane>

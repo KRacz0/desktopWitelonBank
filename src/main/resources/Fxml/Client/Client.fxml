@@ -4,13 +4,10 @@
 
 <BorderPane fx:id="client_parent" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.ClientController">
-
     <left>
         <fx:include source="ClientMenu.fxml"/>
     </left>
-
     <center>
         <fx:include source="Dashboard.fxml"/>
     </center>
-
 </BorderPane>

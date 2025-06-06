@@ -1,0 +1,162 @@
+
+.modal_overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal_box {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-padding: 24;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 12, 0.15, 0, 3);
+    -fx-min-width: 360;
+}
+
+.modal_title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #121047;
+}
+
+.action_btn {
+    -fx-background-color: #121047;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 18;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.action_btn:hover {
+    -fx-background-color: #1a1a6a;
+}
+
+.secondary_btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #121047;
+    -fx-border-color: #121047;
+    -fx-border-width: 1;
+    -fx-font-weight: bold;
+    -fx-padding: 8 18;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.secondary_btn:hover {
+    -fx-background-color: #f0f0ff;
+}
+
+.stat_card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-padding: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 8, 0, 0, 2);
+    -fx-pref-width: 220;
+    -fx-spacing: 6;
+}
+
+.stat_title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #121047;
+}
+
+.stat_value {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.list-view {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ddd;
+    -fx-padding: 5;
+}
+
+.list-cell {
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #121047;
+    -fx-text-fill: white;
+}
+
+.list-cell:hover {
+    -fx-background-color: #f0f0f5;
+}
+
+.tooltip {
+    -fx-font-size: 13px;
+    -fx-background-color: #f9f9f9;
+    -fx-text-fill: #333;
+    -fx-background-radius: 6;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1;
+}
+
+.modal_overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-alignment: center;
+}
+
+.modal_box {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 24;
+    -fx-spacing: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 12, 0, 0, 4);
+}
+
+.modal_title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #121047;
+}
+
+.action_btn {
+    -fx-background-color: linear-gradient(to right, #121047, #1e1b5a);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+.action_btn:hover {
+    -fx-background-color: linear-gradient(to right, #1e1b5a, #121047);
+}
+
+.secondary_btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #888;
+    -fx-font-weight: bold;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+.secondary_btn:hover {
+    -fx-text-fill: #444;
+    -fx-border-color: #aaa;
+}
+
+.modal_label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #555;
+}
+
+.modal_status_message {
+    -fx-font-size: 13px;
+    -fx-text-fill: #121047;
+    -fx-font-weight: bold;
+    -fx-padding: 6 10;
+    -fx-background-color: rgba(18, 16, 71, 0.08);
+    -fx-background-radius: 8;
+    -fx-alignment: center;
+}

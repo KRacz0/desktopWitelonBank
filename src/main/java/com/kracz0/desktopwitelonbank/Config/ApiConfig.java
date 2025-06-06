@@ -10,9 +10,13 @@ public class ApiConfig {
     public static final String KRYPTOWALUTY_CENY = BASE_URL + "/kryptowaluty/ceny";
     public static final String PORTFEL = BASE_URL + "/portfel";
     public static final String INWESTYCJE_KUP = BASE_URL + "/inwestycje/kup";
+    public static final String INWESTYCJE_SPRZEDAJ = BASE_URL + "/inwestycje/sprzedaj";
+    public static final String ZAPISANI_ODBIORCY = BASE_URL + "/zapisani-odbiorcy";
+    public static final String ZLECENIA_STALE = BASE_URL + "/zlecenia-stale";
 
     public static final String ADMIN_KONTA = BASE_URL + "/admin/konta";
-    public static final String ADMIN_KONTO_DETAILS = BASE_URL + "/admin/konta/";
-
+    public static final String ADMIN_PRZELEWY = BASE_URL + "/admin/przelewy";
+    public static final String ADMIN_STATYSTYKI = BASE_URL + "/admin/statystyki";
+    public static final String ADMIN_RAPORTY = BASE_URL + "/admin/raporty/przelewy";
 }
 

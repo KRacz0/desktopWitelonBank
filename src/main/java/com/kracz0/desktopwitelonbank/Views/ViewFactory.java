@@ -1,9 +1,11 @@
 package com.kracz0.desktopwitelonbank.Views;
 
+import com.kracz0.desktopwitelonbank.Controllers.Admin.AdminAccountDetailsController;
 import com.kracz0.desktopwitelonbank.Controllers.Client.ClientMenuController;
 import com.kracz0.desktopwitelonbank.Controllers.Client.CryptoController;
 import com.kracz0.desktopwitelonbank.Controllers.Client.DashboardController;
 import com.kracz0.desktopwitelonbank.Controllers.Client.Modals.TwoFactorController;
+import com.kracz0.desktopwitelonbank.Models.DTO.AccountAdmin;
 import com.kracz0.desktopwitelonbank.Models.Model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -23,14 +25,13 @@ public class ViewFactory {
     private AnchorPane transactionsView;
     private AnchorPane addressBookView;
     private AnchorPane cryptoWalletView;
+    private AnchorPane adminAccountDetailsView;
 
     public ViewFactory() {
         this.clientSelectedMenuItem = new SimpleStringProperty("");
     }
     private DashboardController dashboardController;
 
-
-    // Client Views //
     public StringProperty getClientSelectedMenuItem() {
         return clientSelectedMenuItem;
     }
@@ -115,6 +116,7 @@ public class ViewFactory {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Witelon Bank");
+            stage.setResizable(false);
             stage.show();
 
         } catch (IOException e) {
@@ -135,6 +137,7 @@ public class ViewFactory {
             Stage modalStage = new Stage();
             modalStage.setScene(new Scene(root));
             modalStage.setTitle("Weryfikacja dwuetapowa");
+            modalStage.setResizable(false);
             modalStage.initModality(Modality.APPLICATION_MODAL);
             modalStage.showAndWait();
 
@@ -153,11 +156,26 @@ public class ViewFactory {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Witelon Bank");
+        stage.setResizable(false);
         stage.show();
     }
 
     public DashboardController getDashboardController() {
         return dashboardController;
+    }
+
+    public AnchorPane getAdminAccountDetailsView(AccountAdmin konto) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Admin/AdminAccountDetails.fxml"));
+            adminAccountDetailsView = loader.load();
+
+            AdminAccountDetailsController controller = loader.getController();
+            controller.setKonto(konto);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return adminAccountDetailsView;
     }
 
 }

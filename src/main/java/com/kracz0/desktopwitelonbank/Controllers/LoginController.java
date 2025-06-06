@@ -50,7 +50,5 @@ public class LoginController implements Initializable {
         Stage loginStage = (Stage) login_btn.getScene().getWindow();
         Model.getInstance().getViewFactory().showTwoFactorModal(email, loginStage);
     }
-
-
 }
 

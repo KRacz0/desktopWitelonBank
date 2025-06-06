@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="220.0" prefWidth="360.0"
+<?import javafx.scene.layout.VBox?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
             stylesheets="@../../../Styles/Modals/TwoFactor.css"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.Modals.TwoFactorController">
 
-    <Label fx:id="titleLabel" layoutX="30.0" layoutY="25.0" text="Weryfikacja dwuetapowa" styleClass="modal_title"/>
-
-    <Label fx:id="emailLabel" layoutX="30.0" layoutY="55.0" text="Kod wysłany na: user@example.com" />
-
-    <Label layoutX="30.0" layoutY="75.0" text="Kod 2FA:"/>
-    <TextField fx:id="codeField" layoutX="100.0" layoutY="70.0" prefWidth="200.0" promptText="123456"/>
-
-    <Label fx:id="errorLabel" layoutX="30.0" layoutY="110.0" styleClass="error_lbl" text=""/>
-
-    <Button fx:id="verifyButton" layoutX="230.0" layoutY="150.0" text="Potwierdź" styleClass="confirm_btn"/>
-
+    <VBox alignment="CENTER" spacing="20.0" layoutX="0" layoutY="0" prefHeight="400.0" prefWidth="600.0">
+        <FontAwesomeIconView glyphName="LOCK" styleClass="icon" glyphSize="60"/>
+        <Label fx:id="titleLabel" text="Weryfikacja dwuetapowa" styleClass="modal_title" />
+        <Label fx:id="emailLabel" text="Kod wysłany na: " styleClass="email_info" />
+        <HBox alignment="CENTER" spacing="10">
+            <TextField fx:id="digit0" prefHeight="60.0" prefWidth="40.0" styleClass="code_input" />
+            <TextField fx:id="digit1" prefHeight="60.0" prefWidth="40.0" styleClass="code_input" />
+            <TextField fx:id="digit2" prefHeight="60.0" prefWidth="40.0" styleClass="code_input" />
+            <TextField fx:id="digit3" prefHeight="60.0" prefWidth="40.0" styleClass="code_input" />
+            <TextField fx:id="digit4" prefHeight="60.0" prefWidth="40.0" styleClass="code_input" />
+            <TextField fx:id="digit5" prefHeight="60.0" prefWidth="40.0" styleClass="code_input" />
+        </HBox>
+        <Label fx:id="errorLabel" text="" styleClass="error_lbl" />
+        <Button fx:id="verifyButton" text="Potwierdź" styleClass="confirm_btn" />
+    </VBox>
 </AnchorPane>
 

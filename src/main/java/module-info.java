@@ -14,11 +14,14 @@ module com.kracz0.desktopwitelonbank {
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
     requires org.json;
+    requires java.desktop;
 
     opens com.kracz0.desktopwitelonbank.Controllers to javafx.fxml;
     opens com.kracz0.desktopwitelonbank.Controllers.Client to javafx.fxml;
     opens com.kracz0.desktopwitelonbank.Controllers.Client.Modals to javafx.fxml;
     opens com.kracz0.desktopwitelonbank.Controllers.Admin to javafx.fxml;
+    opens com.kracz0.desktopwitelonbank.Models.DTO to com.fasterxml.jackson.databind;
+
 
     exports com.kracz0.desktopwitelonbank;
     exports com.kracz0.desktopwitelonbank.Controllers;
@@ -27,6 +30,9 @@ module com.kracz0.desktopwitelonbank {
     exports com.kracz0.desktopwitelonbank.Controllers.Client.Modals;
     exports com.kracz0.desktopwitelonbank.Models;
     exports com.kracz0.desktopwitelonbank.Views;
+
+    exports com.kracz0.desktopwitelonbank.Models.DTO to com.fasterxml.jackson.databind;
+
 
 
 }

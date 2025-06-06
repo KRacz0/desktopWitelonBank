@@ -11,7 +11,6 @@ public class TransactionsService {
 
     public HttpResponse<String> sendTransfer(JSONObject json) {
         if (!validateTransferData(json)) {
-            System.out.println(" Walidacja danych przelewu nie powiodła się.");
             return null;
         }
 
@@ -21,12 +20,9 @@ public class TransactionsService {
                     .build();
 
             HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
-
-            System.out.println("Odpowiedź z API: " + response.statusCode() + " → " + response.body());
             return response;
 
         } catch (Exception e) {
-            System.out.println(" Błąd wysyłania przelewu:");
             e.printStackTrace();
             return null;
         }

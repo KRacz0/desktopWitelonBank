@@ -48,6 +48,9 @@ public class CryptoService {
         }
     }
 
+    public Map<String, Double> getCachedPrices() {
+        return cachedPrices != null ? cachedPrices : new HashMap<>();
+    }
 
     public CryptoWallet getWallet() {
         try {
@@ -114,4 +117,32 @@ public class CryptoService {
             return "Błąd połączenia z API.";
         }
     }
+
+    public String sellCrypto(int accountId, String symbol, double iloscKrypto) {
+        try {
+            JSONObject payload = new JSONObject();
+            payload.put("id_konta_pln", accountId);
+            payload.put("symbol_krypto", symbol);
+            payload.put("ilosc_krypto", iloscKrypto);
+
+            HttpRequest request = ApiClient.authorizedRequest(ApiConfig.INWESTYCJE_SPRZEDAJ)
+                    .POST(HttpRequest.BodyPublishers.ofString(payload.toString()))
+                    .build();
+
+            HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() == 200) {
+                JSONObject json = new JSONObject(response.body());
+                return json.getString("message");
+            } else {
+                JSONObject error = new JSONObject(response.body());
+                return error.optString("message", "Nieznany błąd.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Błąd połączenia z API.";
+        }
+    }
+
 }

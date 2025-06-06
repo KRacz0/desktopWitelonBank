@@ -33,15 +33,4 @@ public class Account {
         this.id = id;
     }
 
-    public void setNrKonta(String nrKonta) {
-        this.nrKonta = nrKonta;
-    }
-
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
-
-    public void setWaluta(String waluta) {
-        this.waluta = waluta;
-    }
 }

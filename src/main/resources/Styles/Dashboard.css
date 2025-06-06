@@ -30,7 +30,7 @@
     -fx-text-fill: #000000;
     -fx-font-family: "Segoe UI";
 }
-
+ /* Karty */
 .card_active {
     -fx-background-color: linear-gradient(to bottom right, #30cfd0, #330867);
     -fx-background-radius: 16;
@@ -52,22 +52,15 @@
     -fx-font-weight: bold;
 }
 
-/* Dodaj kartę */
-.add_card_btn {
-    -fx-background-color: #f8f8fa;
-    -fx-border-color: #dcdce0;
-    -fx-border-radius: 12;
-    -fx-background-radius: 12;
-    -fx-font-size: 1.4em;
-    -fx-text-fill: #ff9900;
+.card_warning {
+    -fx-text-fill: #ff4d4d;
     -fx-font-weight: bold;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 4, 0, 0, 2);
-}
-.add_card_btn:hover {
-    -fx-background-color: #eeeeee;
-    -fx-cursor: hand;
 }
 
+.card_info {
+    -fx-text-fill: #0066cc;
+    -fx-font-weight: bold;
+}
 
 /* Sekcja balansu */
 
@@ -236,7 +229,7 @@
     -fx-padding: 15;
     -fx-spacing: 10;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
-    -fx-pref-height: 280; /* Wystarczająco na 3 kafelki + padding */
+    -fx-pref-height: 280;
 }
 
 /* styl kafelka */
@@ -246,10 +239,9 @@
     -fx-padding: 10;
     -fx-spacing: 10;
     -fx-alignment: center_left;
-    -fx-pref-height: 60; /* Stała wysokość dla wyrównania */
+    -fx-pref-height: 60;
 }
 
-/* Ikonka z lewej strony kafelka */
 .transaction_icon_circle, .crypto_icon_circle {
     -fx-background-color: #eaeaea;
     -fx-background-radius: 50%;
@@ -261,7 +253,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.02), 2, 0, 0, 1);
 }
 
-/* Ikona crypto lub bankowa */
+/* Ikona crypto / bankowa */
 .crypto_icon, .income_icon, .expense_icon {
     -fx-fill: #444;
     -fx-font-size: 1.2em;
@@ -316,7 +308,7 @@
     -fx-text-fill: #999;
 }
 
-/* Przyciski Nowa transakcja, Kup kryptowaluty */
+/* Przyciski Nowa transakcja / kryptowaluty */
 .new_transaction_btn {
     -fx-background-color: #121047;
     -fx-text-fill: white;
@@ -344,27 +336,15 @@
     -fx-text-fill: #444;
 }
 
-/* Wykres */
-.custom_chart {
-    -fx-background-color: #ffffff;
-    -fx-background-radius: 15;
-    -fx-padding: 15;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 6, 0, 0, 2);
-}
-
-.stat_amount_income, .stat_amount_expense {
-    -fx-pref-width: 100px;
-    -fx-min-width: 100px;
-    -fx-font-size: 1.2em;
-    -fx-font-weight: bold;
-    -fx-wrap-text: false;
-    -fx-alignment: CENTER_LEFT;
-}
-
 .stat_amount_income {
-    -fx-text-fill: #2e7d32; /* zielony */
+    -fx-text-fill: #2e7d32;
 }
 .stat_amount_expense {
-    -fx-text-fill: #c62828; /* czerwony */
+    -fx-text-fill: #c62828;
 }
 
+.no_data_label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #777777;
+    -fx-padding: 10px;
+}
