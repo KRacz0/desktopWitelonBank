@@ -7,7 +7,7 @@
 | WBK-01 | Administrator może logować się do systemu.                                                                              | ✓    |     |        |<code style="color : green">✓</code>       |
 | WBK-02 | Administrator może zarządzać kontami użytkowników (blokowanie, odblokowywanie, limity).                                 | ✓   |     |        | <code style="color : green">✓</code>         |
 | WBK-03 | Administrator może monitorować transakcje w systemie.                                                                   | ✓   |     |        | <code style="color : green">✓</code>        |
-| WBK-04 | Administrator może generować raporty finansowe.                                                                         | ✓   |     |        | ✓       |
+| WBK-04 | Administrator może generować raporty finansowe.                                                                         | ✓   |     |        | <code style="color : green">✓</code>       |
 | WBK-05 | Administrator widzi statystyki systemowe.                                                                               | ✓   |     |        | <code style="color : green">✓</code>      |
 | WBK-06 | Użytkownik może inwestować środki (cryptowaluty).                                                                       | ✓   |     |        | <code style="color : green">✓</code>      |
 | WBK-07 | Użytkownik może logować się do swojego konta.                                                                           | ✓   | ✓   | ✓      |  <code style="color : green">✓</code>      |
@@ -18,7 +18,7 @@
 | WBK-12 | Użytkownik może zarządzać swoimi kartami płatniczymi (blokowanie, zmiana limitów).                                      | ✓   | ✓   | ✓      |         |
 | WBK-13 | Użytkownik może skonfigurować płatności cykliczne.                                                                      | ✓   | ✓   | ✓      |         |
 | WBK-14 | Użytkownik otrzymuje powiadomienia o transakcjach na e-mail/push.                                                       | ✓   | ✓   | ✓      |         |
-| WBK-15 | Użytkownik może dodać odbiorców do listy zapisanych przelewów.                                                          | ✓   | ✓   | ✓      | ✓       |
+| WBK-15 | Użytkownik może dodać odbiorców do listy zapisanych przelewów.                                                          | ✓   | ✓   | ✓      | <code style="color : green">✓</code>       |
 | WBK-16 | Użytkownik może eksportować historię transakcji.                                                                        | ✓   | ✓   | ✓      | <code style="color : green">✓</code>     |
 | WBK-17 | Użytkownik może zamknąć konto.                                                                                          | ✓   | ✓   |        |         |
 | WBK-18 | Użytkownik może się wylogować.                                                                                          | ✓   | ✓   | ✓      | <code style="color : green">✓</code>       |
