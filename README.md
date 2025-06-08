@@ -1,5 +1,5 @@
 
-# Dokumentacja techniczna - WitelonBank (aplikacja desktopowa)
+#  WitelonBank (aplikacja desktopowa)
 
 ## Wprowadzenie
 **WitelonBank** – aplikacja bankowa napisanej w języku Java z wykorzystaniem JavaFX. Projekt umożliwia obsługę klienta oraz panel administratora.
