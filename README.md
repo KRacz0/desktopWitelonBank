@@ -29,27 +29,6 @@
 ## Wprowadzenie
 **WitelonBank** – aplikacja bankowa napisanej w języku Java z wykorzystaniem JavaFX. Projekt umożliwia obsługę klienta oraz panel administratora.
 
-## Funkcjonalności 
-
-### Funkcjonalności dla użytkownika
-- logowanie i weryfikacja dwuskładnikowa
-- podgląd salda i historii transakcji
-- wykonywanie przelewów oraz zarządzanie listą odbiorców
-- podgląd kart płatniczych i płatności cyklicznych
-- inwestowanie środków w kryptowaluty
-- eksport historii operacji do pliku
-
-![Widok panelu klienta](![2fa](https://github.com/user-attachments/assets/f59ebb52-3a65-4410-959d-690cd7cd0979))
-
-### Funkcjonalności dla administratora
-- logowanie do panelu administracyjnego
-- zarządzanie kontami użytkowników (blokowanie, zmiana limitów)
-- podgląd i filtrowanie transakcji w systemie
-- generowanie raportów
-- monitorowanie działania systemu (statystyki)
-
-![Widok panelu administratora](screenshots/admin_panel.png)
-
 ## Wykorzystane technologie
 - **Java 21** – główny język programowania
 - **JavaFX 21** – biblioteka do tworzenia interfejsu graficznego
@@ -134,6 +113,28 @@ Pliki FXML oraz style CSS znajdują się w `src/main/resources`. Kluczowe widoki
 
 ## Komunikacja z API
 Aplikacja korzysta z REST API pod adresem bazowym zdefiniowanym w `ApiConfig.BASE_URL` (`https://witelonapi.host358482.xce.pl/api`). Do autoryzacji używany jest token JWT zwracany po poprawnym logowaniu.
+
+## Funkcjonalności 
+
+### Funkcjonalności dla użytkownika
+- logowanie i weryfikacja dwuskładnikowa
+- podgląd salda i historii transakcji
+- wykonywanie przelewów oraz zarządzanie listą odbiorców
+- podgląd kart płatniczych i płatności cyklicznych
+- inwestowanie środków w kryptowaluty
+- eksport historii operacji do pliku
+
+![0608(1)](https://github.com/user-attachments/assets/b28e8d8e-ff76-4d78-bf92-30d93068495e)
+
+
+### Funkcjonalności dla administratora
+- logowanie do panelu administracyjnego
+- zarządzanie kontami użytkowników (blokowanie, zmiana limitów)
+- podgląd i filtrowanie transakcji w systemie
+- generowanie raportów
+- monitorowanie działania systemu (statystyki)
+
+![Admin](https://github.com/user-attachments/assets/8cec08ba-78d8-4942-ba32-e509f2eb9bba)
 
 
 
