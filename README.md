@@ -24,62 +24,118 @@
 | WBK-18 | Użytkownik może się wylogować.                                                                                          | ✓   | ✓   | ✓      | <code style="color : green">✓</code>       |
 | WBK-19 | System obsługuje język polski, angielski i niemiecki.                                                                   | ✓   | ✓   | ✓      | ✓       |
 
-# UPDATE 05.04.2025
-- Create a login form.
+# Dokumentacja techniczna - WitelonBank (aplikacja desktopowa)
 
-![image](https://github.com/user-attachments/assets/e4da5084-b42e-4239-972b-8377afe277f3)
+## Wprowadzenie
+**WitelonBank** – aplikacja bankowa napisanej w języku Java z wykorzystaniem JavaFX. Projekt umożliwia obsługę klienta oraz panel administratora.
+
+## Funkcjonalności 
+
+### Funkcjonalności dla użytkownika
+- logowanie i weryfikacja dwuskładnikowa
+- podgląd salda i historii transakcji
+- wykonywanie przelewów oraz zarządzanie listą odbiorców
+- podgląd kart płatniczych i płatności cyklicznych
+- inwestowanie środków w kryptowaluty
+- eksport historii operacji do pliku
+
+![Widok panelu klienta](![2fa](https://github.com/user-attachments/assets/f59ebb52-3a65-4410-959d-690cd7cd0979))
+
+### Funkcjonalności dla administratora
+- logowanie do panelu administracyjnego
+- zarządzanie kontami użytkowników (blokowanie, zmiana limitów)
+- podgląd i filtrowanie transakcji w systemie
+- generowanie raportów
+- monitorowanie działania systemu (statystyki)
+
+![Widok panelu administratora](screenshots/admin_panel.png)
+
+## Wykorzystane technologie
+- **Java 21** – główny język programowania
+- **JavaFX 21** – biblioteka do tworzenia interfejsu graficznego
+- **Maven** – system zarządzania zależnościami (zawiera wtyczkę `javafx-maven-plugin`)
+- **JSON** do wymiany danych z API (`org.json` i `Jackson`)
+
+## Uruchomienie lokalne
+1. Zainstaluj JDK 21 oraz Maven.
+2. W katalogu projektu uruchom:
+   ```bash
+   mvn clean javafx:run
+   ```
+   Komenda wykorzystuje `javafx-maven-plugin` (główna klasa: `com.kracz0.desktopwitelonbank.App`).
+3. Alternatywnie możesz uruchomić wygenerowany plik JAR `out/artifacts/desktopWitelonBank_jar/desktopWitelonBank.jar`, ale wymaga to właściwej konfiguracji modułów JavaFX.
+
+## Struktura projektu
+```
+com.kracz0.desktopwitelonbank
+├── App.java                – punkt startowy aplikacji
+├── Config                  – konfiguracja adresów API
+├── Controllers             – kontrolery widoków (Client/Admin)
+├── Models                  – modele danych i singleton `Model`
+├── Services                – logika komunikacji z API
+├── Utils                   – pomocnicze klasy HTTP
+├── Views                   – `ViewFactory` do ładowania widoków FXML
+└── resources               – pliki FXML i arkusze CSS
+```
+
+## Najważniejsze klasy
+### `App`
+Klasa główna aplikacji, rozszerza `javafx.application.Application`. W metodzie `start()` wywołuje `ViewFactory.showLoginWindow()`.
+
+### `Model`
+Singleton przechowujący stan aplikacji (zalogowany użytkownik, dostęp do `ViewFactory`). Oferuje m.in.:
+- `getInstance()` – dostęp do instancji
+- `getViewFactory()` – fabryka widoków
+- `setLoggedUser(User user)` / `getLoggedUser()` – ustawienie i pobranie bieżącego użytkownika
+- `logout()` – wylogowanie i wyczyszczenie tokenu
+
+### `ViewFactory`
+Odpowiada za wczytywanie i przechowywanie widoków z plików FXML. Udostępnia metody takie jak:
+- `showLoginWindow()` – otwarcie okna logowania
+- `showClientWindow()` – uruchomienie panelu klienta lub administratora
+- `showTwoFactorModal(email, stage)` – weryfikacja dwuskładnikowa
+- `getDashboardView()`, `getTransactionsView()` itd. – zwracają załadowane panele klienta
+
+### Kontrolery klienta (`Controllers.Client`)
+- **`ClientController`** – zarządza głównym układem okna klienta i zmienia centralną zawartość w zależności od wyboru menu.
+- **`DashboardController`** – wczytuje podstawowe informacje o koncie, karty płatnicze, kryptowaluty i ostatnie transakcje. Zawiera metody takie jak `refreshDashboardData()` czy `loadTransactions()`.
+- **`TransactionsController`** – obsługa historii i tworzenia przelewów.
+- **`AddressBookController`** – zarządza listą zapisanych odbiorców (dodawanie, edycja, usuwanie).
+- **`CryptoController`** – umożliwia zakup i sprzedaż kryptowalut z użyciem `CryptoService`.
+- **`ClientMenuController`** – obsługuje przyciski na pasku bocznym.
+- **Modale** (np. `TwoFactorController`) – dodatkowe okna dialogowe (weryfikacja 2FA).
+
+### Kontrolery administratora (`Controllers.Admin`)
+- **`AdminController`** – panel administracyjny z listą kont i statystykami systemowymi; umożliwia generowanie raportów PDF.
+- **`AdminAccountDetailsController`** – szczegóły wybranego konta (blokowanie, zmiana limitu, podgląd transakcji).
+
+### Modele danych (`Models` i `Models.DTO`)
+- `User`, `Card`, `Recipient` – podstawowe encje klienta
+- DTO do komunikacji z API: `Account`, `Transfer`, `CryptoWallet`, `AdminStats`, `StandingOrder`, `AccountAdmin`
+
+### Serwisy (`Services`)
+Zawierają logikę komunikacji z serwerem i przetwarzania odpowiedzi:
+- `AuthService` – logowanie i weryfikacja 2FA (`login()`, `verify2FA()`)
+- `DashboardService` – pobieranie kont, przelewów oraz zleceń stałych
+- `TransactionsService` – wysyłanie przelewu (`sendTransfer`)
+- `AddressBookService` – operacje CRUD na odbiorcach
+- `CryptoService` – obsługa portfela kryptowalut i aktualnych kursów
+- `AdminService` – funkcje panelu administratora (pobieranie kont, blokowanie, raporty)
+
+### Utils
+- **`ApiClient`** – konfiguracja `HttpClient` oraz metoda `authorizedRequest()` dodająca nagłówek `Authorization`
+- **`HttpUtil`** – prostszy builder zapytań HTTP używany m.in. przy logowaniu
+
+### Config
+- `ApiConfig` – stałe z adresami endpointów API, np. `LOGIN`, `PRZELEWY`, `ADMIN_KONTA`
+
+## Zasoby
+Pliki FXML oraz style CSS znajdują się w `src/main/resources`. Kluczowe widoki to `Login.fxml`, `Client.fxml`, `Admin.fxml` oraz podwidoki w katalogach `Client` i `Admin`.
+
+## Komunikacja z API
+Aplikacja korzysta z REST API pod adresem bazowym zdefiniowanym w `ApiConfig.BASE_URL` (`https://witelonapi.host358482.xce.pl/api`). Do autoryzacji używany jest token JWT zwracany po poprawnym logowaniu.
 
 
-# UPDATE 11.05.2025
-- Dashboard.
-![image](https://github.com/user-attachments/assets/495b4f7d-ce13-4c40-ae4f-4e1761880b7e)
 
-- Sidebar.
-
-![image](https://github.com/user-attachments/assets/53e09cf2-7f38-4fad-9630-bae47a8a2b71)
-
-
-# UPDATE 15.05.2025
-- Update dashboard + sidebar.
-![image](https://github.com/user-attachments/assets/301a34d0-d02f-4802-a095-936dc9be167b)
-
-
-# UPDATE 18.05.2025
-- Added modal for new transfer.
-![image](https://github.com/user-attachments/assets/9ddc09c9-3d86-46bd-a50b-3c243b634c7a)
-
-- Added Trsnactions list.
-![image](https://github.com/user-attachments/assets/91d4bc1a-71c5-42e8-bf0c-92393a479ec1)
-
-- Added Address book with the option to add a new bank account number along with sending a direct transfer.
-![image](https://github.com/user-attachments/assets/6e965c5c-8ab9-4be3-9444-10ed5b27de70)
-
-
-# UPDATE 21.05.2025
-![image](https://github.com/user-attachments/assets/48bbefe5-dc92-4675-bf44-2545d0797aab)
-![image](https://github.com/user-attachments/assets/fe6a6385-49fa-4d43-b56e-a140beb51491)
-![image](https://github.com/user-attachments/assets/0bd80a01-f4fd-4186-b7c7-7e18544034b3)
-![image](https://github.com/user-attachments/assets/e83495b8-47be-471a-bed1-1ff29b6c349b)
-![image](https://github.com/user-attachments/assets/66f14833-f9fd-4d9b-9950-fee559e9c1e8)
-
-# UPDATE 21.05.2025
-Adding the ability to make transfers, check the history of transfers (all), the ability to check transfer information 
-![image](https://github.com/user-attachments/assets/d158425f-bba5-4605-9988-67f82725aeae)
-![image](https://github.com/user-attachments/assets/f47f9c22-76ba-460b-8391-e0fd3344009a)
-![image](https://github.com/user-attachments/assets/db2482e2-f931-4a14-983a-5137c88d1778)
-![image](https://github.com/user-attachments/assets/e4c4f64a-7bc7-43ac-96fd-7384caecc407)
-
-# UPDATE 22.05.2025
-Users can invest funds (cryptocurrencies).
-![image](https://github.com/user-attachments/assets/5ca1e12f-5d18-4f71-b74a-5f0c55e75342)
-
-# UPDATE 21.05.2025
-Admin panel
-![image](https://github.com/user-attachments/assets/a39a8262-5084-4325-bdbb-2b88713843fe)
-
-# UPDATE 31.05.2025
-Update 2FA UI
-
-https://github.com/user-attachments/assets/95ba819e-3851-4a15-8fb1-84f6accbce94
-
+---
 
