@@ -1,28 +1,3 @@
-# WitelonBank - Aplikacja bankowa
-
-
-## Lista funkcjonalności
-| OPZ    | Funkcjonalność                                                                                                          | API | web | mobile | desktop |
-|--------|-------------------------------------------------------------------------------------------------------------------------|-----|-----|--------|---------|
-| WBK-01 | Administrator może logować się do systemu.                                                                              | ✓    |     |        |<code style="color : green">✓</code>       |
-| WBK-02 | Administrator może zarządzać kontami użytkowników (blokowanie, odblokowywanie, limity).                                 | ✓   |     |        | <code style="color : green">✓</code>         |
-| WBK-03 | Administrator może monitorować transakcje w systemie.                                                                   | ✓   |     |        | <code style="color : green">✓</code>        |
-| WBK-04 | Administrator może generować raporty finansowe.                                                                         | ✓   |     |        | <code style="color : green">✓</code>       |
-| WBK-05 | Administrator widzi statystyki systemowe.                                                                               | ✓   |     |        | <code style="color : green">✓</code>      |
-| WBK-06 | Użytkownik może inwestować środki (cryptowaluty).                                                                       | ✓   |     |        | <code style="color : green">✓</code>      |
-| WBK-07 | Użytkownik może logować się do swojego konta.                                                                           | ✓   | ✓   | ✓      |  <code style="color : green">✓</code>      |
-| WBK-8 | Użytkownik może zresetować swoje hasło.                                                                                  | ✓   | ✓   | ✓      |         |
-| WBK-9 | Użytkownik może sprawdzać saldo konta.                                                                                   | ✓   | ✓   | ✓      | <code style="color : green">✓</code>      |
-| WBK-10 | Użytkownik może przeglądać historię transakcji.                                                                         | ✓   | ✓   | ✓      |<code style="color : green">✓</code>      |
-| WBK-11 | Użytkownik może wykonywać przelewy.                                                                                     | ✓   | ✓   | ✓      |<code style="color : green">✓</code>         |
-| WBK-12 | Użytkownik może zarządzać swoimi kartami płatniczymi (blokowanie, zmiana limitów).                                      | ✓   | ✓   | ✓      |         |
-| WBK-13 | Użytkownik może skonfigurować płatności cykliczne.                                                                      | ✓   | ✓   | ✓      |         |
-| WBK-14 | Użytkownik otrzymuje powiadomienia o transakcjach na e-mail/push.                                                       | ✓   | ✓   | ✓      |         |
-| WBK-15 | Użytkownik może dodać odbiorców do listy zapisanych przelewów.                                                          | ✓   | ✓   | ✓      | <code style="color : green">✓</code>       |
-| WBK-16 | Użytkownik może eksportować historię transakcji.                                                                        | ✓   | ✓   | ✓      | <code style="color : green">✓</code>     |
-| WBK-17 | Użytkownik może zamknąć konto.                                                                                          | ✓   | ✓   |        |         |
-| WBK-18 | Użytkownik może się wylogować.                                                                                          | ✓   | ✓   | ✓      | <code style="color : green">✓</code>       |
-| WBK-19 | System obsługuje język polski, angielski i niemiecki.                                                                   | ✓   | ✓   | ✓      | ✓       |
 
 # Dokumentacja techniczna - WitelonBank (aplikacja desktopowa)
 
@@ -136,7 +111,28 @@ Aplikacja korzysta z REST API pod adresem bazowym zdefiniowanym w `ApiConfig.BAS
 
 ![Admin](https://github.com/user-attachments/assets/8cec08ba-78d8-4942-ba32-e509f2eb9bba)
 
-
+## Lista funkcjonalności
+| OPZ    | Funkcjonalność                                                                                                          | API | web | mobile | desktop |
+|--------|-------------------------------------------------------------------------------------------------------------------------|-----|-----|--------|---------|
+| WBK-01 | Administrator może logować się do systemu.                                                                              | ✓    |     |        |<code style="color : green">✓</code>       |
+| WBK-02 | Administrator może zarządzać kontami użytkowników (blokowanie, odblokowywanie, limity).                                 | ✓   |     |        | <code style="color : green">✓</code>         |
+| WBK-03 | Administrator może monitorować transakcje w systemie.                                                                   | ✓   |     |        | <code style="color : green">✓</code>        |
+| WBK-04 | Administrator może generować raporty finansowe.                                                                         | ✓   |     |        | <code style="color : green">✓</code>       |
+| WBK-05 | Administrator widzi statystyki systemowe.                                                                               | ✓   |     |        | <code style="color : green">✓</code>      |
+| WBK-06 | Użytkownik może inwestować środki (cryptowaluty).                                                                       | ✓   |     |        | <code style="color : green">✓</code>      |
+| WBK-07 | Użytkownik może logować się do swojego konta.                                                                           | ✓   | ✓   | ✓      |  <code style="color : green">✓</code>      |
+| WBK-8 | Użytkownik może zresetować swoje hasło.                                                                                  | ✓   | ✓   | ✓      |         |
+| WBK-9 | Użytkownik może sprawdzać saldo konta.                                                                                   | ✓   | ✓   | ✓      | <code style="color : green">✓</code>      |
+| WBK-10 | Użytkownik może przeglądać historię transakcji.                                                                         | ✓   | ✓   | ✓      |<code style="color : green">✓</code>      |
+| WBK-11 | Użytkownik może wykonywać przelewy.                                                                                     | ✓   | ✓   | ✓      |<code style="color : green">✓</code>         |
+| WBK-12 | Użytkownik może zarządzać swoimi kartami płatniczymi (blokowanie, zmiana limitów).                                      | ✓   | ✓   | ✓      |         |
+| WBK-13 | Użytkownik może skonfigurować płatności cykliczne.                                                                      | ✓   | ✓   | ✓      |         |
+| WBK-14 | Użytkownik otrzymuje powiadomienia o transakcjach na e-mail/push.                                                       | ✓   | ✓   | ✓      |         |
+| WBK-15 | Użytkownik może dodać odbiorców do listy zapisanych przelewów.                                                          | ✓   | ✓   | ✓      | <code style="color : green">✓</code>       |
+| WBK-16 | Użytkownik może eksportować historię transakcji.                                                                        | ✓   | ✓   | ✓      | <code style="color : green">✓</code>     |
+| WBK-17 | Użytkownik może zamknąć konto.                                                                                          | ✓   | ✓   |        |         |
+| WBK-18 | Użytkownik może się wylogować.                                                                                          | ✓   | ✓   | ✓      | <code style="color : green">✓</code>       |
+| WBK-19 | System obsługuje język polski, angielski i niemiecki.                                                                   | ✓   | ✓   | ✓      | ✓       |
 
 ---
 
