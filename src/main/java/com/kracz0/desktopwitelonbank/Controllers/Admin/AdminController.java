@@ -3,6 +3,7 @@ package com.kracz0.desktopwitelonbank.Controllers.Admin;
 import com.kracz0.desktopwitelonbank.Config.ApiConfig;
 import com.kracz0.desktopwitelonbank.Models.DTO.AccountAdmin;
 import com.kracz0.desktopwitelonbank.Models.DTO.AdminStats;
+import com.kracz0.desktopwitelonbank.Models.DTO.Transfer;
 import com.kracz0.desktopwitelonbank.Models.Model;
 import com.kracz0.desktopwitelonbank.Services.Admin.AdminService;
 import com.kracz0.desktopwitelonbank.Utils.ApiClient;
@@ -35,18 +36,33 @@ public class AdminController implements Initializable {
 
     @FXML public BorderPane adminRoot;
     @FXML public HBox statsContainer;
+    @FXML public ComboBox statusFilterComboBox;
     @FXML private ListView<String> kontaListView;
     @FXML private StackPane reportModalOverlay;
     @FXML private DatePicker startDatePicker;
     @FXML private DatePicker endDatePicker;
     @FXML private Button adminLogoutButton;
+    @FXML private ListView<String> allTransfersListView;
     private final AdminService adminService = new AdminService();
     private Map<String, Integer> kontoIdByDisplay = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadAccountList();
+        loadAllTransfers();
         adminLogoutButton.setOnAction(event -> onLogout());
+
+        statusFilterComboBox.setOnAction(event -> {
+            String selectedStatus = (String) statusFilterComboBox.getValue();
+
+            String statusParam = selectedStatus != null && !selectedStatus.equalsIgnoreCase("wszystkie")
+                    ? selectedStatus.toLowerCase()
+                    : null;
+
+            loadFilteredTransfers(statusParam);
+        });
+
+
     }
 
     private void loadAccountList() {
@@ -284,6 +300,45 @@ public class AdminController implements Initializable {
         }).start();
     }
 
+    private void loadAllTransfers() {
+        new Thread(() -> {
+            List<Transfer> transfers = adminService.getAllTransfers(null, null, 1, 30); // domyślnie strona 1, 30 rekordów
+
+            Platform.runLater(() -> {
+                allTransfersListView.getItems().clear();
+                for (Transfer t : transfers) {
+                    String display = String.format("[%s] %s (%s) | %.2f %s | %s",
+                            t.getTypTransakcji().toUpperCase(),
+                            t.getNazwaDrugiejStrony(),
+                            t.getNrKontaDrugiejStrony(),
+                            t.getKwota(),
+                            t.getWaluta(),
+                            t.getTytul());
+                    allTransfersListView.getItems().add(display);
+                }
+            });
+        }).start();
+    }
+
+    private void loadFilteredTransfers(String status) {
+        new Thread(() -> {
+            List<Transfer> transfers = adminService.getAllTransfers(status, null, 1, 30);
+
+            Platform.runLater(() -> {
+                allTransfersListView.getItems().clear();
+                for (Transfer t : transfers) {
+                    String display = String.format("[%s] %s (%s) | %.2f %s | %s",
+                            t.getTypTransakcji().toUpperCase(),
+                            t.getNazwaDrugiejStrony(),
+                            t.getNrKontaDrugiejStrony(),
+                            t.getKwota(),
+                            t.getWaluta(),
+                            t.getTytul());
+                    allTransfersListView.getItems().add(display);
+                }
+            });
+        }).start();
+    }
 
 }
 

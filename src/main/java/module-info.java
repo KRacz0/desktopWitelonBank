@@ -15,6 +15,7 @@ module com.kracz0.desktopwitelonbank {
     requires com.fasterxml.jackson.databind;
     requires org.json;
     requires java.desktop;
+    requires jdk.compiler;
 
     opens com.kracz0.desktopwitelonbank.Controllers to javafx.fxml;
     opens com.kracz0.desktopwitelonbank.Controllers.Client to javafx.fxml;

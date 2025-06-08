@@ -269,5 +269,48 @@ public class AdminService {
         }
     }
 
+    public List<Transfer> getAllTransfers(String status, Integer idKontaNadawcy, int page, int perPage) {
+        try {
+            StringBuilder urlBuilder = new StringBuilder(ApiConfig.ADMIN_PRZELEWY);
+            urlBuilder.append("?page=").append(page).append("&per_page=").append(perPage);
+            if (status != null) urlBuilder.append("&status=").append(status);
+            if (idKontaNadawcy != null) urlBuilder.append("&id_konta_nadawcy=").append(idKontaNadawcy);
+
+            HttpRequest request = ApiClient.authorizedRequest(urlBuilder.toString()).GET().build();
+            HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() != 200) return Collections.emptyList();
+
+            JSONObject responseObject = new JSONObject(response.body());
+            JSONArray array = responseObject.getJSONArray("data");
+            List<Transfer> result = new ArrayList<>();
+
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject obj = array.getJSONObject(i);
+                Transfer transfer = new Transfer(
+                        obj.getString("tytul"),
+                        obj.getDouble("kwota"),
+                        obj.getString("status"),
+                        obj.optString("data_realizacji", "-"),
+                        obj.getString("waluta_przelewu"),
+                        obj.optString("nazwa_odbiorcy"),
+                        obj.optString("nr_konta_odbiorcy"),
+                        obj.optString("nazwa_nadawcy"),
+                        obj.optString("nr_konta_nadawcy")
+                );
+
+                result.add(transfer);
+            }
+
+            return result;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
+
+
 }
 

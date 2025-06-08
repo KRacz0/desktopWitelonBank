@@ -8,6 +8,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <HBox fx:id="root" xmlns="http://javafx.com/javafx"
+      xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.StandingOrderTileController"
       spacing="10" alignment="CENTER_LEFT" styleClass="transaction_tile">

@@ -19,8 +19,8 @@ public class ClientMenuController implements Initializable {
     public Button sidebar_addressBook_btn;
     public Button sidebar_crypto_btn;
     public Button sidebar_profile_btn;
-    public Button sidebar_settings_btn;
     public Button sidebar_logout_btn;
+    public Button sidebar_standingOrder_btn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -33,6 +33,8 @@ public class ClientMenuController implements Initializable {
         sidebar_addressBook_btn.setOnAction(event -> onAddressBook());
         sidebar_crypto_btn.setOnAction(event -> onCryptoWallet());
         sidebar_logout_btn.setOnAction(event -> onLogout());
+        sidebar_profile_btn.setOnAction(event -> onClientProfile());
+        sidebar_standingOrder_btn.setOnAction(event -> onStandingOrder());
     }
 
     private void onDashboard() {
@@ -54,6 +56,14 @@ public class ClientMenuController implements Initializable {
 
     private void onCryptoWallet() {
         Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("CryptoWallet");
+    }
+
+    private void onClientProfile() {
+        Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("ClientProfile");
+    }
+
+    private void onStandingOrder() {
+        Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("StandingOrder");
     }
 
     private void onLogout() {

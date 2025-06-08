@@ -8,10 +8,19 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 <AnchorPane prefHeight="700.0" prefWidth="1100.0" stylesheets="@../../Styles/AddressBook.css"
-            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.AddressBookController">
-    <ListView fx:id="recipientsList" layoutX="70.0" layoutY="120.0" prefWidth="960.0" prefHeight="500.0"/>
+    <ListView fx:id="recipientsList" layoutX="70.0" layoutY="120.0" prefWidth="960.0" prefHeight="500.0" styleClass="recipientsList_container"/>
+
+    <Text text="Książka adresowa" layoutX="420.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0"
+          AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="420.0">
+        <font>
+            <Font size="28.0" />
+        </font>
+    </Text>
 
 
     <HBox layoutX="70.0" layoutY="70.0" spacing="10">

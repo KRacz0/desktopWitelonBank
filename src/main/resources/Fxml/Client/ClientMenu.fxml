@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="60.0" stylesheets="@../../Styles/Sidebar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.ClientMenuController">
+<AnchorPane prefHeight="750.0" prefWidth="60.0" stylesheets="@../../Styles/Sidebar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.ClientMenuController">
     <VBox fx:id="sidebar" prefWidth="60.0" spacing="20" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 
         <!-- ŚRODKOWE PRZYCISKI (Dashboard, Transakcje itd.) -->
@@ -52,7 +52,7 @@
                <Font size="14.0" />
             </font>
             </Button>
-            <Button fx:id="sidebar_settings_btn" mnemonicParsing="false" styleClass="sidebar_btn">
+            <Button fx:id="sidebar_standingOrder_btn" mnemonicParsing="false" styleClass="sidebar_btn">
                 <graphic>
                     <FontAwesomeIconView glyphName="COG" styleClass="sidebar_icon" />
                 </graphic>

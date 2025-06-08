@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" stylesheets="@../../Styles/ClientProfile.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.ClientProfileController">
+
+    <Text layoutX="472.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profil Klienta" AnchorPane.leftAnchor="472.0" AnchorPane.topAnchor="13.78515625">
+        <font>
+            <Font size="28.0" />
+        </font>
+    </Text>
+
+    <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+        <VBox fx:id="profile_pane" alignment="CENTER" maxWidth="550.0" prefHeight="176.0" prefWidth="350.0" spacing="18" styleClass="profile_tile">
+            <Label styleClass="profile_label" text="Imię i nazwisko" />
+            <Label fx:id="full_name_lbl" styleClass="profile_value" text="-" />
+
+            <Label styleClass="profile_label" text="Email" />
+            <Label fx:id="email_lbl" styleClass="profile_value" text="-" />
+
+            <Label styleClass="profile_label" text="Numer konta" />
+            <Label fx:id="account_number_lbl" styleClass="profile_value" text="-" />
+
+            <Label styleClass="profile_label" text="Saldo konta" />
+            <Label fx:id="account_balance_lbl" styleClass="profile_value" text="-" />
+
+            <Label styleClass="profile_label" text="Saldo kryptowalut" />
+            <Label fx:id="crypto_balance_lbl" styleClass="profile_value" text="-" />
+         <StackPane.margin>
+            <Insets bottom="30.0" top="-20.0" />
+         </StackPane.margin>
+        </VBox>
+    </StackPane>
+
+</AnchorPane>

@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DashboardController implements Initializable {
     @FXML public Label balance_lbl;
@@ -86,6 +87,11 @@ public class DashboardController implements Initializable {
             Model.getInstance().setOpenTransferModalFlag(true);
             Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("Transactions");
         });
+
+        buy_crypto_btn.setOnAction(event -> {
+            Model.getInstance().setOpenTransferModalFlag(true);
+            Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("CryptoWallet");
+        });
     }
 
     private void loadTransactions(int accountId) {
@@ -142,7 +148,13 @@ public class DashboardController implements Initializable {
 
     private void loadStandingOrders() {
         new Thread(() -> {
-            List<StandingOrder> orders = dashboardService.getZleceniaStale();
+            List<StandingOrder> orders = dashboardService.getZleceniaStale()
+                    .stream()
+                    .filter(StandingOrder::isAktywne)
+                    .collect(Collectors.toList());
+
+            System.out.println("Zlecenia po filtrze (aktywne): " + orders.size());
+
 
             Platform.runLater(() -> {
                 standing_orders_box.getChildren().clear();
@@ -156,15 +168,18 @@ public class DashboardController implements Initializable {
 
                 for (StandingOrder order : orders) {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/client/StandingOrderTile.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/client/Partials/StandingOrderTile.fxml"));
                         HBox tile = loader.load();
                         StandingOrderTileController controller = loader.getController();
                         controller.setData(order);
                         standing_orders_box.getChildren().add(tile);
+                        System.out.println("Załadowano kafelek dla: " + order.getNazwa_odbiorcy());
                     } catch (IOException e) {
+                        System.err.println("Błąd ładowania kafelka zlecenia: " + e.getMessage());
                         e.printStackTrace();
                     }
                 }
+
             });
         }).start();
     }

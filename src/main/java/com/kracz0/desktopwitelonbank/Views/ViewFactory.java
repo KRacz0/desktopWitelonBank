@@ -26,11 +26,13 @@ public class ViewFactory {
     private AnchorPane addressBookView;
     private AnchorPane cryptoWalletView;
     private AnchorPane adminAccountDetailsView;
+    private AnchorPane clientProfileView;
+    private AnchorPane standingOrderView;
+    private DashboardController dashboardController;
 
     public ViewFactory() {
         this.clientSelectedMenuItem = new SimpleStringProperty("");
     }
-    private DashboardController dashboardController;
 
     public StringProperty getClientSelectedMenuItem() {
         return clientSelectedMenuItem;
@@ -48,7 +50,6 @@ public class ViewFactory {
         }
         return dashboardView;
     }
-
 
     public AnchorPane getTransactionsView() {
         if (transactionsView == null) {
@@ -95,6 +96,28 @@ public class ViewFactory {
         }
 
         return cryptoWalletView;
+    }
+
+    public AnchorPane getClientProfileView() {
+        if (clientProfileView == null) {
+            try {
+                clientProfileView = new FXMLLoader(getClass().getResource("/Fxml/Client/ClientProfile.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return clientProfileView;
+    }
+
+    public AnchorPane getStandingOrderView() {
+        if (standingOrderView == null) {
+            try {
+                standingOrderView = new FXMLLoader(getClass().getResource("/Fxml/Client/StandingOrder.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return standingOrderView;
     }
 
 

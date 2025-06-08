@@ -9,12 +9,13 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1100.0" stylesheets="@../../Styles/Admin/AdminAccountDetails.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Admin.AdminAccountDetailsController">
+<AnchorPane prefHeight="900.0" prefWidth="1400.0" stylesheets="@../../Styles/Admin/AdminAccountDetails.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Admin.AdminAccountDetailsController">
 
-   <Button fx:id="backButton" layoutX="980.0" layoutY="20.0" onAction="#handleBackToAdmin" styleClass="back_btn" text="Powrót" />
+   <Button fx:id="backButton" layoutX="1300.0" layoutY="20.0" onAction="#handleBackToAdmin" styleClass="back_btn" text="Powrót" />
 
-   <AnchorPane layoutX="30.0" layoutY="30.0" maxWidth="460">
-      <VBox layoutX="7.0" layoutY="33.0" spacing="14" styleClass="account_details_card" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="33.0">
+   <!-- Karta danych konta -->
+   <AnchorPane layoutX="80.0" layoutY="80.0" maxWidth="460">
+      <VBox spacing="14" styleClass="account_details_card">
          <Label fx:id="kontoLabel" styleClass="account_detail_title" />
          <Label fx:id="saldoLabel" styleClass="account_detail_item" />
          <Label fx:id="limitLabel" styleClass="account_detail_item" />
@@ -27,13 +28,13 @@
       </VBox>
    </AnchorPane>
 
-   <VBox layoutX="30.0" layoutY="429.0" spacing="14">
-      <Button fx:id="toggleBlockButton" onAction="#handleToggleBlock" prefWidth="240" styleClass="action_btn" text="Zablokuj / Odblokuj" />
-      <Button onAction="#openLimitModal" prefWidth="120" styleClass="secondary_btn" text="Limity" />
-   </VBox>
+   <!-- Przyciski blokady i limitu -->
+   <VBox layoutX="80.0" layoutY="640.0" spacing="14" />
 
-   <ListView fx:id="transactionsListView" layoutX="516.0" layoutY="67.0" prefHeight="620.0" prefWidth="565.0" />
+   <!-- Lista transakcji -->
+   <ListView fx:id="transactionsListView" layoutX="560.0" layoutY="80.0" prefHeight="650.0" prefWidth="820.0" />
 
+   <!-- Modal transakcji -->
    <StackPane fx:id="modal_overlay" pickOnBounds="true" styleClass="modal_overlay" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <VBox alignment="CENTER" prefHeight="700" prefWidth="1100">
          <AnchorPane fx:id="transaction_details_modal" maxHeight="420" maxWidth="420" styleClass="modal_box" stylesheets="@../../Styles/Transactions.css">
@@ -50,6 +51,7 @@
       </VBox>
    </StackPane>
 
+   <!-- Modal limitu -->
    <StackPane fx:id="limit_modal_overlay" pickOnBounds="true" styleClass="modal_overlay" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <VBox alignment="CENTER" prefHeight="700" prefWidth="1100">
          <AnchorPane maxHeight="300" maxWidth="360" styleClass="modal_box">
@@ -64,4 +66,7 @@
          </AnchorPane>
       </VBox>
    </StackPane>
+   <Button fx:id="toggleBlockButton" layoutX="80.0" layoutY="444.0" onAction="#handleToggleBlock" prefWidth="240" styleClass="action_btn" text="Zablokuj / Odblokuj" />
+   <Button layoutX="80.0" layoutY="496.0" onAction="#openLimitModal" prefWidth="120" styleClass="secondary_btn" text="Limity" />
+
 </AnchorPane>

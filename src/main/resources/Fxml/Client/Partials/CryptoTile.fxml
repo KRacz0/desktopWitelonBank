@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
-<HBox xmlns="http://javafx.com/javafx/23.0.1"
+<HBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.CryptoTileController"
       alignment="CENTER_LEFT"

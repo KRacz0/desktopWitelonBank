@@ -95,16 +95,29 @@ public class DashboardService {
             HttpRequest request = ApiClient.authorizedRequest(ApiConfig.ZLECENIA_STALE).GET().build();
             HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
 
+            System.out.println("Status odpowiedzi: " + response.statusCode());
+            System.out.println("Treść odpowiedzi: " + response.body());
+
             if (response.statusCode() == 200) {
                 JSONArray arr = new JSONArray(response.body());
                 ObjectMapper mapper = new ObjectMapper();
-                return mapper.readValue(arr.toString(), new TypeReference<List<StandingOrder>>() {});
+                List<StandingOrder> orders = mapper.readValue(arr.toString(), new TypeReference<List<StandingOrder>>() {});
+                System.out.println("Liczba zmapowanych zleceń: " + orders.size());
+
+                for (StandingOrder order : orders) {
+                    System.out.println("Zlecenie: " + order.getNazwa_odbiorcy() + ", kwota: " + order.getKwota() +
+                            ", aktywne: " + order.isAktywne());
+                }
+
+                return orders;
             }
         } catch (Exception e) {
+            System.err.println("Błąd podczas pobierania zleceń stałych:");
             e.printStackTrace();
         }
         return Collections.emptyList();
     }
+
 
 }
 
