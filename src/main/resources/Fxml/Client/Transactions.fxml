@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ProgressIndicator?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<AnchorPane prefHeight="700.0" prefWidth="1100.0" stylesheets="@../../Styles/Transactions.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.TransactionsController">
 
-    <Text text="Transakcje" layoutX="420.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0"
-          AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="420.0">
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" stylesheets="@../../Styles/Transactions.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.TransactionsController">
+
+    <Text layoutX="486.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transakcje" AnchorPane.leftAnchor="486.0" AnchorPane.topAnchor="12.78515625">
         <font>
             <Font size="28.0" />
         </font>
@@ -30,34 +29,31 @@
     <ListView fx:id="transactions_listview" layoutX="14.0" layoutY="78.0" prefHeight="581.0" prefWidth="1060.0" styleClass="transactions_container" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="78.0" />
 
     <HBox layoutX="20.0" layoutY="20.0" spacing="10" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0">
-        <Button text="Eksportuj do CSV" onAction="#openExportModal" styleClass="action_btn" />
+        <Button onAction="#openExportModal" styleClass="action_btn" text="Eksportuj do CSV" />
     </HBox>
 
     <Button fx:id="newTransferBtn" layoutX="910.0" layoutY="20.0" styleClass="action_btn" text="Nowy przelew" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0" />
 
-    <StackPane fx:id="modal_overlay" visible="false" pickOnBounds="true"
-               styleClass="modal_overlay" AnchorPane.topAnchor="0.0"
-               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <VBox alignment="CENTER" prefWidth="1100" prefHeight="700">
-            <AnchorPane fx:id="transaction_details_modal" maxWidth="420" maxHeight="420"
-                        styleClass="modal_box">
-                <VBox spacing="12" layoutX="20" layoutY="20">
-                    <HBox spacing="8"><Label text="Typ transakcji:" styleClass="modal_label_title"/><Label fx:id="typ_lbl" styleClass="modal_label" /></HBox>
+    <StackPane fx:id="modal_overlay" pickOnBounds="true" styleClass="modal_overlay" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox alignment="CENTER" prefHeight="700" prefWidth="1100">
+            <AnchorPane fx:id="transaction_details_modal" maxHeight="420" maxWidth="420" styleClass="modal_box">
+                <VBox layoutX="20" layoutY="20" spacing="12">
+                    <HBox spacing="8"><Label styleClass="modal_label_title" text="Typ transakcji:" /><Label fx:id="typ_lbl" styleClass="modal_label" /></HBox>
                     <HBox spacing="8">
-                        <Label fx:id="konto_title_lbl" text="Numer konta odbiorcy:" styleClass="modal_label_title"/>
-                        <Label fx:id="konto_lbl" styleClass="modal_label"/>
+                        <Label fx:id="konto_title_lbl" styleClass="modal_label_title" text="Numer konta odbiorcy:" />
+                        <Label fx:id="konto_lbl" styleClass="modal_label" />
                     </HBox>
                     <HBox spacing="8">
-                        <Label fx:id="nazwa_title_lbl" styleClass="modal_label_title"/>
+                        <Label fx:id="nazwa_title_lbl" styleClass="modal_label_title" />
                         <Label fx:id="nazwa_lbl" styleClass="modal_label" />
                     </HBox>
 
-                    <HBox spacing="8"><Label text="Tytuł przelewu:" styleClass="modal_label_title"/><Label fx:id="tytul_lbl" styleClass="modal_label" /></HBox>
-                    <HBox spacing="8"><Label text="Kwota:" styleClass="modal_label_title"/><Label fx:id="kwota_lbl" styleClass="modal_label" /></HBox>
-                    <HBox spacing="8"><Label text="Data realizacji:" styleClass="modal_label_title"/><Label fx:id="data_lbl" styleClass="modal_label" /></HBox>
+                    <HBox spacing="8"><Label styleClass="modal_label_title" text="Tytuł przelewu:" /><Label fx:id="tytul_lbl" styleClass="modal_label" /></HBox>
+                    <HBox spacing="8"><Label styleClass="modal_label_title" text="Kwota:" /><Label fx:id="kwota_lbl" styleClass="modal_label" /></HBox>
+                    <HBox spacing="8"><Label styleClass="modal_label_title" text="Data realizacji:" /><Label fx:id="data_lbl" styleClass="modal_label" /></HBox>
 
                     <HBox alignment="CENTER">
-                        <Button text="Zamknij" onAction="#closeModal" styleClass="action_btn" />
+                        <Button onAction="#closeModal" styleClass="action_btn" text="Zamknij" />
                     </HBox>
                 </VBox>
             </AnchorPane>
@@ -65,107 +61,94 @@
     </StackPane>
 
     <!-- Nowy przelew -->
-    <StackPane fx:id="new_transfer_overlay" visible="false" pickOnBounds="true"
-               styleClass="modal_overlay" AnchorPane.topAnchor="0.0"
-               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+    <StackPane fx:id="new_transfer_overlay" pickOnBounds="true" styleClass="modal_overlay" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
-        <VBox alignment="CENTER" prefWidth="1100" prefHeight="700">
-            <AnchorPane fx:id="new_transfer_modal" maxWidth="440" maxHeight="520" styleClass="modal_box">
-                <StackPane alignment="CENTER" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <VBox alignment="CENTER" prefHeight="700" prefWidth="1100">
+            <AnchorPane fx:id="new_transfer_modal" maxHeight="520" maxWidth="440" styleClass="modal_box">
+                <StackPane alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                 <!-- FORMULARZ PRZELEWU -->
-                    <VBox fx:id="transfer_form" spacing="12" alignment="CENTER" maxWidth="360">
-                        <Label text="Nowy przelew" styleClass="modal_title"/>
+                    <VBox fx:id="transfer_form" alignment="CENTER" maxWidth="360" spacing="12">
+                        <Label styleClass="modal_title" text="Nowy przelew" />
                         <StackPane alignment="CENTER_RIGHT" maxWidth="320" prefWidth="320">
-                            <TextField fx:id="recipient_account_field"
-                                       promptText="Numer konta odbiorcy"
-                                       styleClass="text-field-with-icon"
-                                       prefWidth="320"
-                                       maxWidth="320"/>
-                            <FontAwesomeIconView glyphName="BOOK"
-                                                 onMouseClicked="#openAddressBookPicker"
-                                                 styleClass="accountbook_icon">
+                            <TextField fx:id="recipient_account_field" maxWidth="320" prefWidth="320" promptText="Numer konta odbiorcy" styleClass="text-field-with-icon" />
+                            <FontAwesomeIconView glyphName="BOOK" onMouseClicked="#openAddressBookPicker" styleClass="accountbook_icon">
                                 <StackPane.margin>
-                                    <Insets top="0" right="8" bottom="0" left="0"/>
+                                    <Insets bottom="0" left="0" right="8" top="0" />
                                 </StackPane.margin>
                             </FontAwesomeIconView>
                         </StackPane>
 
-                        <TextField fx:id="recipient_name_field" promptText="Imię i nazwisko odbiorcy"/>
-                        <TextField fx:id="address_line1_field" promptText="Adres linia 1 (np. ulica)"/>
-                        <TextField fx:id="address_line2_field" promptText="Adres linia 2 (np. kod pocztowy i miasto)"/>
-                        <TextField fx:id="title_field" promptText="Tytuł przelewu"/>
-                        <TextField fx:id="amount_field" promptText="Kwota"/>
+                        <TextField fx:id="recipient_name_field" promptText="Imię i nazwisko odbiorcy" />
+                        <TextField fx:id="address_line1_field" promptText="Adres linia 1 (np. ulica)" />
+                        <TextField fx:id="address_line2_field" promptText="Adres linia 2 (np. kod pocztowy i miasto)" />
+                        <TextField fx:id="title_field" promptText="Tytuł przelewu" />
+                        <TextField fx:id="amount_field" promptText="Kwota" />
 
                         <HBox alignment="CENTER" spacing="12">
-                            <Button text="Wyślij przelew" onAction="#sendTransfer" styleClass="action_btn"/>
-                            <Button text="Anuluj" onAction="#closeNewTransferModal" styleClass="action_btn"/>
+                            <Button onAction="#sendTransfer" styleClass="action_btn" text="Wyślij przelew" />
+                            <Button onAction="#closeNewTransferModal" styleClass="action_btn" text="Anuluj" />
                         </HBox>
                     </VBox>
 
-                    <VBox fx:id="address_book_picker" spacing="12" alignment="CENTER" visible="false" maxWidth="360">
-                        <Label text="Wybierz odbiorcę" styleClass="modal_title"/>
-                        <ListView fx:id="address_recipient_list" prefHeight="350.0"/>
-                        <Button text="Anuluj" onAction="#closeAddressBookPicker" styleClass="action_btn"/>
+                    <VBox fx:id="address_book_picker" alignment="CENTER" maxWidth="360" spacing="12" visible="false">
+                        <Label styleClass="modal_title" text="Wybierz odbiorcę" />
+                        <ListView fx:id="address_recipient_list" prefHeight="350.0" />
+                        <Button onAction="#closeAddressBookPicker" styleClass="action_btn" text="Anuluj" />
                     </VBox>
 
 
                     <!-- STATUS WYSYŁANIA -->
-                    <VBox fx:id="transfer_status_box" spacing="14" alignment="CENTER" visible="false" maxWidth="280" maxHeight="260" styleClass="status_box">
-                        <FontAwesomeIconView fx:id="status_icon" glyphName="CHECK_CIRCLE" styleClass="status_icon_success"/>
-                        <ProgressIndicator fx:id="loading_indicator" visible="false"/>
-                        <Label fx:id="transfer_status_message" styleClass="modal_status_message" wrapText="true" textAlignment="CENTER"/>
-                        <Label fx:id="transfer_status_details" visible="false" wrapText="true" textAlignment="CENTER" styleClass="status_details_label"/>
-                        <Button fx:id="transfer_status_close_btn" text="Zamknij" onAction="#closeNewTransferModal" visible="false" styleClass="action_btn"/>
+                    <VBox fx:id="transfer_status_box" alignment="CENTER" maxHeight="260" maxWidth="280" spacing="14" styleClass="status_box" visible="false">
+                        <FontAwesomeIconView fx:id="status_icon" glyphName="CHECK_CIRCLE" styleClass="status_icon_success" />
+                        <ProgressIndicator fx:id="loading_indicator" visible="false" />
+                        <Label fx:id="transfer_status_message" styleClass="modal_status_message" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="transfer_status_details" styleClass="status_details_label" textAlignment="CENTER" visible="false" wrapText="true" />
+                        <Button fx:id="transfer_status_close_btn" onAction="#closeNewTransferModal" styleClass="action_btn" text="Zamknij" visible="false" />
                     </VBox>
                 </StackPane>
             </AnchorPane>
         </VBox>
     </StackPane>
 
-    <StackPane fx:id="exportModalOverlay" visible="false" pickOnBounds="true"
-               styleClass="modal_overlay"
-               AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
-               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+    <StackPane fx:id="exportModalOverlay" pickOnBounds="true" styleClass="modal_overlay" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
-        <VBox alignment="CENTER" prefWidth="1100" prefHeight="700">
-            <AnchorPane maxWidth="440" maxHeight="400" styleClass="modal_box">
-                <StackPane alignment="CENTER" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
-                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                    <VBox spacing="14" alignment="CENTER" maxWidth="360">
+        <VBox alignment="CENTER" prefHeight="700" prefWidth="1100">
+            <AnchorPane maxHeight="400" maxWidth="440" styleClass="modal_box">
+                <StackPane alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <VBox alignment="CENTER" maxWidth="360" spacing="14">
 
-                        <Label text="Eksport przelewów do CSV" styleClass="modal_title"/>
+                        <Label styleClass="modal_title" text="Eksport przelewów do CSV" />
 
-                        <HBox spacing="10" alignment="CENTER">
-                            <VBox spacing="2" alignment="CENTER">
-                                <Label text="Od" styleClass="modal_label"/>
-                                <DatePicker fx:id="exportStartDate" styleClass="date-picker" prefWidth="150"/>
+                        <HBox alignment="CENTER" spacing="10">
+                            <VBox alignment="CENTER" spacing="2">
+                                <Label styleClass="modal_label" text="Od" />
+                                <DatePicker fx:id="exportStartDate" prefWidth="150" styleClass="date-picker" />
                             </VBox>
-                            <VBox spacing="2" alignment="CENTER">
-                                <Label text="Do" styleClass="modal_label"/>
-                                <DatePicker fx:id="exportEndDate" styleClass="date-picker" prefWidth="150"/>
+                            <VBox alignment="CENTER" spacing="2">
+                                <Label styleClass="modal_label" text="Do" />
+                                <DatePicker fx:id="exportEndDate" prefWidth="150" styleClass="date-picker" />
                             </VBox>
                         </HBox>
 
-                        <VBox spacing="4" alignment="CENTER">
-                            <Label text="Typ transakcji" styleClass="modal_label"/>
-                            <ComboBox fx:id="exportTypeComboBox" styleClass="export-combo-box"
-                                      prefWidth="180" minWidth="180" maxWidth="180">
+                        <VBox alignment="CENTER" spacing="4">
+                            <Label styleClass="modal_label" text="Typ transakcji" />
+                            <ComboBox fx:id="exportTypeComboBox" maxWidth="180" minWidth="180" prefWidth="180" styleClass="export-combo-box">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="wszystkie"/>
-                                        <String fx:value="przychodzacy"/>
-                                        <String fx:value="wychodzacy"/>
+                                        <String fx:value="wszystkie" />
+                                        <String fx:value="przychodzacy" />
+                                        <String fx:value="wychodzacy" />
                                     </FXCollections>
                                 </items>
                             </ComboBox>
                         </VBox>
 
-                        <HBox spacing="12" alignment="CENTER">
-                            <Button text="Anuluj" onAction="#closeExportModal" styleClass="action_btn"/>
-                            <Button text="Pobierz CSV" onAction="#exportPDF" styleClass="action_btn"/>
+                        <HBox alignment="CENTER" spacing="12">
+                            <Button onAction="#closeExportModal" styleClass="action_btn" text="Anuluj" />
+                            <Button onAction="#exportPDF" styleClass="action_btn" text="Pobierz CSV" />
                         </HBox>
-                        <VBox fx:id="exportStatusBox" spacing="10" alignment="CENTER" visible="false">
-                            <Label fx:id="exportStatusLabel" styleClass="modal_status_message" wrapText="true"/>
+                        <VBox fx:id="exportStatusBox" alignment="CENTER" spacing="10" visible="false">
+                            <Label fx:id="exportStatusLabel" styleClass="modal_status_message" wrapText="true" />
                         </VBox>
                     </VBox>
                 </StackPane>

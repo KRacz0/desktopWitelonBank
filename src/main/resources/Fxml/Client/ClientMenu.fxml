@@ -54,7 +54,7 @@
             </Button>
             <Button fx:id="sidebar_standingOrder_btn" mnemonicParsing="false" styleClass="sidebar_btn">
                 <graphic>
-                    <FontAwesomeIconView glyphName="COG" styleClass="sidebar_icon" />
+                    <FontAwesomeIconView glyphName="REPEAT" styleClass="sidebar_icon" />
                 </graphic>
             <font>
                <Font size="14.0" />

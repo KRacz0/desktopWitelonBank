@@ -95,9 +95,6 @@ public class DashboardService {
             HttpRequest request = ApiClient.authorizedRequest(ApiConfig.ZLECENIA_STALE).GET().build();
             HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
 
-            System.out.println("Status odpowiedzi: " + response.statusCode());
-            System.out.println("Treść odpowiedzi: " + response.body());
-
             if (response.statusCode() == 200) {
                 JSONArray arr = new JSONArray(response.body());
                 ObjectMapper mapper = new ObjectMapper();

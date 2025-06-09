@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1100.0" styleClass="gui" stylesheets="@../../Styles/Dashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.DashboardController">
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" styleClass="gui" stylesheets="@../../Styles/Dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.DashboardController">
 
    <VBox layoutX="70.0" layoutY="1.0" prefHeight="260.0" prefWidth="1040.0" styleClass="top_background_box" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="1.0">
       <Label fx:id="user_name_lbl" styleClass="user_name" text=" Ładowanie..." wrapText="true" />
@@ -107,5 +107,6 @@
 
    <Button fx:id="showMore_transaction_btn" layoutX="885.0" layoutY="318.0" maxWidth="Infinity" onAction="#goToTransactions" prefHeight="29.0" prefWidth="73.0" styleClass="show_more_bottom_btn" text="Pokaż więcej" />
    <Label layoutX="78.0" layoutY="324.0" styleClass="section_title" text="Zlecenia stałe" />
+   <Button fx:id="showMore_standingOrder_btn" layoutX="163.0" layoutY="318.0" maxWidth="Infinity" onAction="#goToStandingOrders" prefHeight="29.0" prefWidth="73.0" styleClass="show_more_bottom_btn" text="Pokaż więcej zlecenia" />
 
 </AnchorPane>

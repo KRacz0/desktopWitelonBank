@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@../../Styles/StandingOrder.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.StandingOrderMainController">
+
+    <Text layoutX="451.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zlecenia Stałe">
+        <font>
+            <Font size="28.0" />
+        </font>
+    </Text>
+
+    <Button layoutX="922.0" layoutY="19.0" onAction="#openCreateModal" styleClass="action_btn" text="Nowe zlecenie" />
+
+    <ScrollPane fx:id="ordersScrollPane" fitToWidth="true" styleClass="scroll-pane" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="80.0">
+        <VBox fx:id="ordersContainer" spacing="16">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+        </VBox>
+    </ScrollPane>
+
+    <StackPane fx:id="modal_overlay" alignment="CENTER" styleClass="modal_overlay" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox fx:id="details_modal" alignment="CENTER" spacing="14" styleClass="modal_card">
+            <Label styleClass="modal_header" text="Szczegóły zlecenia stałego" />
+            <Label fx:id="modal_nazwaOdbiorcy" styleClass="modal_label" />
+            <Label fx:id="modal_numerKonta" styleClass="modal_label" />
+            <Label fx:id="modal_kwota" styleClass="modal_label" />
+            <Label fx:id="modal_tytul" styleClass="modal_label" />
+            <Label fx:id="modal_czestotliwosc" styleClass="modal_label" />
+            <Label fx:id="modal_dataStartu" styleClass="modal_label" />
+            <Label fx:id="modal_dataNastepna" styleClass="modal_label" />
+            <Label fx:id="modal_dataZakonczenia" styleClass="modal_label" />
+            <Button onAction="#closeDetailsModal" styleClass="action_btn" text="Zamknij" />
+        </VBox>
+    </StackPane>
+
+    <StackPane fx:id="modal_edit_overlay" alignment="CENTER" styleClass="modal_overlay" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox alignment="CENTER" spacing="14" styleClass="modal_card">
+            <Label styleClass="modal_title" text="Edytuj zlecenie stałe" />
+
+            <TextField fx:id="edit_nazwa_odbiorcy" promptText="Nazwa odbiorcy" />
+            <TextField fx:id="edit_nr_konta" promptText="Numer konta" />
+            <TextField fx:id="edit_tytul" promptText="Tytuł przelewu" />
+            <TextField fx:id="edit_kwota" promptText="Kwota" />
+            <TextField fx:id="edit_czestotliwosc" promptText="Częstotliwość" />
+
+            <HBox alignment="CENTER" spacing="12">
+                <DatePicker fx:id="edit_data_startu" prefWidth="160" promptText="Data startu" />
+                <DatePicker fx:id="edit_data_zakonczenia" prefWidth="160" promptText="Data zakończenia" />
+            </HBox>
+
+            <HBox alignment="CENTER" spacing="12">
+                <Button onAction="#closeEditModal" styleClass="secondary_btn" text="Anuluj" />
+                <Button onAction="#saveEditedOrder" styleClass="action_btn" text="Zapisz" />
+            </HBox>
+        </VBox>
+    </StackPane>
+
+    <StackPane fx:id="modal_create_overlay" alignment="CENTER" styleClass="modal_overlay" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox alignment="CENTER" spacing="14" styleClass="modal_card">
+        <Label styleClass="modal_title" text="Nowe zlecenie stałe" />
+
+        <StackPane alignment="CENTER_RIGHT" maxWidth="330" prefWidth="330">
+            <TextField fx:id="create_nr_konta" promptText="Numer konta" />
+            <FontAwesomeIconView glyphName="BOOK" onMouseClicked="#openStandingOrderAddressBookPicker" styleClass="accountbook_icon">
+                <StackPane.margin><Insets bottom="0" left="0" right="8" top="0" /></StackPane.margin>
+            </FontAwesomeIconView>
+        </StackPane>
+
+        <TextField fx:id="create_nazwa_odbiorcy" promptText="Nazwa odbiorcy" />
+        <TextField fx:id="create_tytul" promptText="Tytuł przelewu" />
+        <TextField fx:id="create_kwota" promptText="Kwota" />
+
+        <ComboBox fx:id="create_czestotliwosc_combo" prefWidth="330" promptText="Częstotliwość">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="miesięcznie" />
+                    <String fx:value="tygodniowo" />
+                    <String fx:value="dziennie" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <HBox alignment="CENTER" spacing="12">
+            <DatePicker fx:id="create_data_startu" prefWidth="160" promptText="Data startu" />
+            <DatePicker fx:id="create_data_zakonczenia" prefWidth="160" promptText="Data zakończenia" />
+        </HBox>
+
+        <ListView fx:id="address_recipient_list_standing" maxWidth="330" prefHeight="180" visible="false" />
+
+        <HBox alignment="CENTER" spacing="12">
+            <Button onAction="#closeCreateModal" styleClass="secondary_btn" text="Anuluj" />
+            <Button onAction="#saveNewOrder" styleClass="action_btn" text="Dodaj" />
+        </HBox>
+    </VBox>
+    </StackPane>
+        </AnchorPane>

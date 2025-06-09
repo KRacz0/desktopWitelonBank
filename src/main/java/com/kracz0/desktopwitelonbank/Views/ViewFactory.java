@@ -1,7 +1,6 @@
 package com.kracz0.desktopwitelonbank.Views;
 
 import com.kracz0.desktopwitelonbank.Controllers.Admin.AdminAccountDetailsController;
-import com.kracz0.desktopwitelonbank.Controllers.Client.ClientMenuController;
 import com.kracz0.desktopwitelonbank.Controllers.Client.CryptoController;
 import com.kracz0.desktopwitelonbank.Controllers.Client.DashboardController;
 import com.kracz0.desktopwitelonbank.Controllers.Client.Modals.TwoFactorController;
@@ -112,7 +111,7 @@ public class ViewFactory {
     public AnchorPane getStandingOrderView() {
         if (standingOrderView == null) {
             try {
-                standingOrderView = new FXMLLoader(getClass().getResource("/Fxml/Client/StandingOrder.fxml")).load();
+                standingOrderView = new FXMLLoader(getClass().getResource("/Fxml/Client/StandingOrderMain.fxml")).load();
             } catch (Exception e) {
                 e.printStackTrace();
             }

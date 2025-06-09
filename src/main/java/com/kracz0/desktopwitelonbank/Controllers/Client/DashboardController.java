@@ -35,8 +35,8 @@ public class DashboardController implements Initializable {
     @FXML public Label card_number_2_lbl;
     @FXML public Label card_expiry_2_lbl;
     @FXML public VBox standing_orders_box;
+    @FXML public Button showMore_standingOrder_btn;
     @FXML private Label card_expiry_1_lbl;
-    @FXML public Button new_card_btn;
     @FXML public Button new_transaction_btn;
     @FXML public Button buy_crypto_btn;
     @FXML public Label balance_period_lbl;
@@ -325,6 +325,11 @@ public class DashboardController implements Initializable {
     @FXML
     private void goToTransactions() {
         Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("Transactions");
+    }
+
+    @FXML
+    private void goToStandingOrders() {
+        Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("StandingOrder");
     }
 }
 

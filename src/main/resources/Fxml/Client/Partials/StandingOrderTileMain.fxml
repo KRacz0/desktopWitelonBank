@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox alignment="CENTER_LEFT" onMouseClicked="#handleDoubleClick" spacing="20" styleClass="stat_card" stylesheets="@../../../Styles/StandingOrder.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.StandingOrderTileMainController">
+
+    <VBox spacing="4">
+        <Label fx:id="nazwaOdbiorcyLabel" styleClass="stat_title" />
+        <Label fx:id="kwotaLabel" styleClass="stat_value" />
+        <Label fx:id="dataLabel" styleClass="modal_label" />
+    </VBox>
+
+    <Region HBox.hgrow="ALWAYS" />
+
+    <HBox spacing="8">
+        <Button fx:id="editButton" onAction="#handleEdit" styleClass="secondary_btn" text="Edytuj" />
+        <Button fx:id="deleteButton" onAction="#handleDelete" styleClass="action_btn" text="Usuń" />
+
+    </HBox>
+
+</HBox>

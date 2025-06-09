@@ -1,0 +1,159 @@
+.stat_card {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 12;
+    -fx-spacing: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 6, 0, 0, 2);
+}
+
+.stat_title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #121047;
+}
+
+.stat_value {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.modal_label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #777777;
+}
+
+.modal_container {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+    -fx-padding: 25;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 12, 0.1, 0, 4);
+    -fx-min-width: 420;
+}
+
+.modal_card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+    -fx-padding: 25;
+    -fx-spacing: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 12, 0.1, 0, 4);
+    -fx-min-width: 420;
+}
+
+.modal_header, .modal_title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #121047;
+}
+
+.text-field, .date-picker {
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 6 10;
+}
+
+.action_btn {
+    -fx-background-color: #121047;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 18;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 1);
+}
+
+.action_btn:hover {
+    -fx-background-color: #1e1a72;
+}
+
+.secondary_btn {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #121047;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 18;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-border-color: #d4d4d4;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 1);
+}
+
+.secondary_btn:hover {
+    -fx-background-color: #e6e6e6;
+}
+
+
+.no_data_label {
+    -fx-font-size: 15px;
+    -fx-text-fill: #999999;
+    -fx-alignment: center;
+    -fx-padding: 20;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.modal_overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-alignment: center;
+}
+
+.modal_card {
+    -fx-background-color: white;
+    -fx-padding: 24;
+    -fx-background-radius: 14;
+    -fx-spacing: 14;
+    -fx-min-width: 420px;
+    -fx-max-width: 480px;
+    -fx-max-height: 540px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 16, 0.2, 0, 4);
+}
+
+.modal_title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #121047;
+}
+
+.action_btn {
+    -fx-background-color: #121047;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+}
+
+.secondary_btn {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #121047;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+}
+
+.secondary_btn:hover {
+    -fx-background-color: #dedede;
+}
+
+
