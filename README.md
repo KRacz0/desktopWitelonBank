@@ -126,7 +126,7 @@ Aplikacja korzysta z REST API pod adresem bazowym zdefiniowanym w `ApiConfig.BAS
 | WBK-10 | Użytkownik może przeglądać historię transakcji.                                                                         | ✓   | ✓   | ✓      |<code style="color : green">✓</code>      |
 | WBK-11 | Użytkownik może wykonywać przelewy.                                                                                     | ✓   | ✓   | ✓      |<code style="color : green">✓</code>         |
 | WBK-12 | Użytkownik może zarządzać swoimi kartami płatniczymi (blokowanie, zmiana limitów).                                      | ✓   | ✓   | ✓      |         |
-| WBK-13 | Użytkownik może skonfigurować płatności cykliczne.                                                                      | ✓   | ✓   | ✓      |         |
+| WBK-13 | Użytkownik może skonfigurować płatności cykliczne.                                                                      | ✓   | ✓   | ✓      |<code style="color : green">✓</code>         |
 | WBK-14 | Użytkownik otrzymuje powiadomienia o transakcjach na e-mail/push.                                                       | ✓   | ✓   | ✓      |         |
 | WBK-15 | Użytkownik może dodać odbiorców do listy zapisanych przelewów.                                                          | ✓   | ✓   | ✓      | <code style="color : green">✓</code>       |
 | WBK-16 | Użytkownik może eksportować historię transakcji.                                                                        | ✓   | ✓   | ✓      | <code style="color : green">✓</code>     |
