@@ -111,6 +111,65 @@ Aplikacja korzysta z REST API pod adresem bazowym zdefiniowanym w `ApiConfig.BAS
 
 ![Admin](https://github.com/user-attachments/assets/8cec08ba-78d8-4942-ba32-e509f2eb9bba)
 
+## Testy jednostkowe
+Kod testów znajduje się w katalogu `src/test/java/com/kracz0/desktopwitelonbank` i korzysta z biblioteki **JUnit 5**. Do symulacji zapytań HTTP używany jest **MockWebServer**, a w zależności testów dostępny jest również **Mockito**. Do tworzenia i parsowania obiektów JSON wykorzystywany jest pakiet `org.json` oraz `Jackson`.
+
+### Podział testów
+**Models**
+- `CardTest` – sprawdza poprawność konstrukcji i dostęp do pól modelu `Card`.
+- `ModelTest` – weryfikuje działanie singeltona `Model` (logowanie, token, flaga modalu).
+- `RecipientTest` – testuje settery i gettery klasy `Recipient`.
+- `UserTest` – testuje settery i gettery klasy `User`.
+- `DTO/AccountAdminTest` – poprawność danych administratora rachunku.
+- `DTO/AccountTest` – weryfikuje pola podstawowego konta.
+- `DTO/AdminStatsTest` – testuje model statystyk administratora.
+- `DTO/CryptoWalletTest` – przy użyciu refleksji sprawdza pola portfela kryptowalut.
+- `DTO/StandingOrderTest` – pełny zestaw pól zlecenia stałego.
+- `DTO/TransferTest` – rozróżnia przelew przychodzący i wychodzący.
+
+**Services**
+- `AddressBookServiceTest` – z użyciem `MockWebServer` testuje operacje CRUD na odbiorcach.
+- `CryptoServiceTest` – symuluje zakup i sprzedaż kryptowalut.
+- `StandingOrderMainServiceTest` – weryfikuje tworzenie, aktualizację i usuwanie zleceń stałych.
+- `TransactionsServiceTest` – sprawdza walidację danych przy wysyłaniu przelewu.
+
+**Utils**
+- `ApiClientTest` – upewnia się, że `authorizedRequest` i `basicRequest` nadają właściwe nagłówki.
+
+### Używane biblioteki testowe
+- **JUnit Jupiter** – podstawowy framework uruchamiający testy.
+- **Mockito** – pozwala na tworzenie atrap i weryfikację interakcji (w projekcie dostępny do rozbudowy testów).
+- **MockWebServer** – serwer HTTP w pamięci do testowania klas `Service`.
+- **org.json/Jackson** – biblioteki do budowania i odczytu danych JSON w testach.
+
+Aby uruchomić wszystkie testy, w katalogu projektu wykonaj:
+```bash
+mvn test
+```
+
+Aby uruchomić testy, należy upewnić się, że w pliku `pom.xml` znajdują się następujące zależności:
+
+```xml
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <version>5.10.0</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-engine</artifactId>
+    <version>5.10.0</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>com.squareup.okhttp3</groupId>
+    <artifactId>mockwebserver</artifactId>
+    <version>4.12.0</version>
+    <scope>test</scope>
+</dependency>
+```
+
 ## Lista funkcjonalności
 | OPZ    | Funkcjonalność                                                                                                          | API | web | mobile | desktop |
 |--------|-------------------------------------------------------------------------------------------------------------------------|-----|-----|--------|---------|
