@@ -2,7 +2,7 @@ package com.kracz0.desktopwitelonbank.Views;
 
 import com.kracz0.desktopwitelonbank.Controllers.Admin.AdminAccountDetailsController;
 import com.kracz0.desktopwitelonbank.Controllers.Client.CryptoController;
-import com.kracz0.desktopwitelonbank.Controllers.Client.DashboardController;
+import com.kracz0.desktopwitelonbank.Controllers.Client.Dashboard.DashboardController;
 import com.kracz0.desktopwitelonbank.Controllers.Client.Modals.TwoFactorController;
 import com.kracz0.desktopwitelonbank.Models.DTO.AccountAdmin;
 import com.kracz0.desktopwitelonbank.Models.Model;

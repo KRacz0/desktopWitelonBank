@@ -47,11 +47,6 @@ public class AdminService {
                 String email = user.optString("email", "brak");
                 String telefon = user.optString("telefon", "brak");
 
-                if (obj.isNull("created_at")) {
-                    System.out.println(" ID: " + id + " nie ma daty utworzenia");
-                }
-
-
                 AccountAdmin konto = new AccountAdmin(id, nrKonta, saldo, waluta, limitPrzelewu, zablokowane, utworzono,
                         imie, nazwisko, email, telefon);
                 list.add(konto);

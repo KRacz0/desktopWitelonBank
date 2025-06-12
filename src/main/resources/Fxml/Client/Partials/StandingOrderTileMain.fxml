@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox alignment="CENTER_LEFT" onMouseClicked="#handleDoubleClick" spacing="20" styleClass="stat_card" stylesheets="@../../../Styles/StandingOrder.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.StandingOrderTileMainController">
+<HBox alignment="CENTER_LEFT" onMouseClicked="#handleDoubleClick" spacing="20" styleClass="stat_card" stylesheets="@../../../Styles/StandingOrder.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.StandingOrder.StandingOrderTileMainController">
 
     <VBox spacing="4">
         <Label fx:id="nazwaOdbiorcyLabel" styleClass="stat_title" />

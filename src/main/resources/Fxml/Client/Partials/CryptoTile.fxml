@@ -6,7 +6,7 @@
 
 <HBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.CryptoTileController"
+      fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.Dashboard.CryptoTileController"
       alignment="CENTER_LEFT"
       spacing="10"
       styleClass="crypto_tile">

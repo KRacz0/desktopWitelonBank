@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="root" alignment="CENTER_LEFT" spacing="10" styleClass="transaction_tile" stylesheets="@../../../Styles/StandingOrder.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.StandingOrderTileController">
+<HBox fx:id="root" alignment="CENTER_LEFT" spacing="10" styleClass="transaction_tile" stylesheets="@../../../Styles/StandingOrder.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.StandingOrder.StandingOrderTileController">
 
     <StackPane styleClass="transaction_icon_circle">
         <FontAwesomeIconView glyphName="REPEAT" styleClass="standing_order_icon" />

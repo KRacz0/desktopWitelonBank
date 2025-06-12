@@ -14,6 +14,16 @@ import java.util.List;
 
 public class StandingOrderMainService {
 
+    private final String apiUrl;
+
+    public StandingOrderMainService() {
+        this.apiUrl = ApiConfig.ZLECENIA_STALE;
+    }
+
+    public StandingOrderMainService(String apiUrl) {
+        this.apiUrl = apiUrl;
+    }
+
     public List<StandingOrder> getZleceniaStale() {
         try {
             HttpRequest request = ApiClient.authorizedRequest(ApiConfig.ZLECENIA_STALE)

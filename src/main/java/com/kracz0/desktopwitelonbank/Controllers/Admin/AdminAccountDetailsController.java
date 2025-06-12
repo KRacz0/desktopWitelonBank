@@ -1,6 +1,6 @@
 package com.kracz0.desktopwitelonbank.Controllers.Admin;
 
-import com.kracz0.desktopwitelonbank.Controllers.Client.TransactionTileController;
+import com.kracz0.desktopwitelonbank.Controllers.Client.Transactions.TransactionTileController;
 import com.kracz0.desktopwitelonbank.Models.DTO.AccountAdmin;
 import com.kracz0.desktopwitelonbank.Models.DTO.Transfer;
 import com.kracz0.desktopwitelonbank.Services.Admin.AdminService;

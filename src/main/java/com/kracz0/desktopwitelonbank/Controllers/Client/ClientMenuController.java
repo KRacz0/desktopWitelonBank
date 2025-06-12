@@ -1,6 +1,7 @@
 package com.kracz0.desktopwitelonbank.Controllers.Client;
 
 import com.kracz0.desktopwitelonbank.Config.ApiConfig;
+import com.kracz0.desktopwitelonbank.Controllers.Client.Dashboard.DashboardController;
 import com.kracz0.desktopwitelonbank.Models.Model;
 import com.kracz0.desktopwitelonbank.Utils.ApiClient;
 import com.kracz0.desktopwitelonbank.Views.ViewFactory;

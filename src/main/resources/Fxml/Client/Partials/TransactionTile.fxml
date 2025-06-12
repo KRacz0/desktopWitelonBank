@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
-<HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.TransactionTileController" styleClass="transaction_tile" spacing="12" alignment="CENTER_LEFT" prefHeight="60.0">
+<HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.kracz0.desktopwitelonbank.Controllers.Client.Transactions.TransactionTileController" styleClass="transaction_tile" spacing="12" alignment="CENTER" prefHeight="60.0">
     <FontAwesomeIconView fx:id="icon_transaction" glyphName="QUESTION" glyphSize="18"/>
     <VBox spacing="2">
         <Label fx:id="transaction_category" styleClass="transaction_title"/>

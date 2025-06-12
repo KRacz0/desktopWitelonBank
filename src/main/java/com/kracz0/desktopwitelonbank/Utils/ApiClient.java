@@ -1,5 +1,6 @@
 package com.kracz0.desktopwitelonbank.Utils;
 
+import com.kracz0.desktopwitelonbank.Config.ApiConfig;
 import com.kracz0.desktopwitelonbank.Models.Model;
 
 import java.net.URI;
@@ -17,10 +18,10 @@ public class ApiClient {
         return client;
     }
 
-    public static HttpRequest.Builder authorizedRequest(String url) {
+    public static HttpRequest.Builder authorizedRequest(String fullUrl) {
         String token = Model.getInstance().getAuthToken();
         return HttpRequest.newBuilder()
-                .uri(URI.create(url))
+                .uri(URI.create(fullUrl))
                 .timeout(Duration.ofSeconds(15))
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
@@ -34,4 +35,23 @@ public class ApiClient {
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json");
     }
+
+    private static String overrideBaseUrl = null;
+
+    public static void setTestBaseUrl(String baseUrl) {
+        overrideBaseUrl = baseUrl;
+    }
+
+    public static HttpRequest.Builder authorizedApiRequest(String endpoint) {
+        String base = (overrideBaseUrl != null ? overrideBaseUrl : ApiConfig.BASE_URL);
+        String token = Model.getInstance().getAuthToken();
+
+        return HttpRequest.newBuilder()
+                .uri(URI.create(base + endpoint))
+                .timeout(Duration.ofSeconds(15))
+                .header("Content-Type", "application/json")
+                .header("Accept", "application/json")
+                .header("Authorization", "Bearer " + token);
+    }
 }
+

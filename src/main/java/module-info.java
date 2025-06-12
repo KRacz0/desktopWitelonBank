@@ -33,6 +33,14 @@ module com.kracz0.desktopwitelonbank {
     exports com.kracz0.desktopwitelonbank.Views;
 
     exports com.kracz0.desktopwitelonbank.Models.DTO to com.fasterxml.jackson.databind;
+    exports com.kracz0.desktopwitelonbank.Controllers.Client.Transactions;
+    opens com.kracz0.desktopwitelonbank.Controllers.Client.Transactions to javafx.fxml;
+    exports com.kracz0.desktopwitelonbank.Controllers.Client.StandingOrder;
+    opens com.kracz0.desktopwitelonbank.Controllers.Client.StandingOrder to javafx.fxml;
+    exports com.kracz0.desktopwitelonbank.Controllers.Client.Dashboard;
+    opens com.kracz0.desktopwitelonbank.Controllers.Client.Dashboard to javafx.fxml;
+    opens com.kracz0.desktopwitelonbank.Services to com.fasterxml.jackson.databind;
+
 
 
 
